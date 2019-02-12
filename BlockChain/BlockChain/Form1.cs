@@ -19,11 +19,13 @@ namespace BlockChain
         {
             InitializeComponent();
             ChainTester();
+            dataGridView1.DataSource = RvlChain.Chain;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             ChainSpoofer();
+            dataGridView2.DataSource = RvlChain.Chain;
         }
         public void ChainTester()
         {
@@ -36,7 +38,7 @@ namespace BlockChain
         public void ChainSpoofer()
         {
             Console.WriteLine("Going to alter the data of the second in the chain");
-            RvlChain.Chain[1].Data = "{sender:Johannessen,reciever:Geertrude,waarde:50}";
+            RvlChain.Chain[2] = new Block(DateTime.Now, RvlChain.Chain[1].Hash,"{sender:Johannessen,reciever:Geertrude,waarde:50}");
 
             Console.WriteLine($"Is chain vaild: {RvlChain.IsValid()}");
             Console.WriteLine(JsonConvert.SerializeObject(RvlChain, Formatting.Indented));
