@@ -15,6 +15,7 @@ namespace BlockChain
     public partial class Form1 : Form
     {
         RvLBlockChain RvlChain = new RvLBlockChain();
+        RvLBlockChain RvlChain2 = new RvLBlockChain();
         public Form1()
         {
             InitializeComponent();
@@ -24,8 +25,9 @@ namespace BlockChain
 
         private void button1_Click(object sender, EventArgs e)
         {
+            RvlChain2 = RvlChain;
             ChainSpoofer();
-            dataGridView2.DataSource = RvlChain.Chain;
+            dataGridView2.DataSource = RvlChain2.Chain;
         }
         public void ChainTester()
         {
@@ -38,10 +40,10 @@ namespace BlockChain
         public void ChainSpoofer()
         {
             Console.WriteLine("Going to alter the data of the second in the chain");
-            RvlChain.Chain[2] = new Block(DateTime.Now, RvlChain.Chain[1].Hash,"{sender:Johannessen,reciever:Geertrude,waarde:50}");
+            RvlChain2.Chain[2] = new Block(DateTime.Now, RvlChain2.Chain[1].Hash,"{sender:Johannessen,reciever:Geertrude,waarde:50}");
 
-            Console.WriteLine($"Is chain vaild: {RvlChain.IsValid()}");
-            Console.WriteLine(JsonConvert.SerializeObject(RvlChain, Formatting.Indented));
+            Console.WriteLine($"Is chain vaild: {RvlChain2.IsValid()}");
+            Console.WriteLine(JsonConvert.SerializeObject(RvlChain2, Formatting.Indented));
         }
     }
 }
