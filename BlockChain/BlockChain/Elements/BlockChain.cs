@@ -37,9 +37,12 @@ namespace BlockChain.Elements
 
         public void AddBlock(Block block)
         {
-            if (!IsValid())
+            if (Chain.Count > 1)
             {
-                throw new Exception("The Blocks order is not valid");
+                if (!IsValid())
+                {
+                    throw new Exception("The Blocks order is not valid");
+                }
             }
             Block latestBlock = GetLatestBlock();
             block.Index = latestBlock.Index + 1;
@@ -49,7 +52,7 @@ namespace BlockChain.Elements
         }
         public bool IsValid()
         {
-            for (int i = 0; i < Chain.Count; i++)
+            for (int i = 1; i < Chain.Count; i++)
             {
                 Block currentBlock = Chain[i];
                 Block previousBlock = Chain[i - 1];
