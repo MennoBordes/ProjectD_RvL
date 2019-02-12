@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BlockChain.Elements
 {
-    class BlockChain
+    public class RvLBlockChain
     {
         public IList<Block> Chain { get; set; }
-        public BlockChain()
+        public RvLBlockChain()
         {
             InitializeChain();
             AddGenesisBlock();
@@ -37,11 +37,32 @@ namespace BlockChain.Elements
 
         public void AddBlock(Block block)
         {
+            if (!IsValid())
+            {
+                throw new Exception("The Blocks order is not valid");
+            }
             Block latestBlock = GetLatestBlock();
             block.Index = latestBlock.Index + 1;
             block.PreviousHash = latestBlock.Hash;
             block.Hash = block.CalculateHash();
             Chain.Add(block);
+        }
+        public bool IsValid()
+        {
+            for (int i = 0; i < Chain.Count; i++)
+            {
+                Block currentBlock = Chain[i];
+                Block previousBlock = Chain[i - 1];
+                if(currentBlock.Hash != currentBlock.CalculateHash())
+                {
+                    return false;
+                }
+                if(currentBlock.PreviousHash != previousBlock.Hash)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }
