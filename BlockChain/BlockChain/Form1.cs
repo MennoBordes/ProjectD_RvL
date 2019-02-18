@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using BlockChain.Elements;
+using BlockChain.Form1Elements;
 using Newtonsoft.Json;
 
 namespace BlockChain
