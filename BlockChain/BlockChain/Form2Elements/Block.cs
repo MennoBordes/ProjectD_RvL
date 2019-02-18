@@ -17,9 +17,9 @@ namespace BlockChain.Form2Elements
         public string PreviousHash { get; set; }
         public string Hash { get; set; }
 
-        public List<Transactions> Transactions { get; set; }
+        public List<Transaction> Transactions { get; set; }
 
-        public Block(DateTime timestamp, List<Transactions> transactions, string previousHash = "")
+        public Block(DateTime timestamp, List<Transaction> transactions, string previousHash = "")
         {
             _TimeStamp = timestamp;
             _Nonce = 0;
@@ -29,7 +29,7 @@ namespace BlockChain.Form2Elements
             Hash = CreateHash();
         }
 
-        private string CreateHash()
+        public string CreateHash()
         {
             using (SHA256 sha256 = SHA256.Create())
             {
