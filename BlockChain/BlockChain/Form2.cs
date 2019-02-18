@@ -22,5 +22,31 @@ namespace BlockChain
         {
 
         }
+        private void Callable()
+        {
+            const string minerAddress = "miner1";
+            const string User1Address = "A";
+            const string User2Address = "B";
+
+            RvLBlockchain blockchain = new RvLBlockchain(proofOfWorkDifficulty: 2, miningReward: 10);
+            blockchain.CreateTransaction(new Transaction(User1Address, User2Address, 200, "BlaBlaBla"));
+            blockchain.CreateTransaction(new Transaction(User2Address, User1Address, 10, "BloBloBlo"));
+
+            Console.WriteLine("Is valid: {0}", blockchain.IsValidChain());
+
+            Console.WriteLine();
+            Console.WriteLine("--------- Start mining ---------");
+            blockchain.MineBlock(minerAddress);
+
+            Console.WriteLine("BALANCE of the miner: {0}", blockchain.GetBalance(minerAddress));
+
+            blockchain.CreateTransaction(new Transaction(User1Address, User2Address, 5, "Total"));
+
+            Console.WriteLine();
+            Console.WriteLine("--------- Start mining ---------");
+            blockchain.MineBlock(minerAddress);
+
+
+        }
     }
 }
