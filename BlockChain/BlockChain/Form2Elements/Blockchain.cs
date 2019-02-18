@@ -35,9 +35,9 @@ namespace BlockChain.Form2Elements
             _PendingTransactions.Add(transaction);
         }
 
-        public void MineBlock(string minerAddress, string additionalInfo)
+        public void MineBlock(string minerAddress)
         {
-            Transaction minerRewardTransaction = new Transaction(null, minerAddress, _MiningReward, additionalInfo);
+            Transaction minerRewardTransaction = new Transaction(null, minerAddress, _MiningReward, "Mined");
             _PendingTransactions.Add(minerRewardTransaction);
 
             Block block = new Block(DateTime.Now, _PendingTransactions);
