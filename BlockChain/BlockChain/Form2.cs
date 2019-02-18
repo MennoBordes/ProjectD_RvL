@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BlockChain.Form2Elements;
 
 namespace BlockChain
 {
@@ -16,5 +17,6 @@ namespace BlockChain
         {
             InitializeComponent();
         }
+
     }
 }
