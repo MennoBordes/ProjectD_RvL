@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace BlockChain.Form2Elements
 {
-    class Transactions
+    public class Transactions
     {
+        public string From { get; set; }
+        public string To { get; set; }
+        public double Amount { get; set; }
+        public string AdditionalData { get; set; }
+        public Transactions(string from, string to, double amount, string additionalData)
+        {
+            From = from;
+            To = to;
+            Amount = amount;
+            AdditionalData = additionalData;
+        }
     }
 }
