@@ -5,6 +5,7 @@ export default class Home extends Component {
         return (
             <div>
                 {/* //TODO different home page component like nav and page */}
+                <h1>Welcome</h1>
             </div>
         );
     }
