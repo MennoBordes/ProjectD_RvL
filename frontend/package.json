@@ -2,17 +2,21 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
+  "description": "",
   "main": "index.js",
-  "dependencies": {
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
-    "react-scripts": "2.1.8"
-  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},  
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-scripts": "2.1.8"
   },
   "eslintConfig": {
     "extends": "react-app"
