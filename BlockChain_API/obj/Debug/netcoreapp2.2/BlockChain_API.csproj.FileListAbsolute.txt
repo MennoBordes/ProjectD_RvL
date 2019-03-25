@@ -1,0 +1,14 @@
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\bin\Debug\netcoreapp2.2\BlockChain_API.deps.json
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\bin\Debug\netcoreapp2.2\BlockChain_API.runtimeconfig.json
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\bin\Debug\netcoreapp2.2\BlockChain_API.runtimeconfig.dev.json
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\bin\Debug\netcoreapp2.2\BlockChain_API.dll
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\bin\Debug\netcoreapp2.2\BlockChain_API.pdb
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\obj\Debug\netcoreapp2.2\BlockChain_API.csprojAssemblyReference.cache
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\obj\Debug\netcoreapp2.2\BlockChain_API.csproj.CoreCompileInputs.cache
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\obj\Debug\netcoreapp2.2\BlockChain_API.RazorAssemblyInfo.cache
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\obj\Debug\netcoreapp2.2\BlockChain_API.RazorAssemblyInfo.cs
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\obj\Debug\netcoreapp2.2\BlockChain_API.AssemblyInfoInputs.cache
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\obj\Debug\netcoreapp2.2\BlockChain_API.AssemblyInfo.cs
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\obj\Debug\netcoreapp2.2\BlockChain_API.RazorTargetAssemblyInfo.cache
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\obj\Debug\netcoreapp2.2\BlockChain_API.dll
+D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain_API\obj\Debug\netcoreapp2.2\BlockChain_API.pdb
