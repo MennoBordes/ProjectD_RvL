@@ -17,7 +17,6 @@ namespace BlockChain
 			SHA256 sha256 = SHA256.Create();
 			byte[] inputBytes = Encoding.ASCII.GetBytes(textBox1.Text);
 			byte[] outputBytes = sha256.ComputeHash(inputBytes);
-			label1.Text = Convert.ToBase64String(outputBytes);
 			textBox2.Text = Convert.ToBase64String(outputBytes);
 			string res = string.Empty;
 			foreach(byte b in outputBytes)
@@ -26,5 +25,5 @@ namespace BlockChain
 			}
 			textBox3.Text = res;
 		}
-	}
+  }
 }
