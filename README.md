@@ -2,4 +2,4 @@
 
 Blockchain implementation.
 
-Open in visual studio and run.
+Open in visual studio, restore and run.
