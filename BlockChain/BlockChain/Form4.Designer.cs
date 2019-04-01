@@ -29,17 +29,17 @@
 		private void InitializeComponent()
 		{
       this.button1 = new System.Windows.Forms.Button();
-      this.textBox1 = new System.Windows.Forms.TextBox();
+      this.TxbInput1 = new System.Windows.Forms.TextBox();
       this.label2 = new System.Windows.Forms.Label();
-      this.textBox2 = new System.Windows.Forms.TextBox();
-      this.textBox3 = new System.Windows.Forms.TextBox();
+      this.TxbTekst1 = new System.Windows.Forms.TextBox();
+      this.TxbByte1 = new System.Windows.Forms.TextBox();
       this.label3 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
       this.button2 = new System.Windows.Forms.Button();
       this.label1 = new System.Windows.Forms.Label();
-      this.textBox4 = new System.Windows.Forms.TextBox();
-      this.textBox5 = new System.Windows.Forms.TextBox();
-      this.textBox6 = new System.Windows.Forms.TextBox();
+      this.TxbByte2 = new System.Windows.Forms.TextBox();
+      this.TxbTekst2 = new System.Windows.Forms.TextBox();
+      this.TxbInput2 = new System.Windows.Forms.TextBox();
       this.label5 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
       this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -59,13 +59,13 @@
       this.button1.UseVisualStyleBackColor = true;
       this.button1.Click += new System.EventHandler(this.button1_Click);
       // 
-      // textBox1
+      // TxbInput1
       // 
-      this.textBox1.Location = new System.Drawing.Point(242, 52);
-      this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-      this.textBox1.Name = "textBox1";
-      this.textBox1.Size = new System.Drawing.Size(389, 22);
-      this.textBox1.TabIndex = 1;
+      this.TxbInput1.Location = new System.Drawing.Point(242, 52);
+      this.TxbInput1.Margin = new System.Windows.Forms.Padding(4);
+      this.TxbInput1.Name = "TxbInput1";
+      this.TxbInput1.Size = new System.Drawing.Size(389, 22);
+      this.TxbInput1.TabIndex = 1;
       // 
       // label2
       // 
@@ -77,24 +77,24 @@
       this.label2.TabIndex = 3;
       this.label2.Text = "De Hashwaarde in tekst format:";
       // 
-      // textBox2
+      // TxbTekst1
       // 
-      this.textBox2.Location = new System.Drawing.Point(241, 177);
-      this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-      this.textBox2.Name = "textBox2";
-      this.textBox2.ReadOnly = true;
-      this.textBox2.Size = new System.Drawing.Size(389, 22);
-      this.textBox2.TabIndex = 3;
+      this.TxbTekst1.Location = new System.Drawing.Point(241, 177);
+      this.TxbTekst1.Margin = new System.Windows.Forms.Padding(4);
+      this.TxbTekst1.Name = "TxbTekst1";
+      this.TxbTekst1.ReadOnly = true;
+      this.TxbTekst1.Size = new System.Drawing.Size(389, 22);
+      this.TxbTekst1.TabIndex = 3;
       // 
-      // textBox3
+      // TxbByte1
       // 
-      this.textBox3.Location = new System.Drawing.Point(241, 93);
-      this.textBox3.Margin = new System.Windows.Forms.Padding(4);
-      this.textBox3.Multiline = true;
-      this.textBox3.Name = "textBox3";
-      this.textBox3.ReadOnly = true;
-      this.textBox3.Size = new System.Drawing.Size(389, 70);
-      this.textBox3.TabIndex = 2;
+      this.TxbByte1.Location = new System.Drawing.Point(241, 93);
+      this.TxbByte1.Margin = new System.Windows.Forms.Padding(4);
+      this.TxbByte1.Multiline = true;
+      this.TxbByte1.Name = "TxbByte1";
+      this.TxbByte1.ReadOnly = true;
+      this.TxbByte1.Size = new System.Drawing.Size(389, 70);
+      this.TxbByte1.TabIndex = 2;
       // 
       // label3
       // 
@@ -134,32 +134,32 @@
       this.label1.TabIndex = 9;
       this.label1.Text = "Voer hier de waarde in om de hashcode te berekenen.";
       // 
-      // textBox4
+      // TxbByte2
       // 
-      this.textBox4.Location = new System.Drawing.Point(241, 93);
-      this.textBox4.Margin = new System.Windows.Forms.Padding(4);
-      this.textBox4.Multiline = true;
-      this.textBox4.Name = "textBox4";
-      this.textBox4.ReadOnly = true;
-      this.textBox4.Size = new System.Drawing.Size(389, 70);
-      this.textBox4.TabIndex = 6;
+      this.TxbByte2.Location = new System.Drawing.Point(241, 93);
+      this.TxbByte2.Margin = new System.Windows.Forms.Padding(4);
+      this.TxbByte2.Multiline = true;
+      this.TxbByte2.Name = "TxbByte2";
+      this.TxbByte2.ReadOnly = true;
+      this.TxbByte2.Size = new System.Drawing.Size(389, 70);
+      this.TxbByte2.TabIndex = 6;
       // 
-      // textBox5
+      // TxbTekst2
       // 
-      this.textBox5.Location = new System.Drawing.Point(241, 177);
-      this.textBox5.Margin = new System.Windows.Forms.Padding(4);
-      this.textBox5.Name = "textBox5";
-      this.textBox5.ReadOnly = true;
-      this.textBox5.Size = new System.Drawing.Size(389, 22);
-      this.textBox5.TabIndex = 7;
+      this.TxbTekst2.Location = new System.Drawing.Point(241, 177);
+      this.TxbTekst2.Margin = new System.Windows.Forms.Padding(4);
+      this.TxbTekst2.Name = "TxbTekst2";
+      this.TxbTekst2.ReadOnly = true;
+      this.TxbTekst2.Size = new System.Drawing.Size(389, 22);
+      this.TxbTekst2.TabIndex = 7;
       // 
-      // textBox6
+      // TxbInput2
       // 
-      this.textBox6.Location = new System.Drawing.Point(242, 52);
-      this.textBox6.Margin = new System.Windows.Forms.Padding(4);
-      this.textBox6.Name = "textBox6";
-      this.textBox6.Size = new System.Drawing.Size(389, 22);
-      this.textBox6.TabIndex = 5;
+      this.TxbInput2.Location = new System.Drawing.Point(242, 52);
+      this.TxbInput2.Margin = new System.Windows.Forms.Padding(4);
+      this.TxbInput2.Name = "TxbInput2";
+      this.TxbInput2.Size = new System.Drawing.Size(389, 22);
+      this.TxbInput2.TabIndex = 5;
       // 
       // label5
       // 
@@ -187,9 +187,9 @@
       this.groupBox1.Controls.Add(this.button2);
       this.groupBox1.Controls.Add(this.label6);
       this.groupBox1.Controls.Add(this.label1);
-      this.groupBox1.Controls.Add(this.textBox4);
-      this.groupBox1.Controls.Add(this.textBox6);
-      this.groupBox1.Controls.Add(this.textBox5);
+      this.groupBox1.Controls.Add(this.TxbByte2);
+      this.groupBox1.Controls.Add(this.TxbInput2);
+      this.groupBox1.Controls.Add(this.TxbTekst2);
       this.groupBox1.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.groupBox1.Location = new System.Drawing.Point(0, 230);
       this.groupBox1.Name = "groupBox1";
@@ -201,12 +201,12 @@
       // groupBox2
       // 
       this.groupBox2.Controls.Add(this.button1);
-      this.groupBox2.Controls.Add(this.textBox1);
+      this.groupBox2.Controls.Add(this.TxbInput1);
       this.groupBox2.Controls.Add(this.label4);
       this.groupBox2.Controls.Add(this.label2);
       this.groupBox2.Controls.Add(this.label3);
-      this.groupBox2.Controls.Add(this.textBox2);
-      this.groupBox2.Controls.Add(this.textBox3);
+      this.groupBox2.Controls.Add(this.TxbTekst1);
+      this.groupBox2.Controls.Add(this.TxbByte1);
       this.groupBox2.Dock = System.Windows.Forms.DockStyle.Top;
       this.groupBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
       this.groupBox2.Location = new System.Drawing.Point(0, 0);
@@ -238,20 +238,20 @@
 		#endregion
 
 		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.TextBox textBox1;
+		private System.Windows.Forms.TextBox TxbInput1;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.TextBox textBox2;
-		private System.Windows.Forms.TextBox textBox3;
+		private System.Windows.Forms.TextBox TxbTekst1;
+		private System.Windows.Forms.TextBox TxbByte1;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.Label label4;
     private System.Windows.Forms.Button button2;
     private System.Windows.Forms.Label label1;
-    private System.Windows.Forms.TextBox textBox4;
-    private System.Windows.Forms.TextBox textBox5;
-    private System.Windows.Forms.TextBox textBox6;
+    private System.Windows.Forms.TextBox TxbTekst2;
+    private System.Windows.Forms.TextBox TxbInput2;
     private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.GroupBox groupBox2;
+    private System.Windows.Forms.TextBox TxbByte2;
   }
 }

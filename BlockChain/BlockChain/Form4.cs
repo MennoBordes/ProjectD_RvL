@@ -14,26 +14,26 @@ namespace BlockChain
 
 		private void button1_Click(object sender, EventArgs e)
 		{
-      byte[] hash = CreateHash(textBox1.Text);
-      textBox2.Text = Convert.ToBase64String(hash);
+      byte[] hash = CreateHash(TxbInput1.Text);
+      TxbTekst1.Text = Convert.ToBase64String(hash);
       string res = string.Empty;
       foreach (byte b in hash)
       {
 				res = res + b + " ";
 			}
-			textBox3.Text = res;
+			TxbByte1.Text = res;
 		}
 
     private void button2_Click(object sender, EventArgs e)
     {
-      byte[] hash = CreateHash(textBox6.Text);
-      textBox5.Text = Convert.ToBase64String(hash);
+      byte[] hash = CreateHash(TxbInput2.Text);
+      TxbTekst2.Text = Convert.ToBase64String(hash);
       string res = string.Empty;
       foreach (byte b in hash)
       {
         res = res + b + " ";
       }
-      textBox4.Text = res;
+      TxbByte2.Text = res;
     }
 
     /// <summary>
