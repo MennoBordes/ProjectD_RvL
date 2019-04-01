@@ -84,7 +84,7 @@
       this.textBox2.Name = "textBox2";
       this.textBox2.ReadOnly = true;
       this.textBox2.Size = new System.Drawing.Size(389, 22);
-      this.textBox2.TabIndex = 4;
+      this.textBox2.TabIndex = 3;
       // 
       // textBox3
       // 
@@ -94,7 +94,7 @@
       this.textBox3.Name = "textBox3";
       this.textBox3.ReadOnly = true;
       this.textBox3.Size = new System.Drawing.Size(389, 70);
-      this.textBox3.TabIndex = 5;
+      this.textBox3.TabIndex = 2;
       // 
       // label3
       // 
@@ -120,7 +120,7 @@
       this.button2.Location = new System.Drawing.Point(113, 49);
       this.button2.Name = "button2";
       this.button2.Size = new System.Drawing.Size(117, 23);
-      this.button2.TabIndex = 8;
+      this.button2.TabIndex = 4;
       this.button2.Text = "Creëer Hash";
       this.button2.UseVisualStyleBackColor = true;
       this.button2.Click += new System.EventHandler(this.button2_Click);
@@ -142,7 +142,7 @@
       this.textBox4.Name = "textBox4";
       this.textBox4.ReadOnly = true;
       this.textBox4.Size = new System.Drawing.Size(389, 70);
-      this.textBox4.TabIndex = 12;
+      this.textBox4.TabIndex = 6;
       // 
       // textBox5
       // 
@@ -151,7 +151,7 @@
       this.textBox5.Name = "textBox5";
       this.textBox5.ReadOnly = true;
       this.textBox5.Size = new System.Drawing.Size(389, 22);
-      this.textBox5.TabIndex = 11;
+      this.textBox5.TabIndex = 7;
       // 
       // textBox6
       // 
@@ -159,7 +159,7 @@
       this.textBox6.Margin = new System.Windows.Forms.Padding(4);
       this.textBox6.Name = "textBox6";
       this.textBox6.Size = new System.Drawing.Size(389, 22);
-      this.textBox6.TabIndex = 10;
+      this.textBox6.TabIndex = 5;
       // 
       // label5
       // 
