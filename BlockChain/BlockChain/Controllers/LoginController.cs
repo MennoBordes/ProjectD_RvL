@@ -29,28 +29,20 @@ namespace BlockChain.Controllers
     [HttpPost]
     public string Post([FromBody] LoginCredentials Credentials)
     {
-      return Credentials.getKey();
+      return Credentials.getRSA();
     }
 
     // PUT: api/Login/5
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] string value)
     {
-
     }
 
     // PUT: api/Login
     [HttpPut]
     public string Put([FromBody] LoginCredentials Credentials)
     {
-      return Credentials.getKey();
-    }
-
-    // PUT: api/Login/
-    [HttpPut("{node}")]
-    public void Put(string IP, string RSA, DateTime time)
-    {
-
+      return Credentials.getIP();
     }
 
     // DELETE: api/ApiWithActions/5
@@ -63,14 +55,20 @@ namespace BlockChain.Controllers
 
 public class LoginCredentials
 {
-  string key;
-  public LoginCredentials(string key)
+  string IP, RSA;
+  public LoginCredentials(string ip, string rsa)
   {
-    this.key = key;
+    this.IP = ip;
+    this.RSA = rsa;
   }
 
-  public string getKey()
+  public string getIP()
   {
-    return this.key;
+    return this.IP;
+  }
+
+  public string getRSA()
+  {
+    return this.RSA;
   }
 }
