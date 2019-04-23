@@ -21,7 +21,7 @@ namespace BlockChain.Controllers
     [HttpGet("{id}")]
     public ActionResult<string> Get(int id)
     {
-      return "value" + id;
+      return "value";
     }
 
     // POST api/values
