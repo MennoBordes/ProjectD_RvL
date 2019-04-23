@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using BlockChain.Classes;
 
 namespace BlockChain.Controllers
 {
@@ -50,25 +46,5 @@ namespace BlockChain.Controllers
     public void Delete(int id)
     {
     }
-  }
-}
-
-public class LoginCredentials
-{
-  string IP, RSA;
-  public LoginCredentials(string ip, string rsa)
-  {
-    this.IP = ip;
-    this.RSA = rsa;
-  }
-
-  public string getIP()
-  {
-    return this.IP;
-  }
-
-  public string getRSA()
-  {
-    return this.RSA;
   }
 }
