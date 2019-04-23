@@ -15,6 +15,7 @@
 
 *.bin/
 *.obj/
+*.cache
 
 # misc
 .DS_Store
