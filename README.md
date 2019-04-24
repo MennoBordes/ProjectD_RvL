@@ -1,13 +1,6 @@
 # BlockChain RvL
 
+In order to run use:
 ```
-$ npm install
-
-$ cd frontend
-
-$ npm install
-
-$ cd ..
-
-$ npm run dev
+dotnet watch run
 ```

@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using BlockChain.Classes;
+using Server.Classes;
 using System.Collections;
 
-namespace BlockChain.Controllers
+namespace Server.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
@@ -46,8 +46,10 @@ namespace BlockChain.Controllers
     public void Put(string user, [FromBody] string value)
     {
     }
+    
 
     // PUT: api/Login
+    // Is used to get credentials form the child node's
     [HttpPut]
     public ActionResult<IEnumerable> Put([FromBody] LoginCredentials Credentials)
     {
