@@ -14,7 +14,7 @@ namespace BlockChain.Controllers {
         // GET: api/data
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get () {
-            return new string[] { "Je kanker moeder" };
+            return new string[] { "Zeehondjes" };
         }
 
         [HttpPost ("createblock")]
