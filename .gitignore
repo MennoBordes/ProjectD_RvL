@@ -32,6 +32,11 @@ yarn-error.log*
 *.bin/
 *.obj/
 *.cache
+.BlockChain/BlockChain/bin/
+.BlockChain/BlockChain/obj/
+
+.BlockChain/Node/bin/
+.BlockChain/Node/obj/
 
 # Visual Studio
 *.vs/ 
