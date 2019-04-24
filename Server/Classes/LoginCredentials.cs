@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BlockChain.Classes
+namespace Server.Classes
 {
   public class LoginCredentials
   {

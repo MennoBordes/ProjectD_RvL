@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace BlockChain.Classes {
+namespace Server.Classes {
     public class Data {
         public string naam { get; set; }
         public string BSN { get; set; }
