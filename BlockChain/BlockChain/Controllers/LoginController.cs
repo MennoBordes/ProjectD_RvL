@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using BlockChain.Classes;
+using System.Collections;
 
 namespace BlockChain.Controllers
 {
@@ -9,23 +10,23 @@ namespace BlockChain.Controllers
   {
     // GET: api/Login
     [HttpGet]
-    public int Get()
+    public ActionResult<int> Get()
     {
       return 200;
     }
 
     // GET: api/Login/5/Jan
     [HttpGet("{id}/{Name}", Name = "Get")]
-    public string Get(int id, string Name)
+    public ActionResult<IEnumerable> Get(int id, string Name)
     {
-      return "value" + id + "name: " + Name;
+      return new string[] { $"value: {id}", $"name: {Name}"};
     }
 
     // POST: api/Login
     [HttpPost]
     public string Post([FromBody] LoginCredentials Credentials)
     {
-      return Credentials.getRSA();
+      return Credentials.GetRSA();
     }
 
     // PUT: api/Login/5
@@ -38,7 +39,7 @@ namespace BlockChain.Controllers
     [HttpPut]
     public string Put([FromBody] LoginCredentials Credentials)
     {
-      return Credentials.getIP();
+      return Credentials.GetIP();
     }
 
     // DELETE: api/ApiWithActions/5
