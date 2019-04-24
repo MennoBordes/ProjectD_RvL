@@ -9,12 +9,12 @@
       this.RSA = rsa;
     }
 
-    public string getIP()
+    public string GetIP()
     {
       return this.IP;
     }
 
-    public string getRSA()
+    public string GetRSA()
     {
       return this.RSA;
     }
