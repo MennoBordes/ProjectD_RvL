@@ -1,10 +1,5 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# dependencies
-/node_modules
-frontend/node_modules
-*/node_modules
-
 /.pnp
 .pnp.js
 
@@ -29,14 +24,12 @@ yarn-error.log*
 # Visual Studio Code
 *.vscode/
 
-*.bin/
-*.obj/
-*.cache
-*.Node/bin/
-*.Node/obj/
-
-*.Server/bin/
-*.Server/obj/
-
 # Visual Studio
 *.vs/ 
+
+*.suo
+*.user
+_ReSharper.*
+bin
+obj
+packages
