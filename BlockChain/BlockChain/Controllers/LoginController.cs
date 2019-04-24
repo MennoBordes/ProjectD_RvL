@@ -35,11 +35,23 @@ namespace BlockChain.Controllers
     {
     }
 
+    // PUT: api/Login/node
+    [HttpPut("{node}")]
+    public void Put(string node, [FromBody] LoginCredentials value)
+    {
+    }
+
+    // PUT: api/Login/user
+    [HttpPut("{user}")]
+    public void Put(string user, [FromBody] string value)
+    {
+    }
+
     // PUT: api/Login
     [HttpPut]
-    public string Put([FromBody] LoginCredentials Credentials)
+    public ActionResult<IEnumerable> Put([FromBody] LoginCredentials Credentials)
     {
-      return Credentials.GetIP();
+      return new string[] {Credentials.GetIP(), Credentials.GetRSA(), Credentials.GetDate()};
     }
 
     // DELETE: api/ApiWithActions/5

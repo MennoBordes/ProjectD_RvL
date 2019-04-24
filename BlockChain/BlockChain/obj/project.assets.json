@@ -12544,11 +12544,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Documenten\\Github\\Repositories\\ProjectD_RvL\\BlockChain\\BlockChain\\BlockChain.csproj",
+      "projectUniqueName": "d:\\Documenten\\Github\\Repositories\\ProjectD_RvL\\BlockChain\\BlockChain\\BlockChain.csproj",
       "projectName": "BlockChain",
-      "projectPath": "D:\\Documenten\\Github\\Repositories\\ProjectD_RvL\\BlockChain\\BlockChain\\BlockChain.csproj",
+      "projectPath": "d:\\Documenten\\Github\\Repositories\\ProjectD_RvL\\BlockChain\\BlockChain\\BlockChain.csproj",
       "packagesPath": "C:\\Users\\menno\\.nuget\\packages\\",
-      "outputPath": "D:\\Documenten\\Github\\Repositories\\ProjectD_RvL\\BlockChain\\BlockChain\\obj\\",
+      "outputPath": "d:\\Documenten\\Github\\Repositories\\ProjectD_RvL\\BlockChain\\BlockChain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
