@@ -64,11 +64,5 @@ namespace BlockChain.Classes {
             data = data1;
         }
     }
-    public class SendData {
-        public string data { get; set; }
-        // public SendData (string Data) {
-        //     data = Data;
-        // }
-    }
 
 }
