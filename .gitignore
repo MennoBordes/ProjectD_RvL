@@ -32,11 +32,11 @@ yarn-error.log*
 *.bin/
 *.obj/
 *.cache
-.Node/bin/
-.Node/obj/
+*.Node/bin/
+*.Node/obj/
 
-.Server/bin/
-.Server/obj/
+*.Server/bin/
+*.Server/obj/
 
 # Visual Studio
 *.vs/ 
