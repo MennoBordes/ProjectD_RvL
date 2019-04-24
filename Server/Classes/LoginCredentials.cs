@@ -1,12 +1,12 @@
 ﻿using System;
 
-namespace BlockChain.Classes
+namespace Server.Classes
 {
   public class LoginCredentials
   {
     string IP, RSA;
-    string Date;
-    public LoginCredentials(string ip, string rsa, string Date)
+    DateTime Date;
+    public LoginCredentials(string ip, string rsa, DateTime Date)
     {
       this.IP = ip;
       this.RSA = rsa;
@@ -24,7 +24,7 @@ namespace BlockChain.Classes
     }
 
     public string GetDate(){
-      return this.Date;
+      return this.Date.ToString();
     }
   }
 }

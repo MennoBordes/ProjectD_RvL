@@ -3,10 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using BlockChain.Classes;
+using Server.Classes;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BlockChain.Controllers {
+namespace Server.Controllers {
 
     [Route ("api/[controller]")]
     [ApiController]
