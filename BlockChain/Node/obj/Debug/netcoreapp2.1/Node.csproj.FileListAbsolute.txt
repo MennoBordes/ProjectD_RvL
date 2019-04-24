@@ -5,10 +5,7 @@ D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain\Node\bin\Debug\netcore
 D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain\Node\bin\Debug\netcoreapp2.1\Node.pdb
 D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain\Node\obj\Debug\netcoreapp2.1\Node.csprojAssemblyReference.cache
 D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain\Node\obj\Debug\netcoreapp2.1\Node.csproj.CoreCompileInputs.cache
-D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain\Node\obj\Debug\netcoreapp2.1\Node.RazorAssemblyInfo.cache
-D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain\Node\obj\Debug\netcoreapp2.1\Node.RazorAssemblyInfo.cs
 D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain\Node\obj\Debug\netcoreapp2.1\Node.AssemblyInfoInputs.cache
 D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain\Node\obj\Debug\netcoreapp2.1\Node.AssemblyInfo.cs
-D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain\Node\obj\Debug\netcoreapp2.1\Node.RazorTargetAssemblyInfo.cache
 D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain\Node\obj\Debug\netcoreapp2.1\Node.dll
 D:\Documenten\Github\Repositories\ProjectD_RvL\BlockChain\Node\obj\Debug\netcoreapp2.1\Node.pdb
