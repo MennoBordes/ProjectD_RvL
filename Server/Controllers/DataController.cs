@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Server.Classes;
 using Microsoft.AspNetCore.Mvc;
+using Server.Classes;
 
 namespace Server.Controllers {
 
@@ -19,6 +19,8 @@ namespace Server.Controllers {
 
         [HttpPost ("createblock")]
         public Block Post ([FromBody] Data data) {
+            letsEncrypt letsEncrypt = new letsEncrypt ();
+            letsEncrypt.Encrypt ();
             return new Block ("304940940", "493493493", null, null, data);
         }
 
