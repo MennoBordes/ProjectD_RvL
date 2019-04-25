@@ -19,6 +19,8 @@ namespace Node
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
+                .UseUrls("https://localhost:" + (args[0]) ? args[0] : 5001 )
                 .UseStartup<Startup>();
+    
     }
 }
