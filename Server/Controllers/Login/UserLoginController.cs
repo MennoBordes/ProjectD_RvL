@@ -50,9 +50,10 @@ namespace Server.Controllers
     }
 
     [HttpGet("About")]
-    public ContentResult About()
+    public JsonResult About()
     {
-      return Content("An API for validating user login.");
+      var res = new {result = "An API for validating user login."};
+      return Json(res);
     }
 
     [HttpGet("Info")]

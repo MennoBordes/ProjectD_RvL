@@ -8,6 +8,7 @@ namespace Server.Controllers
   [ApiController]
   public class NodeLoginController : Controller
   {
+    Node nodes = new Node();
     // GET: api/nodeLogin
     [HttpGet]
     public ActionResult<int> Get()
@@ -33,14 +34,39 @@ namespace Server.Controllers
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] string value)
     {
-    }  
+    }
 
-    // PUT: api/nodeLogin/node
+    [HttpPut("Test")]
+    public JsonResult Test([FromBody] NodeCredentials NodeCredentials)
+    {
+      return Json(NodeCredentials.GetAllNodeCredentials());
+    }
+
+    [HttpPut("nodes")]
+    public JsonResult ExistingNodes([FromBody] NodeCredentials Credentials)
+    {
+      nodes.AddNode(Credentials);
+      nodes.AddNode(Credentials);
+      nodes.AddNode(Credentials);
+      nodes.AddNode(Credentials);
+      nodes.AddNode(Credentials);
+      var t = nodes.GetAllNodes();
+      return Json(data: t);
+    }
+
+    [HttpGet("About")]
+    public JsonResult About()
+    {
+      var res = new { result = "An API for validating node login." };
+      return Json(res);
+    }
+
+    // PUT: api/nodeLogin
     // Is used to get credentials form the child node's
     [HttpPut]
     public ActionResult<IEnumerable> Put([FromBody] NodeCredentials NodeCredentials)
     {
-      return new string[] {NodeCredentials.GetIP(), NodeCredentials.GetRSA(), NodeCredentials.GetDate()};
+      return new string[] { NodeCredentials.GetIP(), NodeCredentials.GetRSA(), NodeCredentials.GetDate() };
     }
 
     // DELETE: api/ApiWithActions/5

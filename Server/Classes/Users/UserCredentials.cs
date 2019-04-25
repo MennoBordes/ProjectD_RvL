@@ -1,11 +1,13 @@
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Server.Classes.Users
 {
   public class UserCredentials
   {
-    string InstantieNaam;
-    string InstantieRechten;
+    private string InstantieNaam;
+    private string InstantieRechten;
 
     public UserCredentials(string InstantieNaam, string InstantieRechten)
     {
@@ -25,10 +27,11 @@ namespace Server.Classes.Users
 
     public List<string> GetAllUserCredentials()
     {
-      List<string> t = new List<string>();
-      t.Add(InstantieNaam);
-      t.Add(InstantieRechten);
-      return t;
+      List<string> Temp = new List<string>(){
+        GetInstantieNaam(),
+        GetInstantieRechten()
+      };
+      return Temp;
     }
   }
 }
