@@ -32,24 +32,88 @@ namespace Server.Classes {
             }
 
             DataObject dataobject = new DataObject ();
-
-            dataobject.Naam = encryptedvalues.ElementAt (0);
-            dataobject.BSN = encryptedvalues.ElementAt (1);
-            dataobject.Geb_Datum = encryptedvalues.ElementAt (2);
-            dataobject.Organisatie = encryptedvalues.ElementAt (3);
-            dataobject.Groep = encryptedvalues.ElementAt (4);
-            dataobject.Antecendenten = encryptedvalues.ElementAt (5);
-            dataobject.Aanhoudingen = encryptedvalues.ElementAt (6);
-            dataobject.HeeftISDMaatregel = encryptedvalues.ElementAt (7);
-            dataobject.Sepots = encryptedvalues.ElementAt (8);
-            dataobject.HeeftOnderzoekRad = encryptedvalues.ElementAt (9);
-            dataobject.LopendeDossiers = encryptedvalues.ElementAt (10);
-            dataobject.BezitUitkering = encryptedvalues.ElementAt (11);
-            dataobject.MeldingenRad = encryptedvalues.ElementAt (12);
-            dataobject.ZitInGroepsAanpak = encryptedvalues.ElementAt (13);
-            dataobject.HeeftIdBewijs = encryptedvalues.ElementAt (14);
-            dataobject.LopendTraject = encryptedvalues.ElementAt (15);
-            dataobject.LaatsteGesprek = encryptedvalues.ElementAt (16);
+            //INSTANTIE: politie (P)
+            if (keys == "<RSAKeyValue><Modulus>vR/y8Z+LblM64thdCBkayA/lb5n2VPitqnQ8kxMEDS1YhxDqH2cl1/UhKpXDkTwKWYTZzaXafUq2P+QnJycnq3uNuRi0R/9ujMuoOLrHEpoDXEgZoEpMQcbxSMmRbialoo5EQV25vk1WUPEsOblTN87olDy6v5eny8KWhlvk7Ak=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>") {
+                dataobject.Naam = encryptedvalues.ElementAt (0);
+                dataobject.BSN = encryptedvalues.ElementAt (1);
+                dataobject.Geb_Datum = encryptedvalues.ElementAt (2);
+                dataobject.Organisatie = encryptedvalues.ElementAt (3);
+                dataobject.Groep = encryptedvalues.ElementAt (4);
+                dataobject.Antecendenten = encryptedvalues.ElementAt (5);
+                dataobject.Aanhoudingen = encryptedvalues.ElementAt (6);
+                dataobject.HeeftISDMaatregel = encryptedvalues.ElementAt (7);
+                dataobject.Sepots = encryptedvalues.ElementAt (8);
+                dataobject.HeeftOnderzoekRad = encryptedvalues.ElementAt (9);
+                dataobject.LopendeDossiers = encryptedvalues.ElementAt (10);
+                dataobject.BezitUitkering = encryptedvalues.ElementAt (11);
+                dataobject.MeldingenRad = encryptedvalues.ElementAt (12);
+                dataobject.ZitInGroepsAanpak = encryptedvalues.ElementAt (13);
+                dataobject.HeeftIdBewijs = encryptedvalues.ElementAt (14);
+                dataobject.LopendTraject = encryptedvalues.ElementAt (15);
+                dataobject.LaatsteGesprek = encryptedvalues.ElementAt (16);
+            }
+            // OM (O)
+            else if (keys == "<RSAKeyValue><Modulus>2aTQ/p354qiaH4eSuNLZMkP9uOKuFf4In6fZ+K0gbqVcBvT259SJyMl+VtPTY8wqbd1GeK49TvAAZq9P/ukVK+fMWHCRDf52z0SDUwsGupC472yQ8zMuPj6QlK0m8dyeN7WoYQ7UiDReo3jr1vzMRqVnlrqcTxi3t7oNs09dj9M=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>") {
+                dataobject.Naam = encryptedvalues.ElementAt (0);
+                dataobject.BSN = encryptedvalues.ElementAt (1);
+                dataobject.Geb_Datum = encryptedvalues.ElementAt (2);
+                dataobject.Organisatie = encryptedvalues.ElementAt (3);
+                dataobject.Groep = encryptedvalues.ElementAt (4);
+                dataobject.Antecendenten = encryptedvalues.ElementAt (5);
+                dataobject.Aanhoudingen = encryptedvalues.ElementAt (6);
+                dataobject.HeeftISDMaatregel = encryptedvalues.ElementAt (7);
+                dataobject.Sepots = encryptedvalues.ElementAt (8);
+                dataobject.HeeftOnderzoekRad = encryptedvalues.ElementAt (9);
+                dataobject.LopendeDossiers = encryptedvalues.ElementAt (10);
+                dataobject.BezitUitkering = encryptedvalues.ElementAt (11);
+                dataobject.MeldingenRad = encryptedvalues.ElementAt (12);
+                dataobject.ZitInGroepsAanpak = encryptedvalues.ElementAt (13);
+                dataobject.HeeftIdBewijs = encryptedvalues.ElementAt (14);
+                dataobject.LopendTraject = encryptedvalues.ElementAt (15);
+                dataobject.LaatsteGesprek = encryptedvalues.ElementAt (16);
+            }
+            // Gemeente (G)
+            else if (keys == "<RSAKeyValue><Modulus>49v5PxsXU/kuEXS+slKCnkHIFhjylnRj+xlRqCEIO8LofTmddJRDg1t0vPIViEL8T/kNoFe+iaXLhna29mNk94qYk01WTChZR248DYK4PmT70cQx+Pkel1e3QqtWLLCvd5wRmcgkKH5+VyrVgurvWGPB0XWcY+hxlAoGLG2EGwc=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>") {
+                dataobject.Naam = encryptedvalues.ElementAt (0);
+                dataobject.BSN = encryptedvalues.ElementAt (1);
+                dataobject.Geb_Datum = encryptedvalues.ElementAt (2);
+                dataobject.Organisatie = encryptedvalues.ElementAt (3);
+                dataobject.Groep = encryptedvalues.ElementAt (4);
+                dataobject.Antecendenten = encryptedvalues.ElementAt (5);
+                dataobject.Aanhoudingen = encryptedvalues.ElementAt (6);
+                dataobject.HeeftISDMaatregel = encryptedvalues.ElementAt (7);
+                dataobject.Sepots = encryptedvalues.ElementAt (8);
+                dataobject.HeeftOnderzoekRad = encryptedvalues.ElementAt (9);
+                dataobject.LopendeDossiers = encryptedvalues.ElementAt (10);
+                dataobject.BezitUitkering = encryptedvalues.ElementAt (11);
+                dataobject.MeldingenRad = encryptedvalues.ElementAt (12);
+                dataobject.ZitInGroepsAanpak = encryptedvalues.ElementAt (13);
+                dataobject.HeeftIdBewijs = encryptedvalues.ElementAt (14);
+                dataobject.LopendTraject = encryptedvalues.ElementAt (15);
+                dataobject.LaatsteGesprek = encryptedvalues.ElementAt (16);
+            }
+            // Reclassering (R)
+            else if (keys == "<RSAKeyValue><Modulus>2rMDhhT5FQauqgOpZ2vZT2WxKcYw4USY020PtmX3Be7wMlDpWYbFauUTdcGOQLz0ampff+mMQc90NlkW+IBTPzS9Mq6OFpxmmKQHzstueJkW1owX20T5hs2Mc2ImYU0j0gGD33AnM9BzyIjiGognomG6pMBx6MAOmrCwXu9fkus=</Modulus><Exponent>AQAB</Exponent></RSAKeyValue>") {
+                dataobject.Naam = encryptedvalues.ElementAt (0);
+                dataobject.BSN = encryptedvalues.ElementAt (1);
+                dataobject.Geb_Datum = encryptedvalues.ElementAt (2);
+                dataobject.Organisatie = encryptedvalues.ElementAt (3);
+                dataobject.Groep = encryptedvalues.ElementAt (4);
+                dataobject.Antecendenten = encryptedvalues.ElementAt (5);
+                dataobject.Aanhoudingen = encryptedvalues.ElementAt (6);
+                dataobject.HeeftISDMaatregel = encryptedvalues.ElementAt (7);
+                dataobject.Sepots = encryptedvalues.ElementAt (8);
+                dataobject.HeeftOnderzoekRad = encryptedvalues.ElementAt (9);
+                dataobject.LopendeDossiers = encryptedvalues.ElementAt (10);
+                dataobject.BezitUitkering = encryptedvalues.ElementAt (11);
+                dataobject.MeldingenRad = encryptedvalues.ElementAt (12);
+                dataobject.ZitInGroepsAanpak = encryptedvalues.ElementAt (13);
+                dataobject.HeeftIdBewijs = encryptedvalues.ElementAt (14);
+                dataobject.LopendTraject = encryptedvalues.ElementAt (15);
+                dataobject.LaatsteGesprek = encryptedvalues.ElementAt (16);
+            } else {
+                dataobject = null;
+            }
 
             Encrypteddataobject = dataobject;
         }
