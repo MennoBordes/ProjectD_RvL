@@ -49,6 +49,36 @@ namespace Server.Classes {
 
     }
 
+    public class DataObject {
+        public string Naam { get; set; }
+        public string BSN { get; set; }
+        public string Geb_Datum { get; set; }
+        public string Organisatie { get; set; }
+        public string Groep { get; set; }
+        public string Antecendenten { get; set; }
+        public string Aanhoudingen { get; set; }
+        public string HeeftISDMaatregel { get; set; }
+        public string Sepots { get; set; }
+        public string HeeftOnderzoekRad { get; set; }
+        public string LopendeDossiers { get; set; }
+        public string BezitUitkering { get; set; }
+        public string MeldingenRad { get; set; }
+        public string ZitInGroepsAanpak { get; set; }
+        public string HeeftIdBewijs { get; set; }
+        public string LopendTraject { get; set; }
+        public string LaatsteGesprek { get; set; }
+    }
+
+    public class testReturn {
+        public DataObject Encrypted { get; set; }
+        public DataObject Decrypted { get; set; }
+
+        public testReturn (DataObject encrypted, DataObject decrypted) {
+            Encrypted = encrypted;
+            Decrypted = decrypted;
+        }
+    }
+
     public class Block {
         public string Hash_Code { get; set; }
         public string Previous_Hash { get; set; }
@@ -63,6 +93,11 @@ namespace Server.Classes {
             Timestamp = timestamp;
             Data = data;
         }
+    }
+
+    public class Tupl2 {
+        public string keys { get; set; }
+        public Data data { get; set; }
     }
 
 }
