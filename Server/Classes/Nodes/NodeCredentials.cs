@@ -1,12 +1,12 @@
-﻿using System;
+using System;
 
-namespace Server.Classes
+namespace Server.Classes.Nodes
 {
-  public class LoginCredentials
+  public class NodeCredentials
   {
     string IP, RSA;
     DateTime Date;
-    public LoginCredentials(string ip, string rsa, DateTime Date)
+    public NodeCredentials(string ip, string rsa, DateTime Date)
     {
       this.IP = ip;
       this.RSA = rsa;
