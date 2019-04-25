@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Server.Classes.Nodes;
 using Server.Classes.Users;
 using System.Collections;
 
@@ -7,7 +6,7 @@ namespace Server.Controllers
 {
   [Route("api/[controller]")]
   [ApiController]
-  public class UserLoginController : ControllerBase
+  public class UserLoginController : Controller
   {
     // GET: api/UserLogin
     [HttpGet]
@@ -16,7 +15,7 @@ namespace Server.Controllers
       return 200;
     }
 
-    // GET api/values/5
+    // GET api/UserLogin/5
     [HttpGet("{id}")]
     public ActionResult<string> Get(int id)
     {
@@ -25,9 +24,9 @@ namespace Server.Controllers
 
     // POST: api/UserLogin
     [HttpPost]
-    public string Post([FromBody] NodeCredentials Credentials)
+    public string Post([FromBody] UserCredentials Credentials)
     {
-      return Credentials.GetRSA();
+      return Credentials.GetInstantieNaam();
     }
 
     // PUT: api/UserLogin/5
@@ -36,19 +35,31 @@ namespace Server.Controllers
     {
     }
 
-    // PUT: api/UserLogin/user
-    [HttpPut("{user}")]
+    // PUT: api/UserLogin
+    // Is used to get credentials form the users
+    [HttpPut]
     public ActionResult<IEnumerable> Put(string user, [FromBody] UserCredentials UserCredentials)
     {
-      return new string[] {UserCredentials.GetInstantieNaam(), UserCredentials.GetInstantieRechten().ToString()};
-    }    
+      return new string[] { UserCredentials.GetInstantieNaam(), UserCredentials.GetInstantieRechten() };
+    }
 
-    // PUT: api/UserLogin/node
-    // Is used to get credentials form the child node's
-    [HttpPut("{node}")]
-    public ActionResult<IEnumerable> Put([FromBody] NodeCredentials NodeCredentials)
+    [HttpPut("Test")]
+    public JsonResult Test([FromBody] UserCredentials UserCredentials)
     {
-      return new string[] {NodeCredentials.GetIP(), NodeCredentials.GetRSA(), NodeCredentials.GetDate()};
+      return Json(UserCredentials.GetAllUserCredentials());
+    }
+
+    [HttpGet("About")]
+    public ContentResult About()
+    {
+      return Content("An API for validating user login.");
+    }
+
+    [HttpGet("Info")]
+    public JsonResult Info()
+    {
+      var pet = new { Age = 10, Name = "Fluffy" };
+      return Json(pet);
     }
 
     // DELETE: api/ApiWithActions/5
