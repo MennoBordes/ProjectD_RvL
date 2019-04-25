@@ -2,7 +2,7 @@ using System;
 using System.Security.Cryptography;
 using System.Xml;
 
-namespace Server.Classes {
+namespace Server.Classes.Encryption {
 
     //USE FOR GENERATING PUBLIC AND PRIVATE KEY PAIRS IN XML FORMAT NEEDED BIJ CRYPTO LIBRARY
     public class GenerateKeyPair {

@@ -6,7 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
 
-namespace Server.Classes {
+namespace Server.Classes.Encryption {
     public class LetsEncrypt {
         public string _publicKey;
         public string encryptedbytes;

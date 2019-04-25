@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Server.Classes;
+using Server.Classes.Encryption;
 
 namespace Server.Controllers {
 
@@ -19,8 +20,8 @@ namespace Server.Controllers {
         }
 
         // GET: api/getkeys
-        [HttpGet ("getkeys/{choice}")]
-        public string Get (int choice) {
+        [HttpGet("getkeys/{choice}")]
+        public string Get(int choice) {
             if (choice == 0) {
                 GenerateKeyPair keys = new GenerateKeyPair ();
                 return keys.showBoth ();
@@ -30,8 +31,8 @@ namespace Server.Controllers {
 
         // POST: api/data/crypto - takes input in Data class form,
         // encrypts or decrypts data
-        [HttpPost ("crypto")]
-        public DataObject Post ([FromBody] Tupl2 tuple2) {
+        [HttpPost("crypto")]
+        public DataObject Post([FromBody] Tupl2 tuple2) {
 
             if (tuple2.data.Aanhoudingen.Length > 100) {
                 LetsDecrypt LetsDecrypt = new LetsDecrypt (tuple2.data, tuple2.keys);
