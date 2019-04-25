@@ -8,23 +8,23 @@ namespace Server.Classes {
         public string Geb_Datum { get; set; }
         public string Organisatie { get; set; }
         public string Groep { get; set; }
-        public int Antecendenten { get; set; }
-        public int Aanhoudingen { get; set; }
-        public bool HeeftISDMaatregel { get; set; }
-        public int Sepots { get; set; }
-        public bool HeeftOnderzoekRad { get; set; }
-        public int LopendeDossiers { get; set; }
-        public bool BezitUitkering { get; set; }
-        public int MeldingenRad { get; set; }
-        public bool ZitInGroepsAanpak { get; set; }
-        public bool HeeftIdBewijs { get; set; }
+        public string Antecendenten { get; set; }
+        public string Aanhoudingen { get; set; }
+        public string HeeftISDMaatregel { get; set; }
+        public string Sepots { get; set; }
+        public string HeeftOnderzoekRad { get; set; }
+        public string LopendeDossiers { get; set; }
+        public string BezitUitkering { get; set; }
+        public string MeldingenRad { get; set; }
+        public string ZitInGroepsAanpak { get; set; }
+        public string HeeftIdBewijs { get; set; }
         public string LopendTraject { get; set; }
         public string LaatsteGesprek { get; set; }
 
         public Data (
-            string naam, string bsn, string geb_datum, string organisatie, string groep, int antecedenten,
-            int aanhoudingen, bool heeftisdmaatregel, int sepots, bool heeftonderzoekrad, int lopendedossiers,
-            bool bezituitkering, int meldingenrad, bool zitingroepsaanpak, bool heeftidbewijs,
+            string naam, string bsn, string geb_datum, string organisatie, string groep, string antecedenten,
+            string aanhoudingen, string heeftisdmaatregel, string sepots, string heeftonderzoekrad, string lopendedossiers,
+            string bezituitkering, string meldingenrad, string zitingroepsaanpak, string heeftidbewijs,
             string lopendtraject, string laatstegesprek)
 
         {
