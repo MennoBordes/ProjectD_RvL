@@ -6,8 +6,8 @@ namespace Server.Classes.Nodes
 {
   public class NodeCredentials
   {
-    private string IP, RSA;
-    private DateTime Date;
+    public string IP, RSA;
+    public DateTime Date;
     public NodeCredentials(string ip, string rsa, DateTime Date)
     {
       this.IP = ip;

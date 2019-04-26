@@ -46,11 +46,8 @@ namespace Server.Controllers
     public JsonResult ExistingNodes([FromBody] NodeCredentials Credentials)
     {
       nodes.AddNode(Credentials);
-      nodes.AddNode(Credentials);
-      nodes.AddNode(Credentials);
-      nodes.AddNode(Credentials);
-      nodes.AddNode(Credentials);
-      var t = nodes.GetAllNodes();
+      var t = nodes.GetAllNodesClass();
+      // var t = nodes.GetAllNodesList();
       return Json(data: t);
     }
 
