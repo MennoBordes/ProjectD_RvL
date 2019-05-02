@@ -1,50 +1,53 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Node
-{
-    public class Program
-    {
-        private static readonly HttpClient client = new HttpClient();
+namespace Node {
+    public class Program {
+        private static readonly HttpClient client = new HttpClient ();
 
-        public static void Main(string[] args)
-        {
+        public static void Main (string[] args) {
 
-            GetCurrentChain();
-            CreateWebHostBuilder(args).Build().Run();
+            configureIdentity ();
+            CreateWebHostBuilder (args).Build ().Run ();
         }
 
-
-        static async void GetCurrentChain()
-        {
+        static async void configureIdentity () {
             // Ophalen meest recente blockchain
-            var responseString = await client.GetStringAsync("http://localhost:8080/api/blockchain");
-            string text = File.ReadAllText("C:/Users/Admin/Documents/ProjectD_RvL/Node/node.json");  
-            JObject result = JObject.Parse(text);
-            JObject node = (JObject)result["node"];
-            JArray blockhain = JArray.Parse(responseString);
-            JArray item = (JArray)node["CHAIN_COPY"];
-            foreach (JObject items in blockhain)
-            {
-                item.Add(items);
+            string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
+            System.Console.WriteLine (parentOfStartupPath);
+
+            var responseString = await client.GetStringAsync ("http://localhost:8080/api/blockchain");
+            string current_identity = File.ReadAllText (parentOfStartupPath + "/node.json");
+            JObject current_identity_parsed = JObject.Parse (current_identity);
+            JObject node = (JObject) current_identity_parsed["node"];
+            Random random = new Random ();
+            node["ID"] = random.Next (903900).ToString ();
+            JObject blockchain = JObject.Parse (responseString);
+            JArray incomingChain = (JArray) blockchain["current_blockchain"]["chain"];
+            System.Console.WriteLine (incomingChain);
+            node["CHAIN_COPY"] = new JArray ();
+            JArray item = (JArray) node["CHAIN_COPY"];
+            foreach (JObject items in incomingChain) {
+                item.Add (items);
             }
-            File.WriteAllText("C:/Users/Admin/Documents/ProjectD_RvL/Node/node.json", result.ToString());
+            File.WriteAllText (parentOfStartupPath + "/node.json", current_identity_parsed.ToString ());
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+        public static IWebHostBuilder CreateWebHostBuilder (string[] args) =>
+            WebHost.CreateDefaultBuilder (args)
+            .UseStartup<Startup> ();
     }
 }
