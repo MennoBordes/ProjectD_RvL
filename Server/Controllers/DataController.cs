@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +22,7 @@ namespace Server.Controllers {
             return new string[] { "Zeehondjes" };
         }
 
-        // GET: api/getkeys
+        // GET: api/data/getkeys
         [HttpGet ("getkeys/{choice}")]
         public string Get (int choice) {
             if (choice == 0) {
@@ -29,6 +30,15 @@ namespace Server.Controllers {
                 return keys.showBoth ();
             }
             return "error";
+        }
+
+        //api/data/getcurrentchain
+        [HttpGet ("getcurrentchain")]
+        public JObject getcurrentchain () {
+            string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
+            string current_identity = System.IO.File.ReadAllText (parentOfStartupPath + "/chainExample.json");
+            JObject current_identity_parsed = JObject.Parse (current_identity);
+            return current_identity_parsed;
         }
 
         // POST: api/data/crypto - takes input in Data class form,
