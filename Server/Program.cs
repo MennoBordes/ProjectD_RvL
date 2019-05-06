@@ -14,22 +14,22 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Server {
-    public class Program {
-        private static readonly HttpClient client = new HttpClient ();
+  public class Program {
+    private static readonly HttpClient client = new HttpClient ();
 
-        public static void Main (string[] args) {
-            // GetNodeInfo ("5000");
-            CreateWebHostBuilder (args).Build ().Run ();
-        }
-
-        // static async void GetNodeInfo (string port) {
-        //     var responseString = await client.GetStringAsync ("http://localhost:" + port + "/api/node");
-        //     JObject nodeInfo = JObject.Parse (responseString);
-        //     System.Console.WriteLine (nodeInfo.ToString ());
-        // }
-
-        public static IWebHostBuilder CreateWebHostBuilder (string[] args) =>
-            WebHost.CreateDefaultBuilder (args)
-            .UseStartup<Startup> ();
+    public static void Main (string[] args) {
+      // GetNodeInfo("5000");
+      CreateWebHostBuilder (args).Build ().Run ();
     }
+
+    static async void GetNodeInfo (string port) {
+      var responseString = await client.GetStringAsync ("http://localhost:" + port + "/api/node");
+      JObject nodeInfo = JObject.Parse (responseString);
+      System.Console.WriteLine (nodeInfo.ToString ());
+    }
+
+    public static IWebHostBuilder CreateWebHostBuilder (string[] args) =>
+      WebHost.CreateDefaultBuilder (args)
+      .UseStartup<Startup> ();
+  }
 }
