@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Server.Classes;
 using Server.Classes.Encryption;
 
@@ -20,8 +22,8 @@ namespace Server.Controllers {
         }
 
         // GET: api/getkeys
-        [HttpGet("getkeys/{choice}")]
-        public string Get(int choice) {
+        [HttpGet ("getkeys/{choice}")]
+        public string Get (int choice) {
             if (choice == 0) {
                 GenerateKeyPair keys = new GenerateKeyPair ();
                 return keys.showBoth ();
@@ -31,14 +33,15 @@ namespace Server.Controllers {
 
         // POST: api/data/crypto - takes input in Data class form,
         // encrypts or decrypts data
-        [HttpPost("crypto")]
-        public DataObject Post([FromBody] Tupl2 tuple2) {
+        [HttpPost ("crypto")]
+        public JObject Post ([FromBody] Tupl2 tuple2) {
 
-            if (tuple2.data.Aanhoudingen.Length > 100) {
-                LetsDecrypt LetsDecrypt = new LetsDecrypt (tuple2.data, tuple2.keys);
+            System.Console.WriteLine (tuple2);
+            if (tuple2.newdata["naam"].ToString ().Length > 100) {
+                LetsDecrypt LetsDecrypt = new LetsDecrypt (tuple2.newdata, tuple2.keys);
                 return LetsDecrypt.showDecrypted ();
             }
-            LetsEncrypt LetsEncrypt = new LetsEncrypt (tuple2.data, tuple2.keys);
+            LetsEncrypt LetsEncrypt = new LetsEncrypt (tuple2.newdata, tuple2.keys);
             return LetsEncrypt.showEncrypted ();
         }
 

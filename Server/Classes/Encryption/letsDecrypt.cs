@@ -5,6 +5,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Server.Classes.Encryption {
     public class LetsDecrypt {
@@ -15,48 +17,30 @@ namespace Server.Classes.Encryption {
 
         public UnicodeEncoding _encoder = new UnicodeEncoding ();
 
-        public DataObject Decrypteddataobject { get; set; }
+        public JObject Decrypteddataobject { get; set; }
 
-        public LetsDecrypt (Data data, string key) {
-
+        public LetsDecrypt (JObject newdata, string key) {
             _privateKey = key;
 
-            List<string> values = new List<string> ();
-
-            foreach (var prop in data.GetType ().GetProperties ()) {
-                values.Add (prop.GetValue (data, null).ToString ());
+            JObject testObject = new JObject ();
+            foreach (var item in newdata) {
+                if (item.Key == "naam" || item.Key == "BSN" || item.Key == "geb_datum" || item.Key == "organisatie") {
+                    testObject.Add (item.Key, Decrypt (item.Value.ToString (), _privateKey));
+                    System.Console.WriteLine (item.ToString ());
+                }
+                if (item.Key == "Zsm" || item.Key == "Radicalen" || item.Key == "LokalePGA" || item.Key == "Detentie") {
+                    JObject jObj = JObject.FromObject (item.Value);
+                    JObject testObjectZRLD = new JObject ();
+                    foreach (var testObjectInner in jObj) {
+                        testObjectZRLD.Add (testObjectInner.Key, Decrypt (testObjectInner.Value.ToString (), _privateKey));
+                    }
+                    testObject.Add (item.Key, testObjectZRLD);
+                }
             }
-
-            List<string> decryptedvalues = new List<string> ();
-
-            foreach (var item in values) {
-                decryptedvalues.Add (Decrypt (item, _privateKey));
-            }
-
-            DataObject dataobject = new DataObject ();
-
-            dataobject.Naam = decryptedvalues.ElementAt (0);
-            dataobject.BSN = decryptedvalues.ElementAt (1);
-            dataobject.Geb_Datum = decryptedvalues.ElementAt (2);
-            dataobject.Organisatie = decryptedvalues.ElementAt (3);
-            dataobject.Groep = decryptedvalues.ElementAt (4);
-            dataobject.Antecendenten = decryptedvalues.ElementAt (5);
-            dataobject.Aanhoudingen = decryptedvalues.ElementAt (6);
-            dataobject.HeeftISDMaatregel = decryptedvalues.ElementAt (7);
-            dataobject.Sepots = decryptedvalues.ElementAt (8);
-            dataobject.HeeftOnderzoekRad = decryptedvalues.ElementAt (9);
-            dataobject.LopendeDossiers = decryptedvalues.ElementAt (10);
-            dataobject.BezitUitkering = decryptedvalues.ElementAt (11);
-            dataobject.MeldingenRad = decryptedvalues.ElementAt (12);
-            dataobject.ZitInGroepsAanpak = decryptedvalues.ElementAt (13);
-            dataobject.HeeftIdBewijs = decryptedvalues.ElementAt (14);
-            dataobject.LopendTraject = decryptedvalues.ElementAt (15);
-            dataobject.LaatsteGesprek = decryptedvalues.ElementAt (16);
-
-            Decrypteddataobject = dataobject;
+            Decrypteddataobject = testObject;
         }
 
-        public DataObject showDecrypted () {
+        public JObject showDecrypted () {
             return Decrypteddataobject;
         }
 
