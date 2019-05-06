@@ -46,8 +46,10 @@ namespace Node {
             File.WriteAllText (parentOfStartupPath + "/node.json", current_identity_parsed.ToString ());
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder (string[] args) =>
-            WebHost.CreateDefaultBuilder (args)
-            .UseStartup<Startup> ();
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+            WebHost.CreateDefaultBuilder(args)
+                .UseUrls("https://localhost:" + (args.Length > 0 ? args[0] : "5001") )
+                .UseStartup<Startup>();
+    
     }
 }
