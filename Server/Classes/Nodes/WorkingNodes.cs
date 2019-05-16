@@ -1,7 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
+using System.Net.Sockets;
 using System.Timers;
 using Newtonsoft.Json;
 
@@ -10,15 +12,39 @@ namespace Server.Classes.Nodes
   public class WorkingNodes
   {
     private static string SavedNodesLocation = CommonNodeVariables.SavedNodesLocation;
-    public dynamic GetAllRunningNodesFromFile()
+    public static List<NodeCredentials> GetAllRunningNodesFromFile()
     {
+      // Creates a reader for the json file
       using (StreamReader reader = new StreamReader(SavedNodesLocation))
       {
+        List<NodeCredentials> Running = new List<NodeCredentials>();
+        // Read file to end and save
         string json = reader.ReadToEnd();
-        dynamic array = JsonConvert.DeserializeObject(json);
+        // Convert string to json
+        List<NodeCredentials> array = JsonConvert.DeserializeObject<List<NodeCredentials>>(json);
+        Console.WriteLine(array);
+        foreach (var item in array)
+        {
+          // Client opzetten
+          TcpClient client = new TcpClient();
+          try
+          {
+            // check if item.ip is still running
+            client.Connect(item.IP, item.Port);
+            // If running, add current to Running list
+            Running.Add(item);
+          }
+          catch
+          {
+            // else do nothing
+          }
+
+        }
+        // Return data
         return array;
       }
     }
+
 
     // public async System.Threading.Tasks.Task<bool> IsNodeRunningAsync(string NodeAddress)
     public async System.Threading.Tasks.Task<HttpResponseMessage> IsNodeRunningAsync(string url)
@@ -46,13 +72,6 @@ namespace Server.Classes.Nodes
 
     public static void timekeeper()
     {
-      // Get all presumed running nodes
-
-      // Check if nodes are still running
-
-      // Remove node from running nodes if not running
-
-      // Rerun after x seconds
       int testIndex = 0;
       RefreshTimer();
       // Werkt iig 33 minuten achter elkaar
@@ -87,9 +106,9 @@ namespace Server.Classes.Nodes
 
     }
 
-    public static void SaveRunningNodes(Node Node)
+    public static void SaveRunningNodes(List<NodeCredentials> Node)
     {
-      string jsonData = JsonConvert.SerializeObject(Node, Formatting.Indented);
+      string jsonData = JsonConvert.SerializeObject(Node, Formatting.None);
       System.IO.File.WriteAllText(SavedNodesLocation, jsonData);
     }
   }
