@@ -20,7 +20,7 @@ namespace Node {
 
         public static void Main (string[] args) {
 
-            configureIdentity ();
+            // configureIdentity ();
             CreateWebHostBuilder (args).Build ().Run ();
         }
 
@@ -30,9 +30,12 @@ namespace Node {
             System.Console.WriteLine (parentOfStartupPath);
 
             var responseString = await client.GetStringAsync ("http://localhost:8080/api/blockchain");
+
             string current_identity = File.ReadAllText (parentOfStartupPath + "/node.json");
+            
             JObject current_identity_parsed = JObject.Parse (current_identity);
             JObject node = (JObject) current_identity_parsed["node"];
+    
             Random random = new Random ();
             node["ID"] = random.Next (903900).ToString ();
             JObject blockchain = JObject.Parse (responseString);
@@ -50,6 +53,7 @@ namespace Node {
             WebHost.CreateDefaultBuilder(args)
                 .UseUrls("https://localhost:" + (args.Length > 0 ? args[0] : "5001") )
                 .UseStartup<Startup>();
-    
+
+
     }
 }

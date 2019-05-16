@@ -12,17 +12,27 @@ using Newtonsoft.Json.Linq;
 
 namespace Node.Controllers
 {
-  [Route("api/[controller]")]
-  [ApiController]
-  public class NodeController : ControllerBase
-  {
-    // GET api/node
-    [HttpGet()]
-    public string Get()
+    [Route("api/[controller]")]
+    [ApiController]
+    public class NodeController : ControllerBase
     {
-        string text = System.IO.File.ReadAllText("C:/Users/Admin/Documents/ProjectD_RvL/Node/node.json");  
-        JObject result = JObject.Parse(text);
-        return result.ToString();
+         //GET api/node
+     //[HttpGet()]
+     //public string Get()
+     //{
+     //    string text = System.IO.File.ReadAllText("C:/Users/Admin/Documents/ProjectD_RvL/Node/node.json");  
+     //    JObject result = JObject.Parse(text);
+     //    return result.ToString();
+     //}
+
+
+    [HttpGet("{port}")]
+    public ActionResult<string> Get(int port)
+    {
+      Console.WriteLine("get was called");
+    var response = "{ StatusCode: 200, message: 'ok'}";
+      return Ok (response);
     }
+    
   }
 }
