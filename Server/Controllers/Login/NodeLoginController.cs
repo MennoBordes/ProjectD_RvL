@@ -13,6 +13,7 @@ namespace Server.Controllers
   public class NodeLoginController : Controller
   {
     Node nodes = new Node();
+    List<NodeCredentials> node = new List<NodeCredentials>();
     // GET: api/nodeLogin
     [HttpGet]
     public ActionResult<int> Get()
@@ -52,19 +53,28 @@ namespace Server.Controllers
     [HttpPut("savenodes")]
     public ActionResult<int> saveNodes([FromBody] NodeCredentials Credentials)
     {
-      nodes.AddNode(Credentials);
+      // nodes.AddNode(Credentials);
+      node.Add(Credentials);
+      node.Add(Credentials);
+      node.Add(Credentials);
+      node.Add(Credentials);
+      // Foreach node in savednodes
+      // send request to see if still running
+      // If response > add to nodes.addnode
+      // else > don't add and go to next
 
-      WorkingNodes.SaveRunningNodes(nodes);
+      // WorkingNodes.SaveRunningNodes(nodes);
+      WorkingNodes.SaveRunningNodes(node);
 
       return 200;
     }
 
-    [HttpPut("savenode")]
-    public ActionResult<int> saveNode()
-    {
-      WorkingNodes.SaveRunningNodes(nodes);
-      return 200;
-    }
+    // [HttpPut("savenode")]
+    // public ActionResult<int> saveNode()
+    // {
+    //   WorkingNodes.SaveRunningNodes(nodes);
+    //   return 200;
+    // }
 
     [HttpGet("getnodes")]
     public JsonResult ExistingNodes()
