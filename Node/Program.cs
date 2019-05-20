@@ -29,8 +29,7 @@ namespace Node {
             string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
             System.Console.WriteLine (parentOfStartupPath);
 
-            var responseString = await client.GetStringAsync ("http://localhost:8080/api/blockchain");
-
+            var responseString = await client.GetStringAsync ("https://localhost:5001/api/data/getcurrentchain");
             string current_identity = File.ReadAllText (parentOfStartupPath + "/node.json");
             
             JObject current_identity_parsed = JObject.Parse (current_identity);
@@ -49,11 +48,10 @@ namespace Node {
             File.WriteAllText (parentOfStartupPath + "/node.json", current_identity_parsed.ToString ());
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseUrls("https://localhost:" + (args.Length > 0 ? args[0] : "5001") )
-                .UseStartup<Startup>();
-
+        public static IWebHostBuilder CreateWebHostBuilder (string[] args) =>
+            WebHost.CreateDefaultBuilder (args)
+            .UseUrls ("https://localhost:" + (args.Length > 0 ? args[0] : "4000"))
+            .UseStartup<Startup> ();
 
     }
 }
