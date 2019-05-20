@@ -8,7 +8,7 @@ using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Server.Classes.Encryption {
+namespace Node.Classes.Decryption {
     public class LetsDecrypt {
 
         public string _privateKey;
@@ -24,11 +24,11 @@ namespace Server.Classes.Encryption {
 
             JObject testObject = new JObject ();
             foreach (var item in newdata) {
-                if (item.Key == "naam" || item.Key == "BSN" || item.Key == "geb_datum" || item.Key == "organisatie") {
+                if (item.Key == "Naam" || item.Key == "BSN" || item.Key == "Geb_datum") {
                     testObject.Add (item.Key, Decrypt (item.Value.ToString (), _privateKey));
                     System.Console.WriteLine (item.ToString ());
                 }
-                if (item.Key == "Zsm" || item.Key == "Radicalen" || item.Key == "LokalePGA" || item.Key == "Detentie") {
+                if (item.Key == "Politie" || item.Key == "OM" || item.Key == "Gemeente" || item.Key == "Reclassering") {
                     JObject jObj = JObject.FromObject (item.Value);
                     JObject testObjectZRLD = new JObject ();
                     foreach (var testObjectInner in jObj) {

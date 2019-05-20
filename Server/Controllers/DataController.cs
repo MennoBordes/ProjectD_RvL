@@ -47,10 +47,7 @@ namespace Server.Controllers {
         public JObject Post ([FromBody] Tupl2 tuple2) {
 
             System.Console.WriteLine (tuple2);
-            if (tuple2.newdata["naam"].ToString ().Length > 100) {
-                LetsDecrypt LetsDecrypt = new LetsDecrypt (tuple2.newdata, tuple2.keys);
-                return LetsDecrypt.showDecrypted ();
-            }
+
             LetsEncrypt LetsEncrypt = new LetsEncrypt (tuple2.newdata, tuple2.keys);
             return LetsEncrypt.showEncrypted ();
         }

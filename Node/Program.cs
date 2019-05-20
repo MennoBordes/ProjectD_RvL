@@ -20,7 +20,7 @@ namespace Node {
 
         public static void Main (string[] args) {
 
-            configureIdentity ();
+            // configureIdentity ();
             CreateWebHostBuilder (args).Build ().Run ();
         }
 
@@ -31,10 +31,10 @@ namespace Node {
 
             var responseString = await client.GetStringAsync ("https://localhost:8080/api/data/getcurrentchain");
             string current_identity = File.ReadAllText (parentOfStartupPath + "/node.json");
-            
+
             JObject current_identity_parsed = JObject.Parse (current_identity);
             JObject node = (JObject) current_identity_parsed["node"];
-    
+
             Random random = new Random ();
             node["ID"] = random.Next (903900).ToString ();
             JObject blockchain = JObject.Parse (responseString);

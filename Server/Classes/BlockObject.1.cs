@@ -148,7 +148,7 @@ namespace Server.Classes.Maybe {
 
   public class Tupl2 {
     public string keys { get; set; }
-    public Data newdata { get; set; }
+    public JObject newdata { get; set; }
   }
 
 }
