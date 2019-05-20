@@ -19,14 +19,14 @@ namespace Node.Controllers {
         // GET api/data
         [HttpGet ()]
         public JObject Post ([FromBody] Tupl2 tuple2) {
-            if (tuple2.newdata["Naam"].ToString ().Length > 100) {
-                LetsDecrypt LetsDecrypt = new LetsDecrypt (tuple2.newdata, tuple2.keys);
-                return LetsDecrypt.showDecrypted ();
-            }
+            // if (tuple2.newdata["Naam"].ToString ().Length > 100) {
+            //     LetsDecrypt LetsDecrypt = new LetsDecrypt (tuple2.newdata, tuple2.keys);
+            //     return LetsDecrypt.showDecrypted ();
+            // }
             string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
             string text = System.IO.File.ReadAllText (parentOfStartupPath + "/node.json");
             JObject result = JObject.Parse (text);
-            return result.ToString ();
+            return result;
         }
 
     }
