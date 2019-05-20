@@ -41,13 +41,13 @@ namespace Server.Classes.Encryption {
         public JObject showEncrypted () {
             return Encrypteddataobject;
         }
-        public string GetKeyString (RSAParameters publicKey) {
+        // public string GetKeyString (RSAParameters publicKey) {
 
-            var stringWriter = new System.IO.StringWriter ();
-            var xmlSerializer = new System.Xml.Serialization.XmlSerializer (typeof (RSAParameters));
-            xmlSerializer.Serialize (stringWriter, publicKey);
-            return stringWriter.ToString ();
-        }
+        //     var stringWriter = new System.IO.StringWriter ();
+        //     var xmlSerializer = new System.Xml.Serialization.XmlSerializer (typeof (RSAParameters));
+        //     xmlSerializer.Serialize (stringWriter, publicKey);
+        //     return stringWriter.ToString ();
+        // }
 
         public string Encrypt (string textToEncrypt, string publicKeyString) {
             var bytesToEncrypt = Encoding.UTF8.GetBytes (textToEncrypt);
