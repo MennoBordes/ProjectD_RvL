@@ -20,6 +20,7 @@ namespace Server.Classes.Encryption {
 
         public LetsEncrypt (JObject newdata, string keys) {
             _publicKey = keys;
+            System.Console.WriteLine (newdata);
 
             JObject testObject = new JObject ();
             foreach (var item in newdata) {
