@@ -3,18 +3,15 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Server.Classes.NewBlock
-{
-  public class Block
-  {
+namespace Server.Classes.NewBlock {
+  public class Block {
     public string Hash_Code { get; set; }
     public string Previous_Hash { get; set; }
     public string Created_By { get; set; }
     public string Timestamp { get; set; }
     public Data Data { get; set; }
 
-    public Block(string hash_code, string previous_hash, string created_by, string timestamp, Data data)
-    {
+    public Block (string hash_code, string previous_hash, string created_by, string timestamp, Data data) {
       Hash_Code = hash_code;
       Previous_Hash = previous_hash;
       Created_By = created_by;
@@ -23,8 +20,7 @@ namespace Server.Classes.NewBlock
     }
   }
 
-  public class Data
-  {
+  public class Data {
     public string Naam { get; set; }
     public string BSN { get; set; }
     public string Geb_Datum { get; set; }
@@ -33,10 +29,9 @@ namespace Server.Classes.NewBlock
     public Gemeente Gemeente { get; set; }
     public Reclassering Reclassering { get; set; }
 
-    public Data(
+    public Data (
       string naam, string bsn, string geb_datum, Politie Politie,
-      OM OM, Gemeente Gemeente, Reclassering Reclassering)
-    {
+      OM OM, Gemeente Gemeente, Reclassering Reclassering) {
       this.Naam = naam;
       this.BSN = bsn;
       this.Geb_Datum = geb_datum;
@@ -47,8 +42,7 @@ namespace Server.Classes.NewBlock
     }
   }
 
-  public class ZSM
-  {
+  public class ZSM {
     public string Antecedenten_OGR { get; set; }
     public string Aanhoudingen_OGR { get; set; }
     public string ISDMaatregel_OR { get; set; }
@@ -59,8 +53,7 @@ namespace Server.Classes.NewBlock
     public string LaatsteGesprek_POG { get; set; }
   }
 
-  public class Politie
-  {
+  public class Politie {
     public string Antecedenten_Radicalen_OGR { get; set; }
     public string Antecedenten_LokalePGA_OGR { get; set; }
     public string Antecedenten_ZSM_OGR { get; set; }
@@ -73,8 +66,7 @@ namespace Server.Classes.NewBlock
 
   }
 
-  public class OM
-  {
+  public class OM {
     public string Antecedenten_ZSM_PGR { get; set; }
     public string Sepots_ZSM_PGR { get; set; }
     public string Antecedenten_Radicalen_PGR { get; set; }
@@ -85,8 +77,7 @@ namespace Server.Classes.NewBlock
 
   }
 
-  public class Gemeente
-  {
+  public class Gemeente {
     public string BezitUitkering_ZSM_POR { get; set; }
     public string MeldingenRad_Radicalen_PO { get; set; }
     public string BezitUitkering_LokalePGA_POR { get; set; }
@@ -96,8 +87,7 @@ namespace Server.Classes.NewBlock
 
   }
 
-  public class Reclassering
-  {
+  public class Reclassering {
     public string LopendTraject_ZSM_POG { get; set; }
     public string LaatsteGesprek_ZSM_POG { get; set; }
     public string LopendTraject_Radicalen_POG { get; set; }
@@ -106,9 +96,7 @@ namespace Server.Classes.NewBlock
     public string LaatsteGesprek_Detentie_POG { get; set; }
   }
 
-  public class Tupl2
-  {
-    public string keys { get; set; }
+  public class Tupl2 {
     public JObject newdata { get; set; }
   }
 }

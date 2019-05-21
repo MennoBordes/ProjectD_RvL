@@ -24,15 +24,16 @@ namespace Node.Classes.Decryption {
 
             JObject testObject = new JObject ();
             foreach (var item in newdata) {
-                if (item.Key == "Naam" || item.Key == "BSN" || item.Key == "Geb_datum") {
-                    testObject.Add (item.Key, Decrypt (item.Value.ToString (), _privateKey));
-                    System.Console.WriteLine (item.ToString ());
-                }
                 if (item.Key == "Politie" || item.Key == "OM" || item.Key == "Gemeente" || item.Key == "Reclassering") {
                     JObject jObj = JObject.FromObject (item.Value);
                     JObject testObjectZRLD = new JObject ();
                     foreach (var testObjectInner in jObj) {
-                        testObjectZRLD.Add (testObjectInner.Key, Decrypt (testObjectInner.Value.ToString (), _privateKey));
+                        try {
+                            testObjectZRLD.Add (testObjectInner.Key, Decrypt (testObjectInner.Value.ToString (), _privateKey));
+                        } catch {
+                            testObjectZRLD.Add (testObjectInner.Key, testObjectInner.Value);
+                        }
+
                     }
                     testObject.Add (item.Key, testObjectZRLD);
                 }
@@ -51,7 +52,7 @@ namespace Node.Classes.Decryption {
                 try {
 
                     // server decrypting data with public key                    
-                    FromXmlString1 (rsa, _privateKey);
+                    FromXmlString1 (rsa, publicKeyString);
 
                     var resultBytes = Convert.FromBase64String (textToDecrypt);
                     var decryptedBytes = rsa.Decrypt (resultBytes, true);
