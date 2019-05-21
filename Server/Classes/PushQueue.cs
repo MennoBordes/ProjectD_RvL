@@ -1,6 +1,6 @@
 using System.Collections.Concurrent;
 
-using BlockChainData = Server.Classes.Data;
+using BlockChainData = Server.Classes.NewBlock.Data;
 
 namespace Server.Classes
 {

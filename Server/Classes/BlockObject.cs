@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Server.Classes {
-  public class Data {
+namespace Server.Classes.OldBlock
+{
+  public class Data
+  {
     public string Naam { get; set; }
     public string BSN { get; set; }
     public string Geb_Datum { get; set; }
@@ -23,7 +25,7 @@ namespace Server.Classes {
     public string LopendTraject { get; set; }
     public string LaatsteGesprek { get; set; }
 
-    public Data (
+    public Data(
       string naam, string bsn, string geb_datum, string organisatie, string groep, string antecedenten,
       string aanhoudingen, string heeftisdmaatregel, string sepots, string heeftonderzoekrad, string lopendedossiers,
       string bezituitkering, string meldingenrad, string zitingroepsaanpak, string heeftidbewijs,
@@ -51,7 +53,8 @@ namespace Server.Classes {
 
   }
 
-  public class DataObject {
+  public class DataObject
+  {
     public string Naam { get; set; }
     public string BSN { get; set; }
     public string Geb_Datum { get; set; }
@@ -71,24 +74,28 @@ namespace Server.Classes {
     public string LaatsteGesprek { get; set; }
   }
 
-  public class testReturn {
+  public class testReturn
+  {
     public DataObject Encrypted { get; set; }
     public DataObject Decrypted { get; set; }
 
-    public testReturn (DataObject encrypted, DataObject decrypted) {
+    public testReturn(DataObject encrypted, DataObject decrypted)
+    {
       Encrypted = encrypted;
       Decrypted = decrypted;
     }
   }
 
-  public class Block {
+  public class Block
+  {
     public string Hash_Code { get; set; }
     public string Previous_Hash { get; set; }
     public string Created_By { get; set; }
     public string Timestamp { get; set; }
     public Data Data { get; set; }
 
-    public Block (string hash_code, string previous_hash, string created_by, string timestamp, Data data) {
+    public Block(string hash_code, string previous_hash, string created_by, string timestamp, Data data)
+    {
       Hash_Code = hash_code;
       Previous_Hash = previous_hash;
       Created_By = created_by;
@@ -97,7 +104,8 @@ namespace Server.Classes {
     }
   }
 
-  public class Tupl2 {
+  public class Tupl2
+  {
     public string keys { get; set; }
     public JObject newdata { get; set; }
 

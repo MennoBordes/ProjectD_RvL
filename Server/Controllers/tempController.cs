@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Server.Classes;
-using BlockChainData = Server.Classes.Data;
+using BlockChainData = Server.Classes.NewBlock.Data;
 
 namespace Server.Controllers
 {
