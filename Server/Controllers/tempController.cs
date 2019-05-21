@@ -20,6 +20,7 @@ namespace Server.Controllers
       foreach (var item in PushQueue.Queue)
       {
         sb.Append(item.ToString());
+        sb.Append(" ");
       }
       return sb.ToString();
     }
@@ -33,6 +34,7 @@ namespace Server.Controllers
       foreach (var item in PushQueue.Queue)
       {
         sb.Append(item.ToString());
+        sb.Append(" ");
       }
       return sb.ToString();
     }
