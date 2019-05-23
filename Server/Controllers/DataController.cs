@@ -44,14 +44,14 @@ namespace Server.Controllers {
         // POST: api/data/crypto - takes input in Data class form,
         // encrypts or decrypts data
         [HttpPost ("encryptdata")]
-        public JObject Post ([FromBody] Tupl2 tuple2) {
+        public JObject Post ([FromBody] JObject newdata) {
 
             string parentOfStartupPathKeys = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../tempKeys"));
             string keys_of_instanced = System.IO.File.ReadAllText (parentOfStartupPathKeys + "/keys.json");
             JObject keys_of_instanced_parsed = JObject.Parse (keys_of_instanced);
             System.Console.WriteLine (keys_of_instanced_parsed);
 
-            LetsEncrypt LetsEncrypt = new LetsEncrypt (tuple2.newdata, keys_of_instanced_parsed);
+            LetsEncrypt LetsEncrypt = new LetsEncrypt ((JObject) newdata["newdata"], keys_of_instanced_parsed);
             return LetsEncrypt.showEncrypted ();
         }
 
