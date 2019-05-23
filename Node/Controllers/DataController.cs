@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Node.Classes.Decryption;
+using Server.Classes.Maybe;
+
+namespace Node.Controllers {
+    [Route ("api/[controller]")]
+    [ApiController]
+    public class DataController : ControllerBase {
+        // GET api/data
+        [HttpGet ("getdecryptednode")]
+        public JObject getDecryptedNode () {
+            string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
+            string node_id = System.IO.File.ReadAllText (parentOfStartupPath + "/node.json");
+            string private_key = System.IO.File.ReadAllText (parentOfStartupPath + "/privateKey.json");
+
+            JObject result = JObject.Parse (node_id);
+            JObject private_key_parsed = JObject.Parse (private_key);
+
+            JArray currentData = (JArray) result["node"]["CHAIN_COPY"];
+            foreach (JObject block in currentData) {
+                LetsDecrypt LetsDecrypt = new LetsDecrypt ((JObject) block["data"], (string) private_key_parsed["private"]);
+                block["data"] = LetsDecrypt.showDecrypted ();
+            }
+            return result;
+        }
+
+        [HttpPost ("saveblock")]
+        public void saveBlock ([FromBody] JObject json) {
+
+            string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
+            string current_identity = System.IO.File.ReadAllText (parentOfStartupPath + "/node.json");
+            JObject node = JObject.Parse (current_identity);
+            System.Console.WriteLine (node);
+
+            JArray chain_copy = (JArray) node["node"]["CHAIN_COPY"];
+            foreach (JObject incomingBlock in json["chain"]) {
+                chain_copy.Add (incomingBlock);
+            }
+            System.Console.WriteLine (node);
+            System.IO.File.WriteAllText (parentOfStartupPath + "/node.json", node.ToString ());
+
+        }
+
+    }
+
+}

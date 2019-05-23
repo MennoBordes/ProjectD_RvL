@@ -8,7 +8,7 @@ using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Server.Classes.Encryption {
+namespace Node.Classes.Decryption {
     public class LetsDecrypt {
 
         public string _privateKey;
@@ -24,15 +24,16 @@ namespace Server.Classes.Encryption {
 
             JObject testObject = new JObject ();
             foreach (var item in newdata) {
-                if (item.Key == "naam" || item.Key == "BSN" || item.Key == "geb_datum" || item.Key == "organisatie") {
-                    testObject.Add (item.Key, Decrypt (item.Value.ToString (), _privateKey));
-                    System.Console.WriteLine (item.ToString ());
-                }
-                if (item.Key == "Zsm" || item.Key == "Radicalen" || item.Key == "LokalePGA" || item.Key == "Detentie") {
+                if (item.Key == "Politie" || item.Key == "OM" || item.Key == "Gemeente" || item.Key == "Reclassering") {
                     JObject jObj = JObject.FromObject (item.Value);
                     JObject testObjectZRLD = new JObject ();
                     foreach (var testObjectInner in jObj) {
-                        testObjectZRLD.Add (testObjectInner.Key, Decrypt (testObjectInner.Value.ToString (), _privateKey));
+                        try {
+                            testObjectZRLD.Add (testObjectInner.Key, Decrypt (testObjectInner.Value.ToString (), _privateKey));
+                        } catch {
+                            testObjectZRLD.Add (testObjectInner.Key, testObjectInner.Value);
+                        }
+
                     }
                     testObject.Add (item.Key, testObjectZRLD);
                 }
@@ -51,7 +52,7 @@ namespace Server.Classes.Encryption {
                 try {
 
                     // server decrypting data with public key                    
-                    FromXmlString1 (rsa, _privateKey);
+                    FromXmlString1 (rsa, publicKeyString);
 
                     var resultBytes = Convert.FromBase64String (textToDecrypt);
                     var decryptedBytes = rsa.Decrypt (resultBytes, true);

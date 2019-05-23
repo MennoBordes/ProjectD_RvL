@@ -1,0 +1,71 @@
+JESSIN: 
+hoe server de data verwacht: exact dit formaat.
+
+etc... == te vinden in blockObject.1.cs (server & node) voor preciese verwachte attributen
+
+POST localhost:SERVERPORT/api/data/encryptdata
+
+{
+    "newdata": {
+          "Politie" : {
+          	"Antecedenten_Radicalen": false,
+          	etc...
+          	"Naam": "John Doe",
+        	"BSN": "245609562",
+        	"Geb_datum": "11-03-1980"
+          },
+            "Reclassering" : {
+          	"LopendTraject_ZSM": "string",
+          	etc...
+          	"Naam": "John Doe",
+        	"BSN": "245609562",
+        	"Geb_datum": "11-03-1980"
+          },
+            "Gemeente" : {
+          	"LopendTraject_ZSM": "string",
+          	etc...
+          	"Naam": "John Doe",
+        	"BSN": "245609562",
+        	"Geb_datum": "11-03-1980"
+          },
+          "OM" : {
+          	"LopendTraject_ZSM": "string",
+          	etc...
+          	"Naam": "John Doe",
+        	"BSN": "245609562",
+        	"Geb_datum": "11-03-1980"
+          }
+    }
+}
+
+
+
+MENNO:
+Hoe de data uit de encryptiefunctie komt
+
+
+OUTPUT: (zelfde als vorige maar dan ge-encrypt) ( LetsEncrypt.showEncrypted(); )
+{
+    "newdata": {
+        "Politie": {
+            "Antecedenten_Radicalen": "rzO4Rba4we1WnWwun2lGtOZ+HRpkM2+vYaV2RCCf0EFOwf31bX+bY1M+n+j6K9xLCp5E4bSsMfATEH1nsn91mTjUdHItXGFLpSZK06e+rbt+C2EejEC0wIDD/8bC44xDAwNeBk3ocxZD7Mg+gufG5yVxMUC/1ITdf2yEOql93h0=",
+            "Antecedenten_LokalePGA": "F9vCMRIA//mwItKJNl5GDA0wDuDVFL1gtqIEWRL2CMdXn+ZrN94doPpspJ6CC9VuYaEN/s7IJHOkfyMKCjd6muY1PFT+WNtmI+AO3IRf1wAvAzjMgaO9+7CgKHY2N8S7Ntt7owF8VBqHmCrJHb7UhT39hR8rfm6VrSE9kGoH9zY=",
+            "Antecedenten_ZSM": "mXrvSG5i2dG3bNnbQGBpOq0IblvCqWpdhMwoqnsRCBRbvz4kbf07Tq9aXnfwiVKv7NWxBpiLHETKs1nPJIcRhq+gs1u5uzP+3zH/9qLg1EKOvM/JQWCS18x2/flxdGlmh9PMdE3+R/cZbGHHZYxk8rM703pdG6Acj/UnWxqJKRs=",
+            "Antecedenten_Detentie": "N9olyvf+xny2GjRoUKjz06XlArQirDCInmdpyF8xp/6LsEBliMHCK02OJGaT5JS6W7IXlxuJZOLKy4KQ1/XelqCW6DeaDQzhzUCyfH6F4YkpzvbH52Wulvuyalif3qAwoQNWApnHEYhKR2pkT8kpqptHCeTak7arKEUwcIEvI74=",
+            "Naam": "ELUELrC2gxuLMy2bEJ4k5WtFyJubEEyRx+bOscBn9bHnWtF3Uz3LEEGk4dYz4rIPwskfG5p5k8C2JyOh/ALajAzCqhS5c4irZIb6X5rSjwm7nk86pj9cV1xc3UbGGfXGJHbYX6Odh8FXnZ41Eg5sbtJ8I8jZl0A1QJWy6H5lvZI=",
+            "BSN": "mpcWdhKSJh8cp4aZx8jjwTUqh4LnAscedhXuAC/5HcbAF9yACSe9qG07Xj2eQJwhHokv+KFAga6zdDsvhrIHxKKs63HTjnl+kKlv96gMdZWs7H830kj4qC5vmvmxL48mXCKp5cfWxz2MxTRovD+g6BexUMv/2uwFyPgR4K9oITc=",
+            "Geb_datum": "ju/YmXYVMcDrEHiEN9vAdpvP8K2g9Omf2YAFVjgTNa8iwGInemRyuo5KpWMafriub/YWsDxGrUpdsdFTeRykkUJYPa4OOvejs+0L5+GIuqWJ8WfMflQza9Z9Bm9umVqT5kS6rYlleXLYw+luDv6xH1hE7ChPRlDWUWZgQYGYPx4="
+        },
+        "Reclassering": {
+            "LopendTraject_ZSM": "iOcU5Mf1jCWOLfVF9bWarr4Nj64LeXOBSH1d7nyDs9N/B37cpGpGCX4TKthLtNdbl2K9K8FsoKItF8c2FWlCoL6pk/HZ7si94culFKmpyzVUX+6b/s1vZvE96c/hxJC+pgWcMDLckME3AFo2e2yzTkTpS2HACBBTReb3hw3/Uvs=",
+            "LaatsteGesprek_ZSM": "VKY8GWY0mXIsMrG1hMyF6VWnfReQGfDueamG5E8HprNvv6LocBlcobP5U4C4yhevz1dF/BsgvwV1WUDxQXIJUwTZ6kqhgpAZUonIWhF8A4GmTOvAMg/B7lkBudp2+cU0dOYpHiJDGMpPQD3szXYZt0vDdqpCyhgiWxrK6jAgmO4=",
+            "LopendTraject_Radicalen": "a8Q+LUvWq+CHNaQxB6dgKeThQDwkrPpOfogb6idQbmFl3Iym6exkrT6UkN6T6TgEtA6KZoFulpiUNaqZ4k6lch3B+Wp33fyL9XYEqrXdMnP8mOt/CoNljTmtwCh+A5ZfM/rUEehvJJNHs7iPIDWVlZcEKR0xkPkDE8+ZmXadoxg=",
+            "LaatsteGesprek_Radicalen": "eiwxNnD/IEwear3HVzJNa95sLHiwF8W4NBA4q0L4VIkzVIyvzkE3iy3QrrTwvH6FSDJHPCd2zBNMRhpCSrrPFVknUBFiTjhfw7VFVxB805GaVnrl3zYsMrkJoUPfUmMmE4gBXojOhR2WPVAj6O+QWFQSyIItEA/hBjgVYbrtHbI=",
+            "Naam": "x2y5JmciA948v9OqrZXQ9GBz6mKh/fYBiGsgwoiIYpQxzzBZ69ahYSe1JXtybu3NvxmlkkEU+LZ2wZuXSS9T1EJmAUtuv2xatFkCGfDf/+/KzUeObIf5XnCi+owdy23Xh7eQZdJAZUTpYfA72La3VyWbQ83R9K0ttl6+IbLzZxw=",
+            "BSN": "SNl2IQh0WcftcBSipQlvGokXCf6MgbIVo4XB1099tn9T9HHiMOEceX+4PKG+qR8CvVHe3W4cVl77qj0mhxi8tNbEsdPmaQTL2W1F4schBCvxU56KvanAxNuAxCIq2LMjhndeHkY8/7H6+6GFKTH3x+hOa46H+MW050tai56DGrY=",
+            "Geb_datum": "MTb0wejLpNdv83E+ZK4BDntFKDyYez16et0/C7nhK3TJmP1iOvEbZbao1JvIGiuzqrNGt0mIZUXNK04BFCNaTI+vImrdbIl5gOIYS5YWexxo+5skCWLfiJJJXqyziZjYDfnJQDvSJzKWDiS/g+a8JQMpgb34dn4pwKrKhvode0M="
+        },
+        etc...
+    }
+}
+

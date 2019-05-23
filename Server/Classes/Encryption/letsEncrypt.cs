@@ -7,33 +7,55 @@ using System.Text;
 using System.Xml;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Server.Classes.Maybe;
+using Server.Classes.NewBlock;
 
 namespace Server.Classes.Encryption {
     public class LetsEncrypt {
-        public string _publicKey;
+        public JObject _publicKeys;
         public string encryptedbytes;
 
         public UnicodeEncoding _encoder = new UnicodeEncoding ();
 
         public JObject Encrypteddataobject { get; set; }
 
-        public LetsEncrypt (JObject newdata, string keys) {
-            _publicKey = keys;
+        public LetsEncrypt (JObject newdata, JObject keys) {
+            _publicKeys = keys;
 
             JObject testObject = new JObject ();
             foreach (var item in newdata) {
-                if (item.Key == "naam" || item.Key == "BSN" || item.Key == "geb_datum" || item.Key == "organisatie") {
-                    testObject.Add (item.Key, Encrypt (item.Value.ToString (), _publicKey));
-                }
-                if (item.Key == "Zsm" || item.Key == "Radicalen" || item.Key == "LokalePGA" || item.Key == "Detentie") {
+                // if (item.Key == "Naam" || item.Key == "BSN" || item.Key == "Geb_datum") {
+                //     testObject.Add (item.Key, Encrypt (item.Value.ToString (), _publicKey));
+                // }
+                if (item.Key == "Politie") {
                     JObject jObj = JObject.FromObject (item.Value);
                     JObject testObjectZRLD = new JObject ();
                     foreach (var testObjectInner in jObj) {
-                        testObjectZRLD.Add (testObjectInner.Key, Encrypt (testObjectInner.Value.ToString (), _publicKey));
+                        testObjectZRLD.Add (testObjectInner.Key, Encrypt (testObjectInner.Value.ToString (), (string) keys["Politie"]["public"]));
+                    }
+                    testObject.Add (item.Key, testObjectZRLD);
+                } else if (item.Key == "OM") {
+                    JObject jObj = JObject.FromObject (item.Value);
+                    JObject testObjectZRLD = new JObject ();
+                    foreach (var testObjectInner in jObj) {
+                        testObjectZRLD.Add (testObjectInner.Key, Encrypt (testObjectInner.Value.ToString (), (string) keys["OM"]["public"]));
+                    }
+                    testObject.Add (item.Key, testObjectZRLD);
+                } else if (item.Key == "Gemeente") {
+                    JObject jObj = JObject.FromObject (item.Value);
+                    JObject testObjectZRLD = new JObject ();
+                    foreach (var testObjectInner in jObj) {
+                        testObjectZRLD.Add (testObjectInner.Key, Encrypt (testObjectInner.Value.ToString (), (string) keys["Gemeente"]["public"]));
+                    }
+                    testObject.Add (item.Key, testObjectZRLD);
+                } else if (item.Key == "Reclassering") {
+                    JObject jObj = JObject.FromObject (item.Value);
+                    JObject testObjectZRLD = new JObject ();
+                    foreach (var testObjectInner in jObj) {
+                        testObjectZRLD.Add (testObjectInner.Key, Encrypt (testObjectInner.Value.ToString (), (string) keys["Reclassering"]["public"]));
                     }
                     testObject.Add (item.Key, testObjectZRLD);
                 }
+
             }
             Encrypteddataobject = testObject;
         }
@@ -41,13 +63,13 @@ namespace Server.Classes.Encryption {
         public JObject showEncrypted () {
             return Encrypteddataobject;
         }
-        public string GetKeyString (RSAParameters publicKey) {
+        // public string GetKeyString (RSAParameters publicKey) {
 
-            var stringWriter = new System.IO.StringWriter ();
-            var xmlSerializer = new System.Xml.Serialization.XmlSerializer (typeof (RSAParameters));
-            xmlSerializer.Serialize (stringWriter, publicKey);
-            return stringWriter.ToString ();
-        }
+        //     var stringWriter = new System.IO.StringWriter ();
+        //     var xmlSerializer = new System.Xml.Serialization.XmlSerializer (typeof (RSAParameters));
+        //     xmlSerializer.Serialize (stringWriter, publicKey);
+        //     return stringWriter.ToString ();
+        // }
 
         public string Encrypt (string textToEncrypt, string publicKeyString) {
             var bytesToEncrypt = Encoding.UTF8.GetBytes (textToEncrypt);

@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Server.Classes;
 using Server.Classes.Encryption;
+using Server.Classes.NewBlock;
 
 namespace Server.Controllers {
 
@@ -43,15 +43,15 @@ namespace Server.Controllers {
 
         // POST: api/data/crypto - takes input in Data class form,
         // encrypts or decrypts data
-        [HttpPost ("crypto")]
-        public JObject Post ([FromBody] Tupl2 tuple2) {
+        [HttpPost ("encryptdata")]
+        public JObject Post ([FromBody] JObject newdata) {
 
-            System.Console.WriteLine (tuple2);
-            if (tuple2.newdata["naam"].ToString ().Length > 100) {
-                LetsDecrypt LetsDecrypt = new LetsDecrypt (tuple2.newdata, tuple2.keys);
-                return LetsDecrypt.showDecrypted ();
-            }
-            LetsEncrypt LetsEncrypt = new LetsEncrypt (tuple2.newdata, tuple2.keys);
+            string parentOfStartupPathKeys = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../tempKeys"));
+            string keys_of_instanced = System.IO.File.ReadAllText (parentOfStartupPathKeys + "/keys.json");
+            JObject keys_of_instanced_parsed = JObject.Parse (keys_of_instanced);
+            System.Console.WriteLine (keys_of_instanced_parsed);
+
+            LetsEncrypt LetsEncrypt = new LetsEncrypt ((JObject) newdata["newdata"], keys_of_instanced_parsed);
             return LetsEncrypt.showEncrypted ();
         }
 
