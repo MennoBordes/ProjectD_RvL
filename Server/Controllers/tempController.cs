@@ -1,11 +1,15 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Server.Classes;
-using BlockChainData = Server.Classes.NewBlock.Data;
+using Newtonsoft.Json.Linq;
+using Server.Classes.Queue;
+using Server.Classes.Nodes;
+using Server.Classes.Encryption;
+using BlockChainData = Server.Classes.NewBlock.Block;
 
 namespace Server.Controllers
 {
