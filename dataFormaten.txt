@@ -42,7 +42,7 @@ POST localhost:SERVERPORT/api/data/encryptdata
     }
 }
 
-JESSIN:
+JESSIN, PAULITO:
 
 Hoe frontend de data oproept en krijgt
 
