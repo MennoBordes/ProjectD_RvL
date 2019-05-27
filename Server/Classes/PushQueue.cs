@@ -1,8 +1,8 @@
 using System.Collections.Concurrent;
 
-using BlockChainData = Server.Classes.NewBlock.Data;
+using BlockChainData = Server.Classes.NewBlock.Block;
 
-namespace Server.Classes
+namespace Server.Classes.Queue
 {
 
   public static class PushQueue

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
+using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Server.Classes.NewBlock;
@@ -61,15 +62,8 @@ namespace Server.Classes.Encryption {
         }
 
         public JObject showEncrypted () {
-            return Encrypteddataobject;
+            return new JObject (new JProperty ("newdata", Encrypteddataobject));
         }
-        // public string GetKeyString (RSAParameters publicKey) {
-
-        //     var stringWriter = new System.IO.StringWriter ();
-        //     var xmlSerializer = new System.Xml.Serialization.XmlSerializer (typeof (RSAParameters));
-        //     xmlSerializer.Serialize (stringWriter, publicKey);
-        //     return stringWriter.ToString ();
-        // }
 
         public string Encrypt (string textToEncrypt, string publicKeyString) {
             var bytesToEncrypt = Encoding.UTF8.GetBytes (textToEncrypt);
