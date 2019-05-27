@@ -7,7 +7,8 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using System.Web.Http;
+// using System.Web.Http;
+using System.Web.Http.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -19,6 +20,7 @@ namespace Server.Controllers
 
   [Route("api/[controller]")]
   [ApiController]
+  [EnableCors(origins: "*", headers: "*", methods: "*")]
   public class DataController : ControllerBase
   {
     HttpClient httpClient = new HttpClient();
