@@ -52,45 +52,72 @@ namespace Server.Controllers
       return current_identity_parsed;
     }
 
-
-    [HttpGet("client")]
-    // public async ActionResult<string> Post()
-    public async Task<JObject> client()
+    [HttpPost("client")]
+    public void PushToNode([FromBody] JObject newdata)
     {
+      // The Url of the api
+      var url = "http://localhost:4000/api/data/saveblock";
 
-      // var url = "http://localhost:4000/api/values";
-      // Used to get the entire chain
-      var url = "http://localhost:4000/api/data/getdecryptednode";
-
+      // For ignoring SSL
       ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
       ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
+      // Creating Webrequest
       WebRequest req = WebRequest.Create(url);
-      var postData = "1";
-      var data = System.Text.Encoding.ASCII.GetBytes(postData);
 
+      // Converting data to char array
+      var data = System.Text.Encoding.ASCII.GetBytes(newdata.ToString());
+
+      // Assigning request method
       req.Method = "POST";
 
       req.ContentType = "application/json; charset=utf-8";
       req.ContentLength = data.Length;
 
+      // Adding data to pusher
       using (var streamPost = req.GetRequestStream())
       {
         streamPost.Write(data, 0, data.Length);
       }
 
+      // Push data to client
+      req.GetResponse();
+    }
+
+
+    [HttpGet("client")]
+    public async Task<JObject> client()
+    {
+      // The url of the api
+      var url = "http://localhost:4000/api/data/getdecryptednode";
+
+      // For ignoring SSL
+      ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+      ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
+      // Creating Webrequest
+      WebRequest req = WebRequest.Create(url);
+
+      // Assigning request method
+      req.Method = "GET";
+
+      // Specifying valid return types
+      req.ContentType = "application/json; charset=utf-8";
+
+      // Retrieving response from api
       WebResponse resp = req.GetResponse();
 
+      // Converting to stream
       Stream stream = resp.GetResponseStream();
 
+      // Reading stream
       StreamReader re = new StreamReader(stream);
 
-      // String json = re.ReadToEnd();
+      // Casting to JObject
       JObject objec = JObject.Parse(re.ReadToEnd());
 
-      // System.Console.WriteLine("JSON IS DIT=======" + json);
+      // Returning objec
       return objec;
-      // return null;
     }
 
     // POST: api/data/crypto - takes input in Data class form,
