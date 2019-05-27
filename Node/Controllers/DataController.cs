@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+using System.Web.Http.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -16,6 +17,8 @@ using Server.Classes.Maybe;
 namespace Node.Controllers {
     [Route ("api/[controller]")]
     [ApiController]
+    [EnableCors (origins: "*", headers: "*", methods: "*")]
+
     public class DataController : ControllerBase {
         // GET api/data
         [HttpGet ("getdecryptednode")]
