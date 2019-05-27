@@ -56,25 +56,24 @@ namespace Server.Controllers {
       //   var url = "http://localhost:5001/api/values";
       //   var url = "http://www.contoso.com/";
 
-      // request.Headers.Add ("User-Agent", "HttpClientFactory-Sample");
-
-      // var client = _clientFactory.CreateClient ();
-
-      // var response = await httpClient.SendAsync (request);
-      // if (response.IsSuccessStatusCode) {
-      //   var Branches = await response.Content
-      //     .ReadAsAsync ();
-      // } else {
-      //   // GetBranchesError = true;
-      //   // Branches = Array.Empty ();
-      // }
-      // return await Task.Run (() = & gt; JsonObject.Parse (content));
-
-      HttpClient client = new HttpClient ();
       ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
       ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-      client.DefaultRequestHeaders.Accept.Add (new MediaTypeWithQualityHeaderValue ("application/json"));
-      var responseMsg = client.GetAsync (string.Format (url)).Result;
+
+      WebRequest req = WebRequest.Create (url);
+
+      req.Method = "GET";
+
+      req.ContentType = "application/json; charset=utf-8";
+
+      WebResponse resp = req.GetResponse ();
+
+      Stream stream = resp.GetResponseStream ();
+
+      StreamReader re = new StreamReader (stream);
+
+      String json = re.ReadToEnd ();
+
+      System.Console.WriteLine ("JSON IS DIT=======" + json);
 
       // using (HttpClient client = new HttpClient ()) {
 
@@ -82,8 +81,8 @@ namespace Server.Controllers {
       //     var httpRequest = new HttpRequestMessage (HttpMethod.Get, url);
       //     ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
       //     ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-      //     httpClient.DefaultRequestHeaders.Add ("Accept", "application/json");
-      //     httpClient.DefaultRequestHeaders.Add ("Content-Type", "application/json");
+      //     httpRequest.Headers.Add ("Accept", "application/json");
+      //     httpRequest.Headers.Add ("Content-Type", "application/json");
       //     var response = await httpClient.GetAsync (url);
       //     //   response.EnsureSuccessStatusCode();
       //     //   string responseBody = await response.Content.ReadAsStringAsync();
