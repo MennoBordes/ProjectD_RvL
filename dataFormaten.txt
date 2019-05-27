@@ -1,10 +1,10 @@
 JESSIN: 
-hoe server de data verwacht: exact dit formaat.
 Wanneer de gebruiker geen info heeft ingevuld voor een bepaald onderdeel uit etc... dan komt hier een standaard waarde in:
 bool=false
 int=0
 string=""
 
+hoe de server de data verwacht: exact het formaat in "newdata".
 etc... == te vinden in blockObject.1.cs (server & node) voor preciese verwachte attributen
 
 POST localhost:SERVERPORT/api/data/encryptdata
