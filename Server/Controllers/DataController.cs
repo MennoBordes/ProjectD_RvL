@@ -66,10 +66,18 @@ namespace Server.Controllers
       ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
       WebRequest req = WebRequest.Create(url);
+      var postData = "1";
+      var data = System.Text.Encoding.ASCII.GetBytes(postData);
 
-      req.Method = "GET";
+      req.Method = "POST";
 
       req.ContentType = "application/json; charset=utf-8";
+      req.ContentLength = data.Length;
+
+      using (var streamPost = req.GetRequestStream())
+      {
+        streamPost.Write(data, 0, data.Length);
+      }
 
       WebResponse resp = req.GetResponse();
 

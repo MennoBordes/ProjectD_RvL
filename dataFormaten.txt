@@ -1,4 +1,9 @@
+<<<<<<< HEAD
+Jessin: 
+hoe de server de data verwacht: exact dit formaat.
+=======
 JESSIN: 
+>>>>>>> a54ac51bd63ee7972d0c116357306de6db790a08
 Wanneer de gebruiker geen info heeft ingevuld voor een bepaald onderdeel uit etc... dan komt hier een standaard waarde in:
 bool=false
 int=0
