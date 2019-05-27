@@ -1,18 +1,22 @@
 import React from 'react';
-import './App.css';
+import './style/App.css';
 // import Button from 'reactstrap';
-import {Button, Alert} from 'reactstrap';
+
+import { Route, Switch } from "react-router";
+import { BrowserRouter } from "react-router-dom";
+import Dashboard from './pages/dashboard'
+import Login from './pages/login';
 
 const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        Press the button to log in.
-        <Button onClick={() =>{}} size="lg" color="success" outline block>
-          Login
-        </Button>
-      </header>
-      
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={Login}/>
+          <Route exact path="/login" component={Login}/>
+          <Route exact path="/dashboard" component={Dashboard}/>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }

@@ -1,5 +1,5 @@
-JESSIN: 
-hoe server de data verwacht: exact dit formaat.
+Jessin: 
+hoe de server de data verwacht: exact dit formaat.
 Wanneer de gebruiker geen info heeft ingevuld voor een bepaald onderdeel uit etc... dan komt hier een standaard waarde in:
 bool=false
 int=0
