@@ -51,12 +51,8 @@ namespace Node.Classes.Decryption {
             using (var rsa = new RSACryptoServiceProvider (2048)) {
                 try {
 
-<<<<<<< HEAD:Server/Classes/Encryption/letsDecrypt.cs
-                    FromXmlString1 (rsa, _privateKey);
-=======
                     // server decrypting data with public key                    
                     FromXmlString1 (rsa, publicKeyString);
->>>>>>> 539380ca3006a2180dc529aa30e743afa5512457:Node/classes/Decryption/letsDecrypt.cs
 
                     var resultBytes = Convert.FromBase64String (textToDecrypt);
                     var decryptedBytes = rsa.Decrypt (resultBytes, true);

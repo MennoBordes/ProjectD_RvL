@@ -1,3 +1,4 @@
+using System.Threading.Tasks.Dataflow;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -46,6 +47,22 @@ namespace Node.Controllers
       }
 
       return result;
+    }
+
+     // GET api/data
+    [HttpGet("getencryptednode")]
+    public JObject getencryptednode()
+    {
+      string parentOfStartupPath = Path.GetFullPath(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
+      string node_id = System.IO.File.ReadAllText(parentOfStartupPath + "/node.json");
+
+      JObject result = JObject.Parse(node_id);
+     
+          JArray currentData = (JArray)result["node"]["CHAIN_COPY"];
+
+          JObject zuc = new JObject (new JProperty ("chain", currentData));
+
+      return zuc;
     }
 
     [HttpPost("saveblock")]
