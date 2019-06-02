@@ -1,0 +1,160 @@
+<<<<<<< HEAD
+Jessin: 
+hoe de server de data verwacht: exact dit formaat.
+=======
+JESSIN: 
+>>>>>>> a54ac51bd63ee7972d0c116357306de6db790a08
+Wanneer de gebruiker geen info heeft ingevuld voor een bepaald onderdeel uit etc... dan komt hier een standaard waarde in:
+bool=false
+int=0
+string=""
+
+hoe de server de data verwacht: exact het formaat in "newdata".
+etc... == te vinden in blockObject.1.cs (server & node) voor preciese verwachte attributen
+
+POST localhost:SERVERPORT/api/data/encryptdata
+
+{
+    "newdata": {
+          "Politie" : {
+          	"Antecedenten_Radicalen": false,
+          	etc...
+          	"Naam": "John Doe",
+        	"BSN": "245609562",
+        	"Geb_datum": "11-03-1980"
+          },
+            "Reclassering" : {
+          	"LopendTraject_ZSM": "string",
+          	etc...
+          	"Naam": "John Doe",
+        	"BSN": "245609562",
+        	"Geb_datum": "11-03-1980"
+          },
+            "Gemeente" : {
+          	"LopendTraject_ZSM": "string",
+          	etc...
+          	"Naam": "John Doe",
+        	"BSN": "245609562",
+        	"Geb_datum": "11-03-1980"
+          },
+          "OM" : {
+          	"LopendTraject_ZSM": "string",
+          	etc...
+          	"Naam": "John Doe",
+        	"BSN": "245609562",
+        	"Geb_datum": "11-03-1980"
+          }
+    }
+}
+
+JESSIN, PAULITO:
+
+Hoe frontend de data oproept en krijgt
+
+GET localhost:NODEPORT/api/data/getdecryptednode
+
+{
+    "node": {
+        "ID": "686978",
+        "RSA_PUBLICKEY": "",
+        "CHAIN_COPY": [
+            {
+                "hash_code": "00753692ec36adb4c794c97394...",
+                "previous_hash": "00815cbea3d1a07b54f7eb75ad...",
+                "created_by": "Politie group",
+                "timestamp": "11-03-2019@11:23:34",
+                "data": {
+                    "Politie": {
+                        "Antecedenten_Radicalen_OGR": "mkL6qqHW//5znPsW8QxcjB4BpU/Hq+GQxXDfM3kohWFF97daEMnwqUKtiCil7cybuyy87FZ/KmbwO75Tvb6MDcJIhK52Ueq1DN9Ygu+4i4b5aYElw62fOWApc8PXqACtx/V3tfkqnRiM1A8akvvM9N/I21R2yiWLYpCcwshJRyM=",
+                        "Antecedenten_LokalePGA_OGR": "GCIuc7t36HwEqSVNvmg9dMKQY/+4WZZnjkwc2KAo2UoxHNeMvVkdwDyfWRSynJ+XjkOyz2hPcz1Tw1KqY0lMBqMjWP9g4i8VCeePDWxb6/cQTfnHaIXHIEpfjuL1IMtWmaokWTFyFJkZQpYuWFSvPKLSs4U54tERzOQL2sWYgpk=",
+                        "Antecedenten_ZSM_OGR": "QfKnmrAsgCHbJ5ucC5J+/VbPsPRw9BIpJRTulsEhg7bGnOyD6tYVQ+k4KMkHyqc1yxuhoHb1ibjv6dTahYB1xKiS4RwiWw/iuTyz31HtPwfjTth1OXU+ApVyj+6hg2g2d0u64jSVAFfriu2yeFW7P8sAYfUsoJED3tFFhiODf3w=",
+                        "Antecedenten_Detentie": "dSaRgtcTBbuG5Gsd3yLjOf53qGDBn2LM0OBa8rEmR5/OGgodycAmktnpkCwqHoXI7taeDOjMpVgKA7tqepwJvBL+KbQkMhT9h2DeJM/bzJfdRlO6pz+h8rseAL/RRm8ZBVg4NYb5EgDmjJEw5yZzeMfT6XXg81jLpAwIqX2XCSI=",
+                        "Naam": "ol64rTg4b9+FOvAsqbuM1Itpgfze7RzJHE9mG07oXYEzvHqAWUWlvOF+/NgjU5NpGDmE7MN6GLGVOQu/KO/7R6jfOparrc5M6k4AVllQrAt5cxuyvrSDdZQgzMaITowXOdi/QXXrkJ5HE95X/+LolMg8N/XulmekOO/KSI1+WD4=",
+                        "BSN": "dnsH7MZxTWAi0wc844oY729M4SIWNriy6aBYw3UxMLGqJHn1cpg7TLWAm/nTzZCxryK7QnpbSgWPjfDNqGLeev0xzKEQ7rDGcZtQt5s/PNwUXzbnhWULZel1lM0JP6BmJBchQbW4h5F1lUHfknYiQlLqO3Sw4dPMMtBHsDDucSk=",
+                        "Geb_datum": "FVYshAT8mtidxY2ZhDLaKgrfzsLghwNcIOdn7dj5iIwWf4MMldkiLLcpoRIfKJekFQc20Pyqh9J6pae7oVK2xoOnSkks4n+yJo31oxcfVjgzlM6TbDs3+wSiOEaFbfzIiLifIsSziF9pxNyJzUiSzzpi1WVTG3Giqdwj/4eGhJ4="
+                    },
+                    "Reclassering": {
+                        "LopendTraject_ZSM_POG": "string",
+                        "LaatsteGesprek_ZSM_POG": "string",
+                        "LopendTraject_Radicalen_POG": "string",
+                        "LaatsteGesprek_Radicalen_POG": "string",
+                        "Naam": "John Doe",
+                        "BSN": "245609562",
+                        "Geb_datum": "11-03-1980"
+                    }
+                }
+            }
+        ]
+    }
+}
+
+==============================================================================================================
+
+MENNO:
+Hoe de data uit de encryptiefunctie komt
+
+
+OUTPUT: (zelfde als vorige maar dan ge-encrypt) ( LetsEncrypt.showEncrypted(); )
+{
+    "newdata": {
+        "Politie": {
+            "Antecedenten_Radicalen": "rzO4Rba4we1WnWwun2lGtOZ+HRpkM2+vYaV2RCCf0EFOwf31bX+bY1M+n+j6K9xLCp5E4bSsMfATEH1nsn91mTjUdHItXGFLpSZK06e+rbt+C2EejEC0wIDD/8bC44xDAwNeBk3ocxZD7Mg+gufG5yVxMUC/1ITdf2yEOql93h0=",
+            "Antecedenten_LokalePGA": "F9vCMRIA//mwItKJNl5GDA0wDuDVFL1gtqIEWRL2CMdXn+ZrN94doPpspJ6CC9VuYaEN/s7IJHOkfyMKCjd6muY1PFT+WNtmI+AO3IRf1wAvAzjMgaO9+7CgKHY2N8S7Ntt7owF8VBqHmCrJHb7UhT39hR8rfm6VrSE9kGoH9zY=",
+            "Antecedenten_ZSM": "mXrvSG5i2dG3bNnbQGBpOq0IblvCqWpdhMwoqnsRCBRbvz4kbf07Tq9aXnfwiVKv7NWxBpiLHETKs1nPJIcRhq+gs1u5uzP+3zH/9qLg1EKOvM/JQWCS18x2/flxdGlmh9PMdE3+R/cZbGHHZYxk8rM703pdG6Acj/UnWxqJKRs=",
+            "Antecedenten_Detentie": "N9olyvf+xny2GjRoUKjz06XlArQirDCInmdpyF8xp/6LsEBliMHCK02OJGaT5JS6W7IXlxuJZOLKy4KQ1/XelqCW6DeaDQzhzUCyfH6F4YkpzvbH52Wulvuyalif3qAwoQNWApnHEYhKR2pkT8kpqptHCeTak7arKEUwcIEvI74=",
+            "Naam": "ELUELrC2gxuLMy2bEJ4k5WtFyJubEEyRx+bOscBn9bHnWtF3Uz3LEEGk4dYz4rIPwskfG5p5k8C2JyOh/ALajAzCqhS5c4irZIb6X5rSjwm7nk86pj9cV1xc3UbGGfXGJHbYX6Odh8FXnZ41Eg5sbtJ8I8jZl0A1QJWy6H5lvZI=",
+            "BSN": "mpcWdhKSJh8cp4aZx8jjwTUqh4LnAscedhXuAC/5HcbAF9yACSe9qG07Xj2eQJwhHokv+KFAga6zdDsvhrIHxKKs63HTjnl+kKlv96gMdZWs7H830kj4qC5vmvmxL48mXCKp5cfWxz2MxTRovD+g6BexUMv/2uwFyPgR4K9oITc=",
+            "Geb_datum": "ju/YmXYVMcDrEHiEN9vAdpvP8K2g9Omf2YAFVjgTNa8iwGInemRyuo5KpWMafriub/YWsDxGrUpdsdFTeRykkUJYPa4OOvejs+0L5+GIuqWJ8WfMflQza9Z9Bm9umVqT5kS6rYlleXLYw+luDv6xH1hE7ChPRlDWUWZgQYGYPx4="
+        },
+        "Reclassering": {
+            "LopendTraject_ZSM": "iOcU5Mf1jCWOLfVF9bWarr4Nj64LeXOBSH1d7nyDs9N/B37cpGpGCX4TKthLtNdbl2K9K8FsoKItF8c2FWlCoL6pk/HZ7si94culFKmpyzVUX+6b/s1vZvE96c/hxJC+pgWcMDLckME3AFo2e2yzTkTpS2HACBBTReb3hw3/Uvs=",
+            "LaatsteGesprek_ZSM": "VKY8GWY0mXIsMrG1hMyF6VWnfReQGfDueamG5E8HprNvv6LocBlcobP5U4C4yhevz1dF/BsgvwV1WUDxQXIJUwTZ6kqhgpAZUonIWhF8A4GmTOvAMg/B7lkBudp2+cU0dOYpHiJDGMpPQD3szXYZt0vDdqpCyhgiWxrK6jAgmO4=",
+            "LopendTraject_Radicalen": "a8Q+LUvWq+CHNaQxB6dgKeThQDwkrPpOfogb6idQbmFl3Iym6exkrT6UkN6T6TgEtA6KZoFulpiUNaqZ4k6lch3B+Wp33fyL9XYEqrXdMnP8mOt/CoNljTmtwCh+A5ZfM/rUEehvJJNHs7iPIDWVlZcEKR0xkPkDE8+ZmXadoxg=",
+            "LaatsteGesprek_Radicalen": "eiwxNnD/IEwear3HVzJNa95sLHiwF8W4NBA4q0L4VIkzVIyvzkE3iy3QrrTwvH6FSDJHPCd2zBNMRhpCSrrPFVknUBFiTjhfw7VFVxB805GaVnrl3zYsMrkJoUPfUmMmE4gBXojOhR2WPVAj6O+QWFQSyIItEA/hBjgVYbrtHbI=",
+            "Naam": "x2y5JmciA948v9OqrZXQ9GBz6mKh/fYBiGsgwoiIYpQxzzBZ69ahYSe1JXtybu3NvxmlkkEU+LZ2wZuXSS9T1EJmAUtuv2xatFkCGfDf/+/KzUeObIf5XnCi+owdy23Xh7eQZdJAZUTpYfA72La3VyWbQ83R9K0ttl6+IbLzZxw=",
+            "BSN": "SNl2IQh0WcftcBSipQlvGokXCf6MgbIVo4XB1099tn9T9HHiMOEceX+4PKG+qR8CvVHe3W4cVl77qj0mhxi8tNbEsdPmaQTL2W1F4schBCvxU56KvanAxNuAxCIq2LMjhndeHkY8/7H6+6GFKTH3x+hOa46H+MW050tai56DGrY=",
+            "Geb_datum": "MTb0wejLpNdv83E+ZK4BDntFKDyYez16et0/C7nhK3TJmP1iOvEbZbao1JvIGiuzqrNGt0mIZUXNK04BFCNaTI+vImrdbIl5gOIYS5YWexxo+5skCWLfiJJJXqyziZjYDfnJQDvSJzKWDiS/g+a8JQMpgb34dn4pwKrKhvode0M="
+        },
+        etc...
+    }
+}
+
+MENNO:
+Hoe een node de data verwacht
+
+POST localhost:NODEPORT/api/data/saveblock
+
+{
+    "chain": [
+        {
+            "hash_code": "00753692ec36adb4c794c97394...",
+            "previous_hash": "00815cbea3d1a07b54f7eb75ad...",
+            "created_by": "Politie group",
+            "timestamp": "11-03-2019@11:23:34",
+            "data": {
+			    "Politie": {
+			        "Antecedenten_Radicalen_OGR": "mkL6qqHW//5znPsW8QxcjB4BpU/Hq+GQxXDfM3kohWFF97daEMnwqUKtiCil7cybuyy87FZ/KmbwO75Tvb6MDcJIhK52Ueq1DN9Ygu+4i4b5aYElw62fOWApc8PXqACtx/V3tfkqnRiM1A8akvvM9N/I21R2yiWLYpCcwshJRyM=",
+			        "Antecedenten_LokalePGA_OGR": "GCIuc7t36HwEqSVNvmg9dMKQY/+4WZZnjkwc2KAo2UoxHNeMvVkdwDyfWRSynJ+XjkOyz2hPcz1Tw1KqY0lMBqMjWP9g4i8VCeePDWxb6/cQTfnHaIXHIEpfjuL1IMtWmaokWTFyFJkZQpYuWFSvPKLSs4U54tERzOQL2sWYgpk=",
+			        "Antecedenten_ZSM_OGR": "QfKnmrAsgCHbJ5ucC5J+/VbPsPRw9BIpJRTulsEhg7bGnOyD6tYVQ+k4KMkHyqc1yxuhoHb1ibjv6dTahYB1xKiS4RwiWw/iuTyz31HtPwfjTth1OXU+ApVyj+6hg2g2d0u64jSVAFfriu2yeFW7P8sAYfUsoJED3tFFhiODf3w=",
+			        "Antecedenten_Detentie": "dSaRgtcTBbuG5Gsd3yLjOf53qGDBn2LM0OBa8rEmR5/OGgodycAmktnpkCwqHoXI7taeDOjMpVgKA7tqepwJvBL+KbQkMhT9h2DeJM/bzJfdRlO6pz+h8rseAL/RRm8ZBVg4NYb5EgDmjJEw5yZzeMfT6XXg81jLpAwIqX2XCSI=",
+			        "Naam": "ol64rTg4b9+FOvAsqbuM1Itpgfze7RzJHE9mG07oXYEzvHqAWUWlvOF+/NgjU5NpGDmE7MN6GLGVOQu/KO/7R6jfOparrc5M6k4AVllQrAt5cxuyvrSDdZQgzMaITowXOdi/QXXrkJ5HE95X/+LolMg8N/XulmekOO/KSI1+WD4=",
+			        "BSN": "dnsH7MZxTWAi0wc844oY729M4SIWNriy6aBYw3UxMLGqJHn1cpg7TLWAm/nTzZCxryK7QnpbSgWPjfDNqGLeev0xzKEQ7rDGcZtQt5s/PNwUXzbnhWULZel1lM0JP6BmJBchQbW4h5F1lUHfknYiQlLqO3Sw4dPMMtBHsDDucSk=",
+			        "Geb_datum": "FVYshAT8mtidxY2ZhDLaKgrfzsLghwNcIOdn7dj5iIwWf4MMldkiLLcpoRIfKJekFQc20Pyqh9J6pae7oVK2xoOnSkks4n+yJo31oxcfVjgzlM6TbDs3+wSiOEaFbfzIiLifIsSziF9pxNyJzUiSzzpi1WVTG3Giqdwj/4eGhJ4="
+			    },
+			    "Reclassering": {
+			        "LopendTraject_ZSM_POG": "vyyj1CNk4WgzOoTJP1nH5eUMlgiylH+pHmnJHCtYie7Pd0pvy+q7Zw6AyfRSfECfGuNVb9kZ+jq2e89IpKfvk8m/67DrNYW4GVqNOMLe7FIvUlTbHS6VkPA1eCqF7dXe2XMl045U372JmB19s0yU3hVGneyYjXCNNZ0PVkJONm0=",
+			        "LaatsteGesprek_ZSM_POG": "r5+pveh2d99+5d3a9iiFJGhg+XRLHf1419SW5l3rfr3y/ME7ududfKjKurM5YDPknd/vKX9ugWzn+pRbVG7lcu4nZau3JjTYbxUnMACHZaTg8jORHbRe+P+EvSbQxmyg9FMDLwnu0fXgdFj8QotFkHpjUv71FSMfBF3J/Jv87nQ=",
+			        "LopendTraject_Radicalen_POG": "YYTnJn1kOo/njz7njbf+gEoEWDUEyNRlHxDjk7hWQzzzfq7v2hVrTHkqqTCxwfjIU+N06i4/qX0Xo9RsGEJLDYqIfhQ3JNG70TJjZWVqmXkk62Z+q3fMyoX6b/Jrug527VZ6KZbVGlELwc5J93RX6QfsGh/+6wj34nu4PcE52Ec=",
+			        "LaatsteGesprek_Radicalen_POG": "be8ICkNuL62q2Dw7LmvdUC1S3qTdc3z/evcEPZpoyPQoO6zKIPaXoRMGN6TJnmRhr7CcS2MNayZD717NJm6r3gGWTh1SPh4NmYTbkUdODkwy8zI/o+8AGEusDSZEKVjnAWcrsGjjsceKdMzhyJbyCFeyQdhveWox+XN8ZIeijN0=",
+			        "Naam": "aNWc6yEXB/ATO82J4GR5Z4cDxw6DLxpxIMjaebuGA3AmprKRr/Ziy3fd03rd+B32/SMckMeHdPDMbrNIInNlt5kBolqbzmIYSOK8P31y0lOHwkSeBLrIOBTS7BqAYrnaxefaIpqWUNYEakkFEQvTshk+gHkZBLVkIOrM1V8K5vY=",
+			        "BSN": "OWh6LoX9qfzLgbwarlI65XVP76AIl8grzWuBqfYoEMzkw8zEXPceGH4xadkB0h9O5GfxD9wsVGLqTitHYhe4DkFSWpcmhALWW4HmOygr43uoNayHayLMIXmuwy4XeIMMfAPgBcuU/qly2TWX4UQDY7uJiIuUPOZ9T+pc7M010iU=",
+			        "Geb_datum": "EJCPHc8JjZGR2X/BpnIArdjO6lgLedruI3ZcoopE5zb2KtVHcfLlEigbFuhHBX+TAi3jaaGREC5aoReYmiNze34K7nkKOK6qLjK2j48mn74O6b1kWEDkVSRMLnfKX4vt8WLPPZBMrKnerKYerXn/pDpsg2ZBNRi41ABT9A6zFzU="
+			    }
+			}
+        }
+
+    ]
+}
+
+==============================================================================================================
+

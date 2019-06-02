@@ -5,8 +5,10 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Xml;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
-namespace Server.Classes.Encryption {
+namespace Node.Classes.Decryption {
     public class LetsDecrypt {
 
         public string _privateKey;
@@ -15,48 +17,31 @@ namespace Server.Classes.Encryption {
 
         public UnicodeEncoding _encoder = new UnicodeEncoding ();
 
-        public DataObject Decrypteddataobject { get; set; }
+        public JObject Decrypteddataobject { get; set; }
 
-        public LetsDecrypt (Data data, string key) {
-
+        public LetsDecrypt (JObject newdata, string key) {
             _privateKey = key;
 
-            List<string> values = new List<string> ();
+            JObject testObject = new JObject ();
+            foreach (var item in newdata) {
+                if (item.Key == "Politie" || item.Key == "OM" || item.Key == "Gemeente" || item.Key == "Reclassering") {
+                    JObject jObj = JObject.FromObject (item.Value);
+                    JObject testObjectZRLD = new JObject ();
+                    foreach (var testObjectInner in jObj) {
+                        try {
+                            testObjectZRLD.Add (testObjectInner.Key, Decrypt (testObjectInner.Value.ToString (), _privateKey));
+                        } catch {
+                            testObjectZRLD.Add (testObjectInner.Key, testObjectInner.Value);
+                        }
 
-            foreach (var prop in data.GetType ().GetProperties ()) {
-                values.Add (prop.GetValue (data, null).ToString ());
+                    }
+                    testObject.Add (item.Key, testObjectZRLD);
+                }
             }
-
-            List<string> decryptedvalues = new List<string> ();
-
-            foreach (var item in values) {
-                decryptedvalues.Add (Decrypt (item, _privateKey));
-            }
-
-            DataObject dataobject = new DataObject ();
-
-            dataobject.Naam = decryptedvalues.ElementAt (0);
-            dataobject.BSN = decryptedvalues.ElementAt (1);
-            dataobject.Geb_Datum = decryptedvalues.ElementAt (2);
-            dataobject.Organisatie = decryptedvalues.ElementAt (3);
-            dataobject.Groep = decryptedvalues.ElementAt (4);
-            dataobject.Antecendenten = decryptedvalues.ElementAt (5);
-            dataobject.Aanhoudingen = decryptedvalues.ElementAt (6);
-            dataobject.HeeftISDMaatregel = decryptedvalues.ElementAt (7);
-            dataobject.Sepots = decryptedvalues.ElementAt (8);
-            dataobject.HeeftOnderzoekRad = decryptedvalues.ElementAt (9);
-            dataobject.LopendeDossiers = decryptedvalues.ElementAt (10);
-            dataobject.BezitUitkering = decryptedvalues.ElementAt (11);
-            dataobject.MeldingenRad = decryptedvalues.ElementAt (12);
-            dataobject.ZitInGroepsAanpak = decryptedvalues.ElementAt (13);
-            dataobject.HeeftIdBewijs = decryptedvalues.ElementAt (14);
-            dataobject.LopendTraject = decryptedvalues.ElementAt (15);
-            dataobject.LaatsteGesprek = decryptedvalues.ElementAt (16);
-
-            Decrypteddataobject = dataobject;
+            Decrypteddataobject = testObject;
         }
 
-        public DataObject showDecrypted () {
+        public JObject showDecrypted () {
             return Decrypteddataobject;
         }
 
@@ -66,7 +51,12 @@ namespace Server.Classes.Encryption {
             using (var rsa = new RSACryptoServiceProvider (2048)) {
                 try {
 
+<<<<<<< HEAD:Server/Classes/Encryption/letsDecrypt.cs
                     FromXmlString1 (rsa, _privateKey);
+=======
+                    // server decrypting data with public key                    
+                    FromXmlString1 (rsa, publicKeyString);
+>>>>>>> 539380ca3006a2180dc529aa30e743afa5512457:Node/classes/Decryption/letsDecrypt.cs
 
                     var resultBytes = Convert.FromBase64String (textToDecrypt);
                     var decryptedBytes = rsa.Decrypt (resultBytes, true);

@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Server.Classes.NewBlock {
-  public class Block {
+namespace Server.Classes.NewBlock
+{
+  public class Block
+  {
     public string Hash_Code { get; set; }
     public string Previous_Hash { get; set; }
     public string Created_By { get; set; }
     public string Timestamp { get; set; }
     public Data Data { get; set; }
 
-    public Block (string hash_code, string previous_hash, string created_by, string timestamp, Data data) {
+    public Block(string hash_code, string previous_hash, string created_by, string timestamp, Data data)
+    {
       Hash_Code = hash_code;
       Previous_Hash = previous_hash;
       Created_By = created_by;
@@ -20,16 +23,16 @@ namespace Server.Classes.NewBlock {
     }
   }
 
-  public class Data {
+  public class Data
+  {
     public Politie Politie { get; set; }
     public OM OM { get; set; }
     public Gemeente Gemeente { get; set; }
     public Reclassering Reclassering { get; set; }
 
-    public Data (
-      Politie Politie,
-      OM OM, Gemeente Gemeente, Reclassering Reclassering) {
-
+    public Data(
+      Politie Politie, OM OM, Gemeente Gemeente, Reclassering Reclassering)
+    {
       this.Politie = Politie;
       this.OM = OM;
       this.Gemeente = Gemeente;
@@ -37,7 +40,8 @@ namespace Server.Classes.NewBlock {
     }
   }
 
-  public class Politie {
+  public class Politie
+  {
     public string Antecedenten_Radicalen { get; set; }
     public string Antecedenten_LokalePGA { get; set; }
     public string Antecedenten_ZSM { get; set; }
@@ -53,7 +57,8 @@ namespace Server.Classes.NewBlock {
 
   }
 
-  public class OM {
+  public class OM
+  {
     public string Antecedenten_ZSM { get; set; }
     public string Sepots_ZSM { get; set; }
     public string Antecedenten_Radicalen { get; set; }
@@ -67,7 +72,8 @@ namespace Server.Classes.NewBlock {
 
   }
 
-  public class Gemeente {
+  public class Gemeente
+  {
     public string BezitUitkering_ZSM { get; set; }
     public string MeldingenRad_Radicalen { get; set; }
     public string BezitUitkering_LokalePGA { get; set; }
@@ -80,7 +86,8 @@ namespace Server.Classes.NewBlock {
 
   }
 
-  public class Reclassering {
+  public class Reclassering
+  {
     public string LopendTraject_ZSM { get; set; }
     public string LaatsteGesprek_ZSM { get; set; }
     public string LopendTraject_Radicalen { get; set; }
