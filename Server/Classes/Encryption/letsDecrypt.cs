@@ -66,7 +66,6 @@ namespace Server.Classes.Encryption {
             using (var rsa = new RSACryptoServiceProvider (2048)) {
                 try {
 
-                    // server decrypting data with public key                    
                     FromXmlString1 (rsa, _privateKey);
 
                     var resultBytes = Convert.FromBase64String (textToDecrypt);
