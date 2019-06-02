@@ -17,6 +17,7 @@ using Server.Classes.NewBlock;
 
 namespace Server.Controllers
 {
+  
 
   [Route("api/[controller]")]
   [ApiController]
@@ -44,21 +45,12 @@ namespace Server.Controllers
       return "error";
     }
 
-    //api/data/getcurrentchain
-    [HttpGet("getcurrentchain")]
-    public JObject getcurrentchain()
-    {
-      string parentOfStartupPath = Path.GetFullPath(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
-      string current_identity = System.IO.File.ReadAllText(parentOfStartupPath + "/chainExample.json");
-      JObject current_identity_parsed = JObject.Parse(current_identity);
-      return current_identity_parsed;
-    }
 
     [HttpPost("client")]
     public void PushToNode([FromBody] JObject newdata)
     {
       // The Url of the api
-      var url = "http://localhost:4000/api/data/saveblock";
+      var url = "http://localhost:4001/api/data/saveblock";
 
       // For ignoring SSL
       ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
@@ -90,36 +82,82 @@ namespace Server.Controllers
     [HttpGet("client")]
     public async Task<JObject> client()
     {
-      // The url of the api
-      var url = "http://localhost:4000/api/data/getdecryptednode";
+      List<string> ports = new List<string>();
+      JArray resultChains = new JArray();
 
-      // For ignoring SSL
-      ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-      ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+      ports.Add("http://localhost:4001/api/data/getencryptednode"); // politie
+      ports.Add("http://localhost:4002/api/data/getencryptednode"); // gemeente
+      ports.Add("http://localhost:4003/api/data/getencryptednode"); //reclassering
+      // ports.Add("http://localhost:4004/api/data/getencryptednode"); // OM
 
-      // Creating Webrequest
-      WebRequest req = WebRequest.Create(url);
+      foreach (var url in ports)
+      {
+        try {
+              // For ignoring SSL
 
-      // Assigning request method
-      req.Method = "GET";
+              ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+              ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
-      // Specifying valid return types
-      req.ContentType = "application/json; charset=utf-8";
+              // Creating Webrequest
+              WebRequest req = WebRequest.Create(url);
 
-      // Retrieving response from api
-      WebResponse resp = req.GetResponse();
+              // Assigning request method
+              req.Method = "GET";
 
-      // Converting to stream
-      Stream stream = resp.GetResponseStream();
+              // Retrieving response from api
+              WebResponse resp = req.GetResponse();
 
-      // Reading stream
-      StreamReader re = new StreamReader(stream);
+              // Converting to stream
+              Stream stream = resp.GetResponseStream();
 
-      // Casting to JObject
-      JObject objec = JObject.Parse(re.ReadToEnd());
+              // Reading stream
+              StreamReader re = new StreamReader(stream);
+
+              // Casting to JObject
+              JObject objec = JObject.Parse(re.ReadToEnd());
+              resultChains.Add(objec);
+        }
+        catch {
+          
+        }
+        
+      }
+
+  List<JObject> chosenOnes = new List<JObject>(); 
+
+     var cnt = new Dictionary<string, int>();
+foreach (JObject value in resultChains) {
+  string addedHashes = "";
+  foreach (JObject item in (JArray)value["chain"])
+  {
+      addedHashes += (string)item["hash_code"];
+  }
+   if (cnt.ContainsKey(addedHashes)) {
+      cnt[addedHashes]++;
+      chosenOnes.Add(value);
+   } else {
+      cnt.Add(addedHashes, 1);
+   }
+}
+string mostCommonValue = "";
+int highestCount = 0;
+foreach (KeyValuePair<string, int> pair in cnt) {
+   if (pair.Value > highestCount) {
+      mostCommonValue = pair.Key;
+      highestCount = pair.Value;
+   }
+}
+
+System.Console.WriteLine(mostCommonValue);
+System.Console.WriteLine(highestCount);
+System.Console.WriteLine(chosenOnes.ElementAt(0));
+
+ if ((string)resultChains[0]["chain"][0]["hash_code"] == (string)resultChains[1]["chain"][0]["hash_code"] ) {
+   System.Console.WriteLine("true");
+ }
 
       // Returning objec
-      return objec;
+      return new JObject(new JProperty("chains", resultChains));
     }
 
     // POST: api/data/crypto - takes input in Data class form,

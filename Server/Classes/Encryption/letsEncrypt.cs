@@ -60,7 +60,6 @@ namespace Server.Classes.Encryption {
             }
             Encrypteddataobject = testObject;
         }
-<<<<<<< HEAD
         // public string GetKeyString (RSAParameters publicKey) {
 
         //     var stringWriter = new System.IO.StringWriter ();
@@ -68,12 +67,10 @@ namespace Server.Classes.Encryption {
         //     xmlSerializer.Serialize (stringWriter, publicKey);
         //     return stringWriter.ToString ();
         // }
-=======
 
         public JObject showEncrypted () {
             return new JObject (new JProperty ("newdata", Encrypteddataobject));
         }
->>>>>>> 539380ca3006a2180dc529aa30e743afa5512457
 
         public string Encrypt (string textToEncrypt, string publicKeyString) {
             var bytesToEncrypt = Encoding.UTF8.GetBytes (textToEncrypt);
