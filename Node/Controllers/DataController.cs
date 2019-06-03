@@ -12,6 +12,7 @@ using System.Web.Http.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Node.Classes;
 using Node.Classes.Decryption;
 using Server.Classes.Maybe;
 
@@ -43,6 +44,15 @@ namespace Node.Controllers {
             return result;
         }
 
+        [HttpGet ("testfuncties")]
+        public void doshit () {
+            System.Console.WriteLine ("string: " + DateTime.Now.ToString ());
+            string dateTimeString = DateTime.Now.ToString ();
+            DateTime oDate = Convert.ToDateTime (dateTimeString);
+            System.Console.WriteLine ("oDate: " + oDate);
+
+        }
+
         // GET api/data
         [HttpGet ("getencryptednode")]
         public JObject getencryptednode () {
@@ -68,7 +78,14 @@ namespace Node.Controllers {
 
             JArray chain_copy = (JArray) node["node"]["CHAIN_COPY"];
             foreach (JObject incomingBlock in json["chain"]) {
-                chain_copy.Add (incomingBlock);
+
+                System.Console.WriteLine ("timestamp is valid: " + Node.Classes.Validation.validateBlock (incomingBlock, chain_copy));
+                try {
+                    if (Node.Classes.Validation.validateBlock (incomingBlock, chain_copy)) {
+                        chain_copy.Add (incomingBlock);
+                    }
+                } catch { }
+
             }
             // System.Console.WriteLine (node);
             System.IO.File.WriteAllText (parentOfStartupPath + "/node.json", node.ToString ());
