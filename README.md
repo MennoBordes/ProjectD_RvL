@@ -1,6 +1,19 @@
 # BlockChain RvL
 
-In order to run use:
+In order to run do the following:
+
+Open terminal:
+
 ```
-dotnet watch run
+cd Server
+npm install
+dotnet run
+```
+
+Open new terminal:
+
+```
+cd Node
+npm install
+dotnet run
 ```
