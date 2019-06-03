@@ -67,38 +67,41 @@ namespace Node.Controllers {
         [HttpPost ("saveblock")]
         public void saveBlock ([FromBody] JObject json) {
 
-            System.Console.WriteLine (json);
-            if (json.ToString ().Length > 5) {
-                string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
-                string current_identity = System.IO.File.ReadAllText (parentOfStartupPath + "/node.json");
-                JObject node = JObject.Parse (current_identity);
-                // System.Console.WriteLine (node);
+            string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
+            string current_identity = System.IO.File.ReadAllText (parentOfStartupPath + "/node.json");
+            JObject node = JObject.Parse (current_identity);
+            // System.Console.WriteLine (node);
 
-                JArray chain_copy = (JArray) node["node"]["CHAIN_COPY"];
-                foreach (JObject incomingBlock in json["chain"]) {
+            JArray chain_copy = (JArray) node["node"]["CHAIN_COPY"];
+            foreach (JObject incomingBlock in json["chain"]) {
 
-                    System.Console.WriteLine ("timestamp is valid: " + Node.Classes.Validation.validateBlock (incomingBlock, chain_copy));
-                    try {
-                        if (Node.Classes.Validation.validateBlock (incomingBlock, chain_copy)) {
-                            chain_copy.Add (incomingBlock);
-                        }
-                    } catch { }
+                System.Console.WriteLine ("timestamp is valid: " + Node.Classes.Validation.validateBlock (incomingBlock, chain_copy));
+                try {
+                    if (Node.Classes.Validation.validateBlock (incomingBlock, chain_copy)) {
+                        chain_copy.Add (incomingBlock);
+                    }
+                } catch { }
 
-                }
-                // System.Console.WriteLine (node);
-                System.IO.File.WriteAllText (parentOfStartupPath + "/node.json", node.ToString ());
             }
+            // System.Console.WriteLine (node);
+            System.IO.File.WriteAllText (parentOfStartupPath + "/node.json", node.ToString ());
 
         }
 
         [HttpPost ("overrideblock")]
         public void overrideBlock ([FromBody] JObject json) {
-            string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
-            string current_identity = System.IO.File.ReadAllText (parentOfStartupPath + "/node.json");
-            JObject node = JObject.Parse (current_identity);
 
-            node["node"]["CHAIN_COPY"] = (JArray) json["CHAIN_COPY"];
-            System.IO.File.WriteAllText (parentOfStartupPath + "/node.json", node.ToString ());
+            System.Console.WriteLine (json);
+            JArray array = (JArray) json["CHAIN_COPY"];
+            if (array.Count > 30) {
+                string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
+                string current_identity = System.IO.File.ReadAllText (parentOfStartupPath + "/node.json");
+                JObject node = JObject.Parse (current_identity);
+
+                node["node"]["CHAIN_COPY"] = (JArray) json["CHAIN_COPY"];
+                System.IO.File.WriteAllText (parentOfStartupPath + "/node.json", node.ToString ());
+            }
         }
+
     }
 }
