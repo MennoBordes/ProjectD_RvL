@@ -58,14 +58,14 @@ namespace Server.Controllers
       string BlockHash = Convert.ToBase64String(outputBytes);
 
       // Get the previous hash
-      WebRequest req = WebRequest.Create("http://localhost:5005/api/data/client");
-      // Request method
-      req.Method = "GET";
+      // WebRequest req = WebRequest.Create("http://localhost:5005/api/data/client");
+      // // Request method
+      // req.Method = "GET";
 
-      WebResponse resp = req.GetResponse();
+      // WebResponse resp = req.GetResponse();
 
-      Stream stream = resp.GetResponseStream();
-      StreamReader re = new StreamReader(stream);
+      // Stream stream = resp.GetResponseStream();
+      // StreamReader re = new StreamReader(stream);
 
 
       JObject obj = new JObject();
