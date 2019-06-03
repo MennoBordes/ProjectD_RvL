@@ -99,9 +99,9 @@ namespace Server.Controllers {
       int totalNodesCheckedCounter = 0;
 
       ports.Add ("http://localhost:4001/api/data/getencryptednode"); // politie
-      // ports.Add ("http://localhost:4002/api/data/getencryptednode"); // gemeente
-      // ports.Add ("http://localhost:4003/api/data/getencryptednode"); //reclassering
-      // ports.Add ("http://localhost:4004/api/data/getencryptednode"); // OM
+      ports.Add ("http://localhost:4002/api/data/getencryptednode"); // gemeente
+      ports.Add ("http://localhost:4003/api/data/getencryptednode"); //reclassering
+      ports.Add ("http://localhost:4004/api/data/getencryptednode"); // OM
 
       foreach (var url in ports) {
         try {
@@ -135,13 +135,13 @@ namespace Server.Controllers {
       }
 
       List<string> chosenOnes = new List<string> ();
-      List<JObject> correctBlocks = new List<JObject> ();
+      List<string> correctNodes = new List<string> ();
 
       var countPortUsed = new Dictionary<string, int> ();
       var cnt = new Dictionary<string, int> ();
       foreach (JObject value in resultChains) {
         string addedHashes = "";
-        System.Console.WriteLine ("thing: ", (string) value["node"]);
+        string nodePort = (string) value["node"];
 
         foreach (JObject item in (JArray) value["chain"]) {
           addedHashes += (string) item["hash_code"];
@@ -152,6 +152,7 @@ namespace Server.Controllers {
           JArray chain = (JArray) value["chain"];
           string hashOfLastBlockInChain = (string) chain.Last["hash_code"];
           chosenOnes.Add (hashOfLastBlockInChain);
+          correctNodes.Add (nodePort);
           // of if this is active, add the last hash of the value data object to chosenones instead of whole chain
         } else {
           cnt.Add (addedHashes, 1);
@@ -160,25 +161,70 @@ namespace Server.Controllers {
       }
       string mostCommonValue = "";
       int highestCount = 0;
+
       foreach (KeyValuePair<string, int> pair in cnt) {
         if (pair.Value > highestCount) {
           mostCommonValue = pair.Key;
           highestCount = pair.Value;
         }
       }
-
-      // System.Console.WriteLine (mostCommonValue);
-      System.Console.WriteLine (highestCount);
-      System.Console.WriteLine (chosenOnes.ElementAt (0));
+      System.Console.WriteLine (correctNodes.ElementAt (0));
+      JArray validChain = new JArray ();
+      foreach (var value in resultChains) {
+        string nodePort = (string) value["node"];
+        if (nodePort == correctNodes.ElementAt (0)) {
+          validChain = (JArray) value["chain"];
+          break;
+        }
+      }
 
       // Returning objec
       return new JObject (
         new JProperty ("totalNodesChecked", totalNodesCheckedCounter),
         new JProperty ("nodesThatWhereValid", highestCount),
-        new JProperty ("acceptedLatestHash", chosenOnes.ElementAt (0))
-        // new JProperty ("correctChainCopy", )
+        new JProperty ("acceptedLatestHash", chosenOnes.ElementAt (0)),
+        new JProperty ("CHAIN_COPY", validChain)
 
       );
+
+      // List<string> ports = new List<string> ();
+      // JArray resultChains = new JArray ();
+      // int totalNodesCheckedCounter = 0;
+
+      // ports.Add ("http://localhost:4001/api/data/overrideblock"); // politie
+      // ports.Add ("http://localhost:4002/api/data/overrideblock"); // gemeente
+      // ports.Add ("http://localhost:4003/api/data/overrideblock"); //reclassering
+      // ports.Add ("http://localhost:4004/api/data/overrideblock"); // OM
+
+      // foreach (var url in ports) {
+      //   try {
+      //     // For ignoring SSL
+
+      //     ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+      //     ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
+      //     // Creating Webrequest
+      //     WebRequest req = WebRequest.Create (url);
+
+      //     // Assigning request method
+      //     req.Method = "POST";
+
+      //     // Retrieving response from api
+      //     WebResponse resp = req.GetResponse ();
+
+      //     // Converting to stream
+      //     Stream stream = resp.GetResponseStream ();
+
+      //     // Reading stream
+      //     StreamReader re = new StreamReader (stream);
+
+      //     // Casting to JObject
+      //     JObject objec = JObject.Parse (re.ReadToEnd ());
+      //     resultChains.Add (objec);
+      //   } catch (Exception e) {
+      //     Console.WriteLine (e);
+      //   }
+
     }
 
     // POST: api/data/crypto - takes input in Data class form,
