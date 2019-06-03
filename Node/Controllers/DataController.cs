@@ -20,6 +20,8 @@ namespace Node.Controllers {
     [Route ("api/[controller]")]
     [ApiController]
     public class DataController : ControllerBase {
+
+        private string portOfNode = "4001";
         // GET api/data
         [HttpGet ("getdecryptednode")]
         public JObject getDecryptedNode () {
@@ -32,7 +34,7 @@ namespace Node.Controllers {
             JArray instanties_array = (JArray) instanties_parsed["instanties"];
             foreach (JObject instantie in instanties_array) {
                 System.Console.WriteLine ("instantieport " + (string) instantie["port"]);
-                if ("4001" == (string) instantie["port"]) {
+                if (portOfNode == (string) instantie["port"]) {
                     JArray currentData = (JArray) result["node"]["CHAIN_COPY"];
                     foreach (JObject block in currentData) {
                         LetsDecrypt LetsDecrypt = new LetsDecrypt ((JObject) block["data"], (string) instantie["private"]);
@@ -54,7 +56,10 @@ namespace Node.Controllers {
 
             JArray currentData = (JArray) result["node"]["CHAIN_COPY"];
 
-            JObject zuc = new JObject (new JProperty ("chain", currentData));
+            JObject zuc = new JObject (
+                new JProperty ("node", portOfNode),
+                new JProperty ("chain", currentData)
+            );
 
             return zuc;
         }
