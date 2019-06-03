@@ -207,65 +207,77 @@ namespace Server.Controllers
           highestCount = pair.Value;
         }
       }
-      System.Console.WriteLine(correctNodes.ElementAt(0));
-      JArray validChain = new JArray();
-      foreach (var value in resultChains)
-      {
-        string nodePort = (string)value["node"];
-        if (nodePort == correctNodes.ElementAt(0))
-        {
-          validChain = (JArray)value["chain"];
+
+      if (!correctNodes.Any ()) {
+        correctNodes.Add (null);
+      }
+
+      System.Console.WriteLine (correctNodes.ElementAt (0));
+      JArray validChain = new JArray ();
+      foreach (var value in resultChains) {
+        string nodePort = (string) value["node"];
+        if (nodePort == correctNodes.ElementAt (0)) {
+          validChain = (JArray) value["chain"];
           break;
         }
       }
 
       // Returning objec
-      return new JObject(
-        new JProperty("totalNodesChecked", totalNodesCheckedCounter),
-        new JProperty("nodesThatWhereValid", highestCount),
-        new JProperty("acceptedLatestHash", chosenOnes.ElementAt(0)),
-        new JProperty("CHAIN_COPY", validChain)
+
+      System.Console.WriteLine ("1111111");
+      JObject chain_copy = new JObject (new JProperty ("CHAIN_COPY", validChain));
+      List<string> overridePorts = new List<string> ();
+
+      overridePorts.Add ("http://localhost:4001/api/data/overrideblock"); // politie
+      overridePorts.Add ("http://localhost:4002/api/data/overrideblock"); // gemeente
+      overridePorts.Add ("http://localhost:4003/api/data/overrideblock"); //reclassering
+      overridePorts.Add ("http://localhost:4004/api/data/overrideblock"); // OM
+
+      foreach (var url in overridePorts) {
+        try {
+          // For ignoring SSL
+
+          ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+          ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
+          // Creating Webrequest
+          WebRequest req = WebRequest.Create (url);
+
+          // Converting data to char array
+          var data = System.Text.Encoding.ASCII.GetBytes (chain_copy.ToString ());
+
+          // Assigning request method
+          req.Method = "POST";
+
+          req.ContentType = "application/json; charset=utf-8";
+          req.ContentLength = data.Length;
+
+          // Adding data to pusher
+          using (var streamPost = req.GetRequestStream ()) {
+            streamPost.Write (data, 0, data.Length);
+          }
+
+          // Push data to client
+          System.Console.WriteLine ("pushded");
+          req.GetResponse ();
+        } catch (Exception e) {
+          Console.WriteLine (e);
+        }
+      }
+
+      if (!chosenOnes.Any ()) {
+        chosenOnes.Add (null);
+        totalNodesCheckedCounter = 0;
+        highestCount = 0;
+      }
+
+      return new JObject (
+        new JProperty ("totalNodesChecked", totalNodesCheckedCounter),
+        new JProperty ("nodesThatWhereValid", highestCount),
+        new JProperty ("acceptedLatestHash", chosenOnes.ElementAt (0)),
+        new JProperty ("CHAIN_COPY", validChain)
 
       );
-
-      // List<string> ports = new List<string> ();
-      // JArray resultChains = new JArray ();
-      // int totalNodesCheckedCounter = 0;
-
-      // ports.Add ("http://localhost:4001/api/data/overrideblock"); // politie
-      // ports.Add ("http://localhost:4002/api/data/overrideblock"); // gemeente
-      // ports.Add ("http://localhost:4003/api/data/overrideblock"); //reclassering
-      // ports.Add ("http://localhost:4004/api/data/overrideblock"); // OM
-
-      // foreach (var url in ports) {
-      //   try {
-      //     // For ignoring SSL
-
-      //     ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
-      //     ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-
-      //     // Creating Webrequest
-      //     WebRequest req = WebRequest.Create (url);
-
-      //     // Assigning request method
-      //     req.Method = "POST";
-
-      //     // Retrieving response from api
-      //     WebResponse resp = req.GetResponse ();
-
-      //     // Converting to stream
-      //     Stream stream = resp.GetResponseStream ();
-
-      //     // Reading stream
-      //     StreamReader re = new StreamReader (stream);
-
-      //     // Casting to JObject
-      //     JObject objec = JObject.Parse (re.ReadToEnd ());
-      //     resultChains.Add (objec);
-      //   } catch (Exception e) {
-      //     Console.WriteLine (e);
-      //   }
-
     }
 
     // POST: api/data/crypto - takes input in Data class form,

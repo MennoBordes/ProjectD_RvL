@@ -89,15 +89,11 @@ namespace Node.Controllers {
 
         [HttpPost ("overrideblock")]
         public void overrideBlock ([FromBody] JObject json) {
-
             string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
             string current_identity = System.IO.File.ReadAllText (parentOfStartupPath + "/node.json");
             JObject node = JObject.Parse (current_identity);
-            // System.Console.WriteLine (node);
 
-            JArray chain_copy = (JArray) node["node"]["CHAIN_COPY"];
-            chain_copy = (JArray) json["CHAIN_COPY"];
-            // System.Console.WriteLine (node);
+            node["node"]["CHAIN_COPY"] = (JArray) json["CHAIN_COPY"];
             System.IO.File.WriteAllText (parentOfStartupPath + "/node.json", node.ToString ());
         }
     }
