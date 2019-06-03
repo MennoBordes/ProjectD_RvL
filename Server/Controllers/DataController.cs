@@ -28,8 +28,8 @@ namespace Server.Controllers
       "http://localhost:4001/api/",
       "http://localhost:4002/api/",
       "http://localhost:4003/api/",
-      "http://localhost:4004/api/" };
-
+      "http://localhost:4004/api/"
+    };
 
     [HttpPost("client")]
     public void PushToNode([FromBody] JObject newdata)
@@ -127,9 +127,9 @@ namespace Server.Controllers
       int totalNodesCheckedCounter = 0;
 
       ports.Add("http://localhost:4001/api/data/getencryptednode"); // politie
-      ports.Add("http://localhost:4002/api/data/getencryptednode"); // gemeente
-      ports.Add("http://localhost:4003/api/data/getencryptednode"); //reclassering
-      ports.Add("http://localhost:4004/api/data/getencryptednode"); // OM
+      // ports.Add ("http://localhost:4002/api/data/getencryptednode"); // gemeente
+      // ports.Add ("http://localhost:4003/api/data/getencryptednode"); //reclassering
+      // ports.Add ("http://localhost:4004/api/data/getencryptednode"); // OM
 
       foreach (var url in ports)
       {
@@ -167,11 +167,15 @@ namespace Server.Controllers
       }
 
       List<string> chosenOnes = new List<string>();
+      List<JObject> correctBlocks = new List<JObject>();
 
+      var countPortUsed = new Dictionary<string, int>();
       var cnt = new Dictionary<string, int>();
       foreach (JObject value in resultChains)
       {
         string addedHashes = "";
+        System.Console.WriteLine("thing: ", (string)value["node"]);
+
         foreach (JObject item in (JArray)value["chain"])
         {
           addedHashes += (string)item["hash_code"];
@@ -211,6 +215,7 @@ namespace Server.Controllers
         new JProperty("totalNodesChecked", totalNodesCheckedCounter),
         new JProperty("nodesThatWhereValid", highestCount),
         new JProperty("acceptedLatestHash", chosenOnes.ElementAt(0))
+      // new JProperty ("correctChainCopy", )
 
       );
     }
