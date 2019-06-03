@@ -168,6 +168,11 @@ namespace Server.Controllers {
           highestCount = pair.Value;
         }
       }
+
+      if (!correctNodes.Any ()) {
+        correctNodes.Add (null);
+      }
+
       System.Console.WriteLine (correctNodes.ElementAt (0));
       JArray validChain = new JArray ();
       foreach (var value in resultChains) {
@@ -220,6 +225,13 @@ namespace Server.Controllers {
           Console.WriteLine (e);
         }
       }
+
+      if (!chosenOnes.Any ()) {
+        chosenOnes.Add (null);
+        totalNodesCheckedCounter = 0;
+        highestCount = 0;
+      }
+
       return new JObject (
         new JProperty ("totalNodesChecked", totalNodesCheckedCounter),
         new JProperty ("nodesThatWhereValid", highestCount),
