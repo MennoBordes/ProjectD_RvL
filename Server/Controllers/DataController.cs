@@ -17,7 +17,7 @@ using Server.Classes.NewBlock;
 
 namespace Server.Controllers
 {
-  
+
 
   [Route("api/[controller]")]
   [ApiController]
@@ -45,37 +45,64 @@ namespace Server.Controllers
       return "error";
     }
 
+    List<string> NodeUrls = new List<string>() {
+      "http://localhost:4001/api/",
+      "http://localhost:4002/api/",
+      "http://localhost:4003/api/",
+      "http://localhost:4004/api/" };
+
 
     [HttpPost("client")]
     public void PushToNode([FromBody] JObject newdata)
     {
-      // The Url of the api
-      var url = "http://localhost:4001/api/data/saveblock";
-
       // For ignoring SSL
       ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
       ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
-      // Creating Webrequest
-      WebRequest req = WebRequest.Create(url);
+      string apiLoc = "data/saveblock";
 
-      // Converting data to char array
-      var data = System.Text.Encoding.ASCII.GetBytes(newdata.ToString());
+      // Get the previous hash
+      // Create hash from all data in current block
 
-      // Assigning request method
-      req.Method = "POST";
+      // Add hash to block
+      // Add previous hash to block
 
-      req.ContentType = "application/json; charset=utf-8";
-      req.ContentLength = data.Length;
+      // Pass data to all nodes for further validation
 
-      // Adding data to pusher
-      using (var streamPost = req.GetRequestStream())
+      // In order to send the chain to all nodes
+      foreach (var item in NodeUrls)
       {
-        streamPost.Write(data, 0, data.Length);
-      }
+        // In case the node isn't running
+        try
+        {
+          // The url of the api
+          string url = item + apiLoc;
+          WebRequest req = WebRequest.Create(url);
 
-      // Push data to client
-      req.GetResponse();
+          // Converting data to char array
+          var data = System.Text.Encoding.ASCII.GetBytes(newdata.ToString());
+
+          // Assigning request method
+          req.Method = "POST";
+
+          req.ContentType = "application/json; charset=utf-8";
+          req.ContentLength = data.Length;
+
+          // Adding data to pusher
+          using (var streamPost = req.GetRequestStream())
+          {
+            streamPost.Write(data, 0, data.Length);
+          }
+
+          // Push data to client
+          req.GetResponse();
+        }
+
+        catch (Exception e)
+        {
+          Console.WriteLine(e);
+        }
+      }
     }
 
 
