@@ -14,37 +14,16 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Server.Classes.Encryption;
 using Server.Classes.NewBlock;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace Server.Controllers
 {
-
-
   [Route("api/[controller]")]
   [ApiController]
   [EnableCors(origins: "*", headers: "*", methods: "*")]
   public class DataController : ControllerBase
   {
-    HttpClient httpClient = new HttpClient();
-
-    // GET: api/data
-    [HttpGet]
-    public ActionResult<IEnumerable<string>> Get()
-    {
-      return new string[] { "Zeehondjes" };
-    }
-
-    // GET: api/data/getkeys
-    [HttpGet("getkeys/{choice}")]
-    public string Get(int choice)
-    {
-      if (choice == 0)
-      {
-        GenerateKeyPair keys = new GenerateKeyPair();
-        return keys.showBoth();
-      }
-      return "error";
-    }
-
     List<string> NodeUrls = new List<string>() {
       "http://localhost:4001/api/",
       "http://localhost:4002/api/",
@@ -55,54 +34,89 @@ namespace Server.Controllers
     [HttpPost("client")]
     public void PushToNode([FromBody] JObject newdata)
     {
+      string TimeStamp = DateTime.Now.ToString();
       // For ignoring SSL
       ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
       ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
-      string apiLoc = "data/saveblock";
+      // Hash the input
+      string parentOfStartupPathKeys = Path.GetFullPath(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"../../../tempKeys"));
+      string keys_of_instanced = System.IO.File.ReadAllText(parentOfStartupPathKeys + "/keys.json");
+      JObject keys_of_instanced_parsed = JObject.Parse(keys_of_instanced);
+
+      LetsEncrypt LetsEncrypt = new LetsEncrypt((JObject)newdata["newdata"], keys_of_instanced_parsed);
+
+      JObject EncryptedData = LetsEncrypt.showEncrypted();
+      // Console.WriteLine(EncryptedData);
+      // ENCRYPTING WORKS
+
+      // Create hash from all encrypted data in current block
+      SHA256 sha256 = SHA256.Create();
+      byte[] inputBytes = Encoding.ASCII.GetBytes($"{TimeStamp}-{EncryptedData}");
+      byte[] outputBytes = sha256.ComputeHash(inputBytes);
+
+      string BlockHash = Convert.ToBase64String(outputBytes);
 
       // Get the previous hash
-      // Create hash from all data in current block
+      WebRequest req = WebRequest.Create("http://localhost:5005/api/data/client");
+      // Request method
+      req.Method = "GET";
 
+      WebResponse resp = req.GetResponse();
+
+      Stream stream = resp.GetResponseStream();
+      StreamReader re = new StreamReader(stream);
+
+
+      JObject obj = new JObject();
       // Add hash to block
+      obj.Add("hash_code", BlockHash);
       // Add previous hash to block
+      obj.Add("previous_hash", "");
+      obj.Add("timestamp", TimeStamp);
+      obj.Add("data", (JObject)EncryptedData["data"]);
+      Console.WriteLine(obj);
 
       // Pass data to all nodes for further validation
 
-      // In order to send the chain to all nodes
-      foreach (var item in NodeUrls)
-      {
-        // In case the node isn't running
-        try
-        {
-          // The url of the api
-          string url = item + apiLoc;
-          WebRequest req = WebRequest.Create(url);
+      // // *************WORKS*************
+      // string apiLoc = "data/saveblock";
+      // // In order to send the chain to all nodes
+      // foreach (var item in NodeUrls)
+      // {
+      //   // In case the node isn't running
+      //   try
+      //   {
+      //     // The url of the api
+      //     string url = item + apiLoc;
+      //     WebRequest req = WebRequest.Create(url);
 
-          // Converting data to char array
-          var data = System.Text.Encoding.ASCII.GetBytes(newdata.ToString());
+      //     // Converting data to char array
+      //     var data = System.Text.Encoding.ASCII.GetBytes(newdata.ToString());
 
-          // Assigning request method
-          req.Method = "POST";
+      //     // Assigning request method
+      //     req.Method = "POST";
 
-          req.ContentType = "application/json; charset=utf-8";
-          req.ContentLength = data.Length;
+      //     req.ContentType = "application/json; charset=utf-8";
+      //     req.ContentLength = data.Length;
 
-          // Adding data to pusher
-          using (var streamPost = req.GetRequestStream())
-          {
-            streamPost.Write(data, 0, data.Length);
-          }
+      //     // Adding data to pusher
+      //     using (var streamPost = req.GetRequestStream())
+      //     {
+      //       streamPost.Write(data, 0, data.Length);
+      //     }
 
-          // Push data to client
-          req.GetResponse();
-        }
+      //     // Push data to client
+      //     req.GetResponse();
+      //   }
 
-        catch (Exception e)
-        {
-          Console.WriteLine(e);
-        }
-      }
+      //   catch (Exception e)
+      //   {
+      //     Console.WriteLine(e);
+      //   }
+      // }
+      // // *************WORKS*************
+
     }
 
     [HttpGet("client")]
