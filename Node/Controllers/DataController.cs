@@ -44,15 +44,6 @@ namespace Node.Controllers {
             return result;
         }
 
-        [HttpGet ("testfuncties")]
-        public void doshit () {
-            System.Console.WriteLine ("string: " + DateTime.Now.ToString ());
-            string dateTimeString = DateTime.Now.ToString ();
-            DateTime oDate = Convert.ToDateTime (dateTimeString);
-            System.Console.WriteLine ("oDate: " + oDate);
-
-        }
-
         // GET api/data
         [HttpGet ("getencryptednode")]
         public JObject getencryptednode () {
@@ -89,9 +80,6 @@ namespace Node.Controllers {
             }
             // System.Console.WriteLine (node);
             System.IO.File.WriteAllText (parentOfStartupPath + "/node.json", node.ToString ());
-
         }
-
     }
-
 }

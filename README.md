@@ -1,19 +1,73 @@
 # BlockChain RvL
 
-In order to run do the following:
+## Getting started
 
-Open terminal:
+### Prerequisites
 
+- [Node](https://nodejs.org/en/download/)
+- npm
+- yarn
+
+### Installation
+
+clone the repo
+
+```bash
+git clone git@github.com:Skillerde6de/ProjectD_RvL.git
 ```
-cd Server
+
+Install NPM packages for the Server
+
+```bash
+cd Server/
 npm install
+```
+
+Install NPM packages for the Node's
+
+```bash
+cd ..
+cd Node/
+npm install
+```
+
+Install Yarn packages for the Front-end
+
+```bash
+cd ..
+cd front-end/
+yarn install
+```
+
+### Running
+
+After installing all dependencies you can run the project with the folowing commands:
+
+In order to run the front-end, open a new terminal and use
+
+```bash
+cd front-end/
+yarn start
+```
+
+In order to run the Server, open a new terminal and use
+
+```bash
+cd Server/
 dotnet run
 ```
 
-Open new terminal:
+In order to run the Node, open a new terminal and use
 
-```
-cd Node
-npm install
+```bash
+cd Node/
 dotnet run
 ```
+
+## Authors
+
+- **Jessin Rodenburg** - [jDorrrrian](https://github.com/jDorrrrian)
+- **Mark Ernst** - [markernst97](https://github.com/markernst97)
+- **Fabio de Bruijn** - [fabioshub](https://github.com/fabioshub)
+- **Paulito de Sousa Gama** - [PaulitoGama](https://github.com/PaulitoGama)
+- **Menno Bordes** - [Skillerde6de](https://github.com/Skillerde6de)
