@@ -145,9 +145,9 @@ namespace Server.Controllers
           JObject objec = JObject.Parse(re.ReadToEnd());
           resultChains.Add(objec);
         }
-        catch
+        catch (Exception e)
         {
-
+          Console.WriteLine(e);
         }
 
       }
