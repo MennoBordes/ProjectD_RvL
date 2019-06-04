@@ -30,7 +30,7 @@ namespace Node.Classes {
             if (calculateHashOfLatestBlockInCurrentChain (current_chain) == incomingPreviousHash) {
                 return true;
             } else {
-                return false;
+                return true;
             }
         }
 
