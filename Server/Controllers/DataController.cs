@@ -47,12 +47,11 @@ namespace Server.Controllers
       LetsEncrypt LetsEncrypt = new LetsEncrypt((JObject)newdata["newdata"], keys_of_instanced_parsed);
 
       JObject EncryptedData = LetsEncrypt.showEncrypted();
-      // Console.WriteLine(EncryptedData);
       // ENCRYPTING WORKS
 
       // Create hash from all encrypted data in current block
       SHA256 sha256 = SHA256.Create();
-      byte[] inputBytes = Encoding.ASCII.GetBytes($"{TimeStamp}-{EncryptedData}");
+      byte[] inputBytes = Encoding.ASCII.GetBytes($"{TimeStamp}-{(JObject)EncryptedData["data"]}");
       byte[] outputBytes = sha256.ComputeHash(inputBytes);
 
       string BlockHash = Convert.ToBase64String(outputBytes);
@@ -76,7 +75,6 @@ namespace Server.Controllers
       obj.Add("previous_hash", Previous_hash);
       obj.Add("timestamp", TimeStamp);
       obj.Add("data", (JObject)EncryptedData["data"]);
-      Console.WriteLine(obj);
 
       JObject obj2 = new JObject(
         new JProperty("chain", new JArray(obj))
@@ -222,7 +220,7 @@ namespace Server.Controllers
 
       }
 
-      System.Console.WriteLine(correctNodes.ElementAt(0));
+      // System.Console.WriteLine(correctNodes.ElementAt(0));
       JArray validChain = new JArray();
       foreach (var value in resultChains)
       {
@@ -236,7 +234,7 @@ namespace Server.Controllers
 
       // Returning objec
 
-      System.Console.WriteLine("1111111");
+      // System.Console.WriteLine("1111111");
       JObject chain_copy = new JObject(new JProperty("CHAIN_COPY", validChain));
       List<string> overridePorts = new List<string>();
 
@@ -249,15 +247,11 @@ namespace Server.Controllers
 
       if (!chosenOnes.Any())
       {
-        foreach (var item in resultChains)
-        {
-          // System.Console.WriteLine ("ITEMSDNKSNSKDSD" + item);
-        }
         // System.Console.WriteLine (resultChains[0]);
         JArray chain_array = (JArray)resultChains[0]["chain"];
         var lastInChain = chain_array.Last;
         string oneHash = (string)lastInChain["hash_code"];
-        System.Console.WriteLine("ONEHASH" + oneHash);
+        // System.Console.WriteLine("ONEHASH" + oneHash);
         chosenOnes.Add(oneHash);
         totalNodesCheckedCounter = 0;
         highestCount = 0;
@@ -298,7 +292,7 @@ namespace Server.Controllers
           }
 
           // Push data to client
-          System.Console.WriteLine("pushded");
+          // System.Console.WriteLine("pushded");
           req.GetResponse();
         }
         catch (Exception e)
@@ -324,7 +318,7 @@ namespace Server.Controllers
       string parentOfStartupPathKeys = Path.GetFullPath(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"../../../tempKeys"));
       string keys_of_instanced = System.IO.File.ReadAllText(parentOfStartupPathKeys + "/keys.json");
       JObject keys_of_instanced_parsed = JObject.Parse(keys_of_instanced);
-      System.Console.WriteLine(keys_of_instanced_parsed);
+      // System.Console.WriteLine(keys_of_instanced_parsed);
 
       LetsEncrypt LetsEncrypt = new LetsEncrypt((JObject)newdata["newdata"], keys_of_instanced_parsed);
       return LetsEncrypt.showEncrypted();
