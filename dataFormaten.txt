@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-Jessin: 
-hoe de server de data verwacht: exact dit formaat.
-=======
 JESSIN: 
->>>>>>> a54ac51bd63ee7972d0c116357306de6db790a08
+Hoe de server de data verwacht: exact dit formaat.
 Wanneer de gebruiker geen info heeft ingevuld voor een bepaald onderdeel uit etc... dan komt hier een standaard waarde in:
 bool=false
 int=0
@@ -61,7 +57,6 @@ GET localhost:NODEPORT/api/data/getdecryptednode
             {
                 "hash_code": "00753692ec36adb4c794c97394...",
                 "previous_hash": "00815cbea3d1a07b54f7eb75ad...",
-                "created_by": "Politie group",
                 "timestamp": "11-03-2019@11:23:34",
                 "data": {
                     "Politie": {
@@ -96,7 +91,7 @@ Hoe de data uit de encryptiefunctie komt
 
 OUTPUT: (zelfde als vorige maar dan ge-encrypt) ( LetsEncrypt.showEncrypted(); )
 {
-    "newdata": {
+    "data": {
         "Politie": {
             "Antecedenten_Radicalen": "rzO4Rba4we1WnWwun2lGtOZ+HRpkM2+vYaV2RCCf0EFOwf31bX+bY1M+n+j6K9xLCp5E4bSsMfATEH1nsn91mTjUdHItXGFLpSZK06e+rbt+C2EejEC0wIDD/8bC44xDAwNeBk3ocxZD7Mg+gufG5yVxMUC/1ITdf2yEOql93h0=",
             "Antecedenten_LokalePGA": "F9vCMRIA//mwItKJNl5GDA0wDuDVFL1gtqIEWRL2CMdXn+ZrN94doPpspJ6CC9VuYaEN/s7IJHOkfyMKCjd6muY1PFT+WNtmI+AO3IRf1wAvAzjMgaO9+7CgKHY2N8S7Ntt7owF8VBqHmCrJHb7UhT39hR8rfm6VrSE9kGoH9zY=",
@@ -129,7 +124,6 @@ POST localhost:NODEPORT/api/data/saveblock
         {
             "hash_code": "00753692ec36adb4c794c97394...",
             "previous_hash": "00815cbea3d1a07b54f7eb75ad...",
-            "created_by": "Politie group",
             "timestamp": "11-03-2019@11:23:34",
             "data": {
 			    "Politie": {
