@@ -220,6 +220,23 @@ namespace Server.Controllers {
       overridePorts.Add ("http://localhost:4003/api/data/overrideblock"); //reclassering
       overridePorts.Add ("http://localhost:4004/api/data/overrideblock"); // OM
 
+      bool mustOverride = true;
+
+      if (!chosenOnes.Any ()) {
+        foreach (var item in resultChains) {
+          // System.Console.WriteLine ("ITEMSDNKSNSKDSD" + item);
+        }
+        // System.Console.WriteLine (resultChains[0]);
+        JArray chain_array = (JArray) resultChains[0]["chain"];
+        var lastInChain = chain_array.Last;
+        string oneHash = (string) lastInChain["hash_code"];
+        System.Console.WriteLine ("ONEHASH" + oneHash);
+        chosenOnes.Add (oneHash);
+        totalNodesCheckedCounter = 0;
+        highestCount = 0;
+        mustOverride = false;
+      }
+
       foreach (var url in overridePorts) {
         try {
           // For ignoring SSL
@@ -231,7 +248,13 @@ namespace Server.Controllers {
           WebRequest req = WebRequest.Create (url);
 
           // Converting data to char array
-          var data = System.Text.Encoding.ASCII.GetBytes (chain_copy.ToString ());
+          var data = System.Text.Encoding.ASCII.GetBytes (new JObject (
+            new JProperty ("totalNodesChecked", totalNodesCheckedCounter),
+            new JProperty ("nodesThatWhereValid", highestCount),
+            new JProperty ("acceptedLatestHash", chosenOnes.ElementAt (0)),
+            new JProperty ("CHAIN_COPY", validChain),
+            new JProperty ("override", mustOverride)
+          ).ToString ());
 
           // Assigning request method
           req.Method = "POST";
@@ -250,23 +273,6 @@ namespace Server.Controllers {
         } catch (Exception e) {
           Console.WriteLine (e);
         }
-      }
-
-      bool mustOverride = true;
-
-      if (!chosenOnes.Any ()) {
-        foreach (var item in resultChains) {
-          // System.Console.WriteLine ("ITEMSDNKSNSKDSD" + item);
-        }
-        // System.Console.WriteLine (resultChains[0]);
-        JArray chain_array = (JArray) resultChains[0]["chain"];
-        var lastInChain = chain_array.Last;
-        string oneHash = (string) lastInChain["hash_code"];
-        System.Console.WriteLine ("ONEHASH" + oneHash);
-        chosenOnes.Add (oneHash);
-        totalNodesCheckedCounter = 0;
-        highestCount = 0;
-        mustOverride = false;
       }
 
       return new JObject (

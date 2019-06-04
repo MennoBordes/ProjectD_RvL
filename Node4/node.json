@@ -1,0 +1,41 @@
+{
+  "node": {
+    "ID": "686978",
+    "RSA_PUBLICKEY": "",
+    "CHAIN_COPY": [
+      {
+        "hash_code": "IlSUaEoywjmhaSoNFA5w5PSaVoppIsY8K/GsriMr4tk=",
+        "previous_hash": "",
+        "created_by": "",
+        "timestamp": "03-06-10 12:49:04",
+        "data": {}
+      },
+      {
+        "hash_code": "dsjdksdjskdjsdk...",
+        "previous_hash": "IlSUaEoywjmhaSoNFA5w5PSaVoppIsY8K/GsriMr4tk=",
+        "created_by": "Politie OM",
+        "timestamp": "03-06-19 12:49:30",
+        "data": {
+          "Politie": {
+            "Antecedenten_Radicalen_OGR": "mkL6qqHW//5znPsW8QxcjB4BpU/Hq+GQxXDfM3kohWFF97daEMnwqUKtiCil7cybuyy87FZ/KmbwO75Tvb6MDcJIhK52Ueq1DN9Ygu+4i4b5aYElw62fOWApc8PXqACtx/V3tfkqnRiM1A8akvvM9N/I21R2yiWLYpCcwshJRyM=",
+            "Antecedenten_LokalePGA_OGR": "GCIuc7t36HwEqSVNvmg9dMKQY/+4WZZnjkwc2KAo2UoxHNeMvVkdwDyfWRSynJ+XjkOyz2hPcz1Tw1KqY0lMBqMjWP9g4i8VCeePDWxb6/cQTfnHaIXHIEpfjuL1IMtWmaokWTFyFJkZQpYuWFSvPKLSs4U54tERzOQL2sWYgpk=",
+            "Antecedenten_ZSM_OGR": "QfKnmrAsgCHbJ5ucC5J+/VbPsPRw9BIpJRTulsEhg7bGnOyD6tYVQ+k4KMkHyqc1yxuhoHb1ibjv6dTahYB1xKiS4RwiWw/iuTyz31HtPwfjTth1OXU+ApVyj+6hg2g2d0u64jSVAFfriu2yeFW7P8sAYfUsoJED3tFFhiODf3w=",
+            "Antecedenten_Detentie": "dSaRgtcTBbuG5Gsd3yLjOf53qGDBn2LM0OBa8rEmR5/OGgodycAmktnpkCwqHoXI7taeDOjMpVgKA7tqepwJvBL+KbQkMhT9h2DeJM/bzJfdRlO6pz+h8rseAL/RRm8ZBVg4NYb5EgDmjJEw5yZzeMfT6XXg81jLpAwIqX2XCSI=",
+            "Naam": "ol64rTg4b9+FOvAsqbuM1Itpgfze7RzJHE9mG07oXYEzvHqAWUWlvOF+/NgjU5NpGDmE7MN6GLGVOQu/KO/7R6jfOparrc5M6k4AVllQrAt5cxuyvrSDdZQgzMaITowXOdi/QXXrkJ5HE95X/+LolMg8N/XulmekOO/KSI1+WD4=",
+            "BSN": "dnsH7MZxTWAi0wc844oY729M4SIWNriy6aBYw3UxMLGqJHn1cpg7TLWAm/nTzZCxryK7QnpbSgWPjfDNqGLeev0xzKEQ7rDGcZtQt5s/PNwUXzbnhWULZel1lM0JP6BmJBchQbW4h5F1lUHfknYiQlLqO3Sw4dPMMtBHsDDucSk=",
+            "Geb_datum": "FVYshAT8mtidxY2ZhDLaKgrfzsLghwNcIOdn7dj5iIwWf4MMldkiLLcpoRIfKJekFQc20Pyqh9J6pae7oVK2xoOnSkks4n+yJo31oxcfVjgzlM6TbDs3+wSiOEaFbfzIiLifIsSziF9pxNyJzUiSzzpi1WVTG3Giqdwj/4eGhJ4="
+          },
+          "Reclassering": {
+            "LopendTraject_ZSM_POG": "vyyj1CNk4WgzOoTJP1nH5eUMlgiylH+pHmnJHCtYie7Pd0pvy+q7Zw6AyfRSfECfGuNVb9kZ+jq2e89IpKfvk8m/67DrNYW4GVqNOMLe7FIvUlTbHS6VkPA1eCqF7dXe2XMl045U372JmB19s0yU3hVGneyYjXCNNZ0PVkJONm0=",
+            "LaatsteGesprek_ZSM_POG": "r5+pveh2d99+5d3a9iiFJGhg+XRLHf1419SW5l3rfr3y/ME7ududfKjKurM5YDPknd/vKX9ugWzn+pRbVG7lcu4nZau3JjTYbxUnMACHZaTg8jORHbRe+P+EvSbQxmyg9FMDLwnu0fXgdFj8QotFkHpjUv71FSMfBF3J/Jv87nQ=",
+            "LopendTraject_Radicalen_POG": "YYTnJn1kOo/njz7njbf+gEoEWDUEyNRlHxDjk7hWQzzzfq7v2hVrTHkqqTCxwfjIU+N06i4/qX0Xo9RsGEJLDYqIfhQ3JNG70TJjZWVqmXkk62Z+q3fMyoX6b/Jrug527VZ6KZbVGlELwc5J93RX6QfsGh/+6wj34nu4PcE52Ec=",
+            "LaatsteGesprek_Radicalen_POG": "be8ICkNuL62q2Dw7LmvdUC1S3qTdc3z/evcEPZpoyPQoO6zKIPaXoRMGN6TJnmRhr7CcS2MNayZD717NJm6r3gGWTh1SPh4NmYTbkUdODkwy8zI/o+8AGEusDSZEKVjnAWcrsGjjsceKdMzhyJbyCFeyQdhveWox+XN8ZIeijN0=",
+            "Naam": "aNWc6yEXB/ATO82J4GR5Z4cDxw6DLxpxIMjaebuGA3AmprKRr/Ziy3fd03rd+B32/SMckMeHdPDMbrNIInNlt5kBolqbzmIYSOK8P31y0lOHwkSeBLrIOBTS7BqAYrnaxefaIpqWUNYEakkFEQvTshk+gHkZBLVkIOrM1V8K5vY=",
+            "BSN": "OWh6LoX9qfzLgbwarlI65XVP76AIl8grzWuBqfYoEMzkw8zEXPceGH4xadkB0h9O5GfxD9wsVGLqTitHYhe4DkFSWpcmhALWW4HmOygr43uoNayHayLMIXmuwy4XeIMMfAPgBcuU/qly2TWX4UQDY7uJiIuUPOZ9T+pc7M010iU=",
+            "Geb_datum": "EJCPHc8JjZGR2X/BpnIArdjO6lgLedruI3ZcoopE5zb2KtVHcfLlEigbFuhHBX+TAi3jaaGREC5aoReYmiNze34K7nkKOK6qLjK2j48mn74O6b1kWEDkVSRMLnfKX4vt8WLPPZBMrKnerKYerXn/pDpsg2ZBNRi41ABT9A6zFzU="
+          }
+        }
+      }
+    ]
+  }
+}
