@@ -75,7 +75,6 @@ namespace Node.Controllers {
             JArray chain_copy = (JArray) node["node"]["CHAIN_COPY"];
             foreach (JObject incomingBlock in json["chain"]) {
 
-                System.Console.WriteLine ("timestamp is valid: " + Node.Classes.Validation.validateBlock (incomingBlock, chain_copy));
                 try {
                     if (Node.Classes.Validation.validateBlock (incomingBlock, chain_copy)) {
                         chain_copy.Add (incomingBlock);
@@ -93,7 +92,8 @@ namespace Node.Controllers {
 
             System.Console.WriteLine (json);
             JArray array = (JArray) json["CHAIN_COPY"];
-            if (array.Count > 30) {
+            bool mustOverride = (bool) json["override"];
+            if (mustOverride) {
                 string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
                 string current_identity = System.IO.File.ReadAllText (parentOfStartupPath + "/node.json");
                 JObject node = JObject.Parse (current_identity);
