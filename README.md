@@ -16,6 +16,10 @@ clone the repo
 git clone git@github.com:Skillerde6de/ProjectD_RvL.git
 ```
 
+```bash
+npm install
+```
+
 Install NPM packages for the Server
 
 ```bash
@@ -62,6 +66,14 @@ In order to run the Node, open a new terminal and use
 ```bash
 cd Node/
 dotnet run
+```
+
+### Alternate running method
+
+After installing all dependencies you can run the project with the folowing commands:
+
+```bash
+npm run dev
 ```
 
 ## Authors

@@ -33,3 +33,5 @@ _ReSharper.*
 bin
 obj
 packages
+
+node_modules

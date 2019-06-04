@@ -74,44 +74,45 @@ namespace Server.Controllers {
       Console.WriteLine (obj);
 
       // Pass data to all nodes for further validation
+      /*
+      // *************WORKS*************
+      string apiLoc = "data/saveblock";
+      // In order to send the chain to all nodes
+      foreach (var item in NodeUrls)
+      {
+        // In case the node isn't running
+        try
+        {
+          // The url of the api
+          string url = item + apiLoc;
+          WebRequest req = WebRequest.Create(url);
 
-      // // *************WORKS*************
-      // string apiLoc = "data/saveblock";
-      // // In order to send the chain to all nodes
-      // foreach (var item in NodeUrls)
-      // {
-      //   // In case the node isn't running
-      //   try
-      //   {
-      //     // The url of the api
-      //     string url = item + apiLoc;
-      //     WebRequest req = WebRequest.Create(url);
+          // Converting data to char array
+          var data = System.Text.Encoding.ASCII.GetBytes(newdata.ToString());
 
-      //     // Converting data to char array
-      //     var data = System.Text.Encoding.ASCII.GetBytes(newdata.ToString());
+          // Assigning request method
+          req.Method = "POST";
 
-      //     // Assigning request method
-      //     req.Method = "POST";
+          req.ContentType = "application/json; charset=utf-8";
+          req.ContentLength = data.Length;
 
-      //     req.ContentType = "application/json; charset=utf-8";
-      //     req.ContentLength = data.Length;
+          // Adding data to pusher
+          using (var streamPost = req.GetRequestStream())
+          {
+            streamPost.Write(data, 0, data.Length);
+          }
 
-      //     // Adding data to pusher
-      //     using (var streamPost = req.GetRequestStream())
-      //     {
-      //       streamPost.Write(data, 0, data.Length);
-      //     }
+          // Push data to client
+          req.GetResponse();
+        }
 
-      //     // Push data to client
-      //     req.GetResponse();
-      //   }
-
-      //   catch (Exception e)
-      //   {
-      //     Console.WriteLine(e);
-      //   }
-      // }
-      // // *************WORKS*************
+        catch (Exception e)
+        {
+          Console.WriteLine(e);
+        }
+      }
+      // *************WORKS*************
+      */
 
     }
 

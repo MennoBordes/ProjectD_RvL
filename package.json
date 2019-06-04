@@ -1,0 +1,24 @@
+{
+  "name": "projectd_rvl",
+  "version": "1.0.0",
+  "description": "A blockchain project for our second year of Software Engineering",
+  "main": "index.js",
+  "scripts": {
+    "server": "dotnet watch --project Server run",
+    "node1": "dotnet watch --project Node run",
+    "dev": "concurrently \"npm run server\" \"npm run node1\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Skillerde6de/ProjectD_RvL.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Skillerde6de/ProjectD_RvL/issues"
+  },
+  "homepage": "https://github.com/Skillerde6de/ProjectD_RvL#readme",
+  "dependencies": {
+    "concurrently": "^4.1.0"
+  }
+}
