@@ -4,6 +4,9 @@
   "description": "A blockchain project for our second year of Software Engineering",
   "main": "index.js",
   "scripts": {
+    "install:server": "cd Server && npm install",
+    "install:node": "cd Node && npm install",
+    "preinstall": "npm run-p install:*",
     "server": "dotnet watch --project Server run",
     "front": "yarn --cwd front-end start",
     "node1": "dotnet watch --project Node run",
