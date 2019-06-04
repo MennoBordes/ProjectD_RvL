@@ -78,44 +78,45 @@ namespace Server.Controllers
       Console.WriteLine(obj);
 
       // Pass data to all nodes for further validation
+      /*
+      // *************WORKS*************
+      string apiLoc = "data/saveblock";
+      // In order to send the chain to all nodes
+      foreach (var item in NodeUrls)
+      {
+        // In case the node isn't running
+        try
+        {
+          // The url of the api
+          string url = item + apiLoc;
+          WebRequest req = WebRequest.Create(url);
 
-      // // *************WORKS*************
-      // string apiLoc = "data/saveblock";
-      // // In order to send the chain to all nodes
-      // foreach (var item in NodeUrls)
-      // {
-      //   // In case the node isn't running
-      //   try
-      //   {
-      //     // The url of the api
-      //     string url = item + apiLoc;
-      //     WebRequest req = WebRequest.Create(url);
+          // Converting data to char array
+          var data = System.Text.Encoding.ASCII.GetBytes(newdata.ToString());
 
-      //     // Converting data to char array
-      //     var data = System.Text.Encoding.ASCII.GetBytes(newdata.ToString());
+          // Assigning request method
+          req.Method = "POST";
 
-      //     // Assigning request method
-      //     req.Method = "POST";
+          req.ContentType = "application/json; charset=utf-8";
+          req.ContentLength = data.Length;
 
-      //     req.ContentType = "application/json; charset=utf-8";
-      //     req.ContentLength = data.Length;
+          // Adding data to pusher
+          using (var streamPost = req.GetRequestStream())
+          {
+            streamPost.Write(data, 0, data.Length);
+          }
 
-      //     // Adding data to pusher
-      //     using (var streamPost = req.GetRequestStream())
-      //     {
-      //       streamPost.Write(data, 0, data.Length);
-      //     }
+          // Push data to client
+          req.GetResponse();
+        }
 
-      //     // Push data to client
-      //     req.GetResponse();
-      //   }
-
-      //   catch (Exception e)
-      //   {
-      //     Console.WriteLine(e);
-      //   }
-      // }
-      // // *************WORKS*************
+        catch (Exception e)
+        {
+          Console.WriteLine(e);
+        }
+      }
+      // *************WORKS*************
+      */
 
     }
 
@@ -208,43 +209,48 @@ namespace Server.Controllers
         }
       }
 
-      if (!correctNodes.Any ()) {
-        correctNodes.Add (null);
+      if (!correctNodes.Any())
+      {
+        correctNodes.Add(null);
       }
 
-      System.Console.WriteLine (correctNodes.ElementAt (0));
-      JArray validChain = new JArray ();
-      foreach (var value in resultChains) {
-        string nodePort = (string) value["node"];
-        if (nodePort == correctNodes.ElementAt (0)) {
-          validChain = (JArray) value["chain"];
+      System.Console.WriteLine(correctNodes.ElementAt(0));
+      JArray validChain = new JArray();
+      foreach (var value in resultChains)
+      {
+        string nodePort = (string)value["node"];
+        if (nodePort == correctNodes.ElementAt(0))
+        {
+          validChain = (JArray)value["chain"];
           break;
         }
       }
 
       // Returning objec
 
-      System.Console.WriteLine ("1111111");
-      JObject chain_copy = new JObject (new JProperty ("CHAIN_COPY", validChain));
-      List<string> overridePorts = new List<string> ();
+      System.Console.WriteLine("1111111");
+      JObject chain_copy = new JObject(new JProperty("CHAIN_COPY", validChain));
+      List<string> overridePorts = new List<string>();
 
-      overridePorts.Add ("http://localhost:4001/api/data/overrideblock"); // politie
-      overridePorts.Add ("http://localhost:4002/api/data/overrideblock"); // gemeente
-      overridePorts.Add ("http://localhost:4003/api/data/overrideblock"); //reclassering
-      overridePorts.Add ("http://localhost:4004/api/data/overrideblock"); // OM
+      overridePorts.Add("http://localhost:4001/api/data/overrideblock"); // politie
+      overridePorts.Add("http://localhost:4002/api/data/overrideblock"); // gemeente
+      overridePorts.Add("http://localhost:4003/api/data/overrideblock"); //reclassering
+      overridePorts.Add("http://localhost:4004/api/data/overrideblock"); // OM
 
-      foreach (var url in overridePorts) {
-        try {
+      foreach (var url in overridePorts)
+      {
+        try
+        {
           // For ignoring SSL
 
           ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
           ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
 
           // Creating Webrequest
-          WebRequest req = WebRequest.Create (url);
+          WebRequest req = WebRequest.Create(url);
 
           // Converting data to char array
-          var data = System.Text.Encoding.ASCII.GetBytes (chain_copy.ToString ());
+          var data = System.Text.Encoding.ASCII.GetBytes(chain_copy.ToString());
 
           // Assigning request method
           req.Method = "POST";
@@ -253,29 +259,33 @@ namespace Server.Controllers
           req.ContentLength = data.Length;
 
           // Adding data to pusher
-          using (var streamPost = req.GetRequestStream ()) {
-            streamPost.Write (data, 0, data.Length);
+          using (var streamPost = req.GetRequestStream())
+          {
+            streamPost.Write(data, 0, data.Length);
           }
 
           // Push data to client
-          System.Console.WriteLine ("pushded");
-          req.GetResponse ();
-        } catch (Exception e) {
-          Console.WriteLine (e);
+          System.Console.WriteLine("pushded");
+          req.GetResponse();
+        }
+        catch (Exception e)
+        {
+          Console.WriteLine(e);
         }
       }
 
-      if (!chosenOnes.Any ()) {
-        chosenOnes.Add (null);
+      if (!chosenOnes.Any())
+      {
+        chosenOnes.Add(null);
         totalNodesCheckedCounter = 0;
         highestCount = 0;
       }
 
-      return new JObject (
-        new JProperty ("totalNodesChecked", totalNodesCheckedCounter),
-        new JProperty ("nodesThatWhereValid", highestCount),
-        new JProperty ("acceptedLatestHash", chosenOnes.ElementAt (0)),
-        new JProperty ("CHAIN_COPY", validChain)
+      return new JObject(
+        new JProperty("totalNodesChecked", totalNodesCheckedCounter),
+        new JProperty("nodesThatWhereValid", highestCount),
+        new JProperty("acceptedLatestHash", chosenOnes.ElementAt(0)),
+        new JProperty("CHAIN_COPY", validChain)
 
       );
     }
