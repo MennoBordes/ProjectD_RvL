@@ -43,12 +43,15 @@ Install NPM packages for the Node's
 cd ..
 cd Node/
 npm install
+
 cd ..
 cd Node2/
 npm install
+
 cd ..
 cd Node3/
 npm install
+
 cd ..
 cd Node4/
 npm install
