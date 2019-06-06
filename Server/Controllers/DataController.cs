@@ -90,7 +90,6 @@ namespace Server.Controllers {
           WebRequest req = WebRequest.Create (url);
 
           // Converting data to char array
-          // var data = System.Text.Encoding.ASCII.GetBytes(newdata.ToString());
           var data = System.Text.Encoding.ASCII.GetBytes (obj2.ToString ());
 
           // Assigning request method
