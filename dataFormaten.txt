@@ -8,7 +8,7 @@ string=""
 hoe de server de data verwacht: exact het formaat in "newdata".
 etc... == te vinden in blockObject.1.cs (server & node) voor preciese verwachte attributen
 
-POST localhost:SERVERPORT/api/data/encryptdata
+POST localhost:SERVERPORT/api/data/client
 
 {
     "newdata": {
