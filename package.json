@@ -5,12 +5,12 @@
   "main": "index.js",
   "scripts": {
     "server": "dotnet watch --project Server run",
-    "front": "npm --prefix front-end run",
+    "front": "yarn --cwd front-end start",
     "node1": "dotnet watch --project Node run",
     "node2": "dotnet watch --project Node2 run",
     "node3": "dotnet watch --project Node3 run",
     "node4": "dotnet watch --project Node4 run",
-    "dev": "concurrently \"npm run server\" \"npm run node1\" \"npm run node2\" \"npm run node3\" \"npm run node4\" \"npm run front\" "
+    "dev": "concurrently \"npm run front\" \"npm run server\" \"npm run node1\" \"npm run node2\" \"npm run node3\" \"npm run node4\""
   },
   "repository": {
     "type": "git",
