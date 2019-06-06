@@ -16,6 +16,16 @@ clone the repo
 git clone git@github.com:Skillerde6de/ProjectD_RvL.git
 ```
 
+Install Yarn packages for the Front-end
+
+```bash
+cd ..
+cd front-end/
+yarn install
+```
+
+Install NPM packages
+
 ```bash
 npm install
 ```
@@ -33,42 +43,18 @@ Install NPM packages for the Node's
 cd ..
 cd Node/
 npm install
-```
-
-Install Yarn packages for the Front-end
-
-```bash
 cd ..
-cd front-end/
-yarn install
+cd Node2/
+npm install
+cd ..
+cd Node3/
+npm install
+cd ..
+cd Node4/
+npm install
 ```
 
 ### Running
-
-After installing all dependencies you can run the project with the folowing commands:
-
-In order to run the front-end, open a new terminal and use
-
-```bash
-cd front-end/
-yarn start
-```
-
-In order to run the Server, open a new terminal and use
-
-```bash
-cd Server/
-dotnet run
-```
-
-In order to run the Node, open a new terminal and use
-
-```bash
-cd Node/
-dotnet run
-```
-
-### Alternate running method
 
 After installing all dependencies you can run the project with the folowing commands:
 
