@@ -226,7 +226,6 @@ namespace Server.Controllers {
         string oneHash = (string) lastInChain["hash_code"];
         // System.Console.WriteLine("ONEHASH" + oneHash);
         chosenOnes.Add (oneHash);
-        totalNodesCheckedCounter = 0;
         highestCount = 0;
         mustOverride = false;
       }
@@ -286,6 +285,7 @@ namespace Server.Controllers {
     // encrypts or decrypts data
     [HttpPost ("encryptdata")]
     public JObject Post ([FromBody] JObject newdata) {
+      System.Console.WriteLine ("COMINGIN" + newdata.ToString ());
       string parentOfStartupPathKeys = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../tempKeys"));
       string keys_of_instanced = System.IO.File.ReadAllText (parentOfStartupPathKeys + "/keys.json");
       JObject keys_of_instanced_parsed = JObject.Parse (keys_of_instanced);

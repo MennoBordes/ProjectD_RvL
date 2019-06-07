@@ -26,7 +26,10 @@ namespace Server {
             services.AddCors (options => {
                 options.AddPolicy (MyAllowSpecificOrigins,
                     builder => {
-                        builder.WithOrigins ("*");
+                        builder.AllowAnyOrigin ()
+                            .AllowAnyMethod ()
+                            .AllowAnyHeader ()
+                            .AllowCredentials ();
                     });
             });
 
