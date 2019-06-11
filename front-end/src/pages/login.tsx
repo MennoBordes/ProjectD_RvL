@@ -3,7 +3,7 @@ import "../style/App.css";
 import { Button, Row, Col, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 
 interface props {
-
+  setOrg : Function
 }
 
 interface state {
@@ -15,7 +15,7 @@ class Login extends React.Component<props, state> {
 
 
   organizations = [
-    "Openbaar Ministerie",
+    "OM",
     "Politie",
     "Gemeente",
     "Reclassering"
@@ -29,6 +29,7 @@ class Login extends React.Component<props, state> {
       selected: "kies uw organisatie"
 
     }
+    console.log(this.props);
   }
 
   toggle() {
@@ -76,9 +77,15 @@ class Login extends React.Component<props, state> {
 
           <Row>
             <Col sm={{size:12}}>
-              <Button onClick={() => {}}  size="lg" color="success" outline block>
+            { this.state.selected !== "kies uw organisatie" ?
+              <Button onClick={() => {}} href={`/dashboard/${this.state.selected}`} size="lg" color="success" outline block>
+                  Login
+              </Button> :
+              <Button  size="lg" color="secondary" outline block disabled>
                   Login
               </Button>
+            }
+              
             </Col>
           </Row>
         </header>

@@ -1,5 +1,6 @@
 import React from "react";
 import "../style/dashboard.css";
+import {  Link } from "react-router-dom";
 import {
   Button,
   Row,
@@ -7,7 +8,6 @@ import {
   Nav,
   Navbar,
   NavbarBrand,
-  NavbarToggler,
   Collapse,
   NavItem,
   NavLink,
@@ -15,20 +15,32 @@ import {
   CardBody,
   CardTitle,
   CardSubtitle,
-  CardText,
   CardColumns
 } from "reactstrap";
 
-interface props {}
+interface props {
+  match : any
+}
 
 interface state {
   isOpen: boolean;
-  role: number;
+  role: string;
+  data: any;
+}
+
+type doc = {
+  Antecedenten_Radicalen_OGR: string
+  Antecedenten_LokalePGA_OGR: string
+  Antecedenten_ZSM_OGR: string
+  Antecedenten_Detentie: string
+  Naam: string
+  BSN: string
+  Geb_datum: string
 }
 
 class Dashboard extends React.Component<props, state> {
   organizations = [
-    "Openbaar Ministerie",
+    "OM",
     "Politie",
     "Gemeente",
     "Reclassering"
@@ -38,8 +50,11 @@ class Dashboard extends React.Component<props, state> {
     super(props);
     this.state = {
       isOpen: false,
-      role: 1
+      role: this.props.match.params.id,
+      data: null
     };
+    
+    this.getDocuments()
   }
 
   render() {
@@ -61,25 +76,50 @@ class Dashboard extends React.Component<props, state> {
     );
   }
 
+
+  getPort () {
+    switch(this.state.role){
+      case "OM": return 4001
+      case "Politie": return 4001
+      case "Gemeente": return 4003  
+      case "Reclassering": return 4004  
+    }
+  }
+
+  getDocuments() {
+    console.log("getDocuments was called");
+    fetch(`http://localhost:${this.getPort()}/api/data/getdecryptednode`)
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+        this.setState({ data: result })})
+
+  }
+
   getAvailableDocuments() {
-    //below is for testing
-    let list = Array(100);
-    list.fill(1,0)
-    console.log(list);
+    console.log(this.state.data);
+    if(this.state.data == null) return <></>
     return(
-        list.map((content, index) => {
-          return this.displayDocument("titel", "ondertitel")
+        this.state.data.node.CHAIN_COPY.map((content : any) => {
+          return this.displayDocument(content.data[this.state.role], content.created_by)
         })
     )
   }
 
-  displayDocument(title: string, subTitle: string) {
+  displayDocument(data : doc, created_by : string) {
     return (
       <Card xs={{size: 12}} outline color="success">
         <CardBody>
-          <CardTitle>{title}</CardTitle>
-          <CardSubtitle>{subTitle}</CardSubtitle>
+          <CardTitle>{data.Naam}</CardTitle>
+          <CardSubtitle>{created_by}</CardSubtitle>
+          <Link to={{
+            pathname: '/document',
+            state: {
+              block: data
+            }
+          }}>
           <Button color="success" outline>display</Button>
+          </Link>
         </CardBody>
       </Card>
     );
@@ -89,7 +129,7 @@ class Dashboard extends React.Component<props, state> {
     return (
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/">
-          Logged in as: {this.organizations[this.state.role]}
+          Logged in as: {this.state.role}
         </NavbarBrand>
         {/* <NavbarToggler onClick={this.toggle} /> */}
         <Collapse isOpen={this.state.isOpen} navbar>
