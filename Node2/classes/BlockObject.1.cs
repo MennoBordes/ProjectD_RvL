@@ -31,8 +31,10 @@ namespace Server.Classes.NewBlock
     public Reclassering Reclassering { get; set; }
 
     public Data(
-      Politie Politie, OM OM, Gemeente Gemeente, Reclassering Reclassering)
+      Politie Politie,
+      OM OM, Gemeente Gemeente, Reclassering Reclassering)
     {
+
       this.Politie = Politie;
       this.OM = OM;
       this.Gemeente = Gemeente;
@@ -42,6 +44,7 @@ namespace Server.Classes.NewBlock
 
   public class Politie
   {
+    public string WhoAmI { get; set; }
     public string Antecedenten_Radicalen { get; set; }
     public string Antecedenten_LokalePGA { get; set; }
     public string Antecedenten_ZSM { get; set; }
@@ -59,6 +62,8 @@ namespace Server.Classes.NewBlock
 
   public class OM
   {
+    public string WhoAmI { get; set; }
+
     public string Antecedenten_ZSM { get; set; }
     public string Sepots_ZSM { get; set; }
     public string Antecedenten_Radicalen { get; set; }
@@ -74,6 +79,8 @@ namespace Server.Classes.NewBlock
 
   public class Gemeente
   {
+    public string WhoAmI { get; set; }
+
     public string BezitUitkering_ZSM { get; set; }
     public string MeldingenRad_Radicalen { get; set; }
     public string BezitUitkering_LokalePGA { get; set; }
@@ -88,6 +95,8 @@ namespace Server.Classes.NewBlock
 
   public class Reclassering
   {
+    public string WhoAmI { get; set; }
+
     public string LopendTraject_ZSM { get; set; }
     public string LaatsteGesprek_ZSM { get; set; }
     public string LopendTraject_Radicalen { get; set; }
