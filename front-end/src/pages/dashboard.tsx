@@ -93,9 +93,6 @@ class Dashboard extends React.Component<props, state> {
   getAvailableDocuments() {
     
     if(this.state.data == null) return <></>
-    
-    console.log(this.state.data.node);
-    console.log(this.state.data.node.CHAIN_COPY[0].data['Politie'])
     return(
         this.state.data.node.CHAIN_COPY.slice(1).map((content : any) => {
           console.log(content.data['Politie']);

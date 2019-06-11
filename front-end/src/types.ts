@@ -1,5 +1,5 @@
 export interface PoliceType  {
-    WhoAmI : 'Poltie'
+    WhoAmI : 'Politie'
     Antecedenten_Radicalen? : string
     Antecedenten_LokalePGA? : string
     Antecedenten_ZSM? : string

@@ -30,7 +30,7 @@ interface state {
 
 class AddDocument extends React.Component<props, state> {
 
-    selectedInput = -1;
+    
 
   constructor(props: any){
     super(props);
@@ -39,6 +39,7 @@ class AddDocument extends React.Component<props, state> {
       dropdownOpen: false,
       selected: "kies uw organisatie"
     }
+    this.toggle = this.toggle.bind(this);
     
   }
 
@@ -54,14 +55,14 @@ class AddDocument extends React.Component<props, state> {
     this.setState({selected: org})
   }
   toggle() {
-    this.setState(prevState => ({
+    this.setState((prevState) => ({
       dropdownOpen: !prevState.dropdownOpen,
     }));
   }
 
   DisplayDropdown() {
     return (
-      <Dropdown sm={{size:12}} block isOpen={this.state.dropdownOpen} toggle={this.toggle}>
+      <Dropdown block isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <DropdownToggle caret>
           {this.state.selected}
         </DropdownToggle>
@@ -85,18 +86,55 @@ class AddDocument extends React.Component<props, state> {
                 <Input placeholder="Date of birth" />
             </Row>
             <Row>
-
-
-            {this.selectedInput == 1 ? 
-            <>
-            
-            </> : 
-              this.selectedInput == 2 ? <>2</> : 
-              this.selectedInput == 3 ? <>3</> :
-              this.selectedInput == 4 ? <>4</> : <></>
-            }
+              {this.DisplayDropdown()}
             </Row>
+            <Row>
+              <Col>
+              {this.state.selected == "OM" ?  //OM
+               <>
+                <Input placeholder="Antecedenten_ZSM" name="Antecedenten_ZSM" />
+                <Input placeholder="Sepots_ZSM" name="Sepots_ZSM" />
+                <Input placeholder="Antecedenten_Radicalen" name="Antecedenten_Radicalen" />
+                <Input placeholder="Sepots_Radicalen" name="Sepots_Radicalen" />
+                <Input placeholder="OnderzoekRad_Radicalen" name="OnderzoekRad_Radicalen" />
+                <Input placeholder="Antecedenten_LokalePGA" name="Antecedenten_LokalePGA" />
+                <Input placeholder="LopendeDossiers_Detentie" name="LopendeDossiers_Detentie" />
+              </>: 
+                this.state.selected == "Politie" ? //Politie
+                 <>
+                    <Input placeholder="Antecedenten_Radicalen" name="Antecedenten_Radicalen" />
+                    <Input placeholder="Antecedenten_LokalePGA" name="Antecedenten_LokalePGA" />
+                    <Input placeholder="Antecedenten_ZSM" name="Antecedenten_ZSM" />
+                    <Input placeholder="Antecedenten_Detentie" name="Antecedenten_Detentie" />
+                    <Input placeholder="Aanhoudingen_Radicalen" name="Aanhoudingen_Radicalen" />
+                    <Input placeholder="Aanhoudingen_Detentie" name="Aanhoudingen_Detentie" />
+                    <Input placeholder="Aanhoudingen_ZSM" name="Aanhoudingen_ZSM" />
+                    <Input placeholder="ISDMaatregel_ZSM" name="ISDMaatregel_ZSM" />
+                    <Input placeholder="ISDMaatregel_Radicalen" name="ISDMaatregel_Radicalen" />
+                </>: 
+                this.state.selected == "Gemeente" ?  // Gemeente
+                 <>
+                  <Input placeholder="BezitUitkering_ZSM" name="BezitUitkering_ZSM" />
+                  <Input placeholder="MeldingenRad_Radicalen" name="MeldingenRad_Radicalen" />
+                  <Input placeholder="BezitUitkering_LokalePGA" name="BezitUitkering_LokalePGA" />
+                  <Input placeholder="ZitInGroepsAanpak_LokalePGA" name="ZitInGroepsAanpak_LokalePGA" />
+                  <Input placeholder="BezitUitkering_Detentie" name="BezitUitkering_Detentie" />
+                  <Input placeholder="IdBewijs_Detentie" name="IdBewijs_Detentie" />
 
+                </>:
+                this.state.selected == "Reclassering" ? //reclassering
+                 <> 
+                  <Input placeholder="LopendTraject_ZSM" name="LopendTraject_ZSM" />
+                  <Input placeholder="LaatsteGesprek_ZSM" name="LaatsteGesprek_ZSM" />
+                  <Input placeholder="LopendTraject_Radicalen" name="LopendTraject_Radicalen" />
+                  <Input placeholder="LaatsteGesprek_Radicalen" name="LaatsteGesprek_Radicalen" />
+                  <Input placeholder="LopendTraject_Detentie" name="LopendTraject_Detentie" />
+                  <Input placeholder="LaatsteGesprek_Detentie" name="LaatsteGesprek_Detentie" />
+                </>: <></>
+              }
+              {this.state.role !== "kies uw organisatie" ?  <Button>Add</Button> :<></>}
+              </Col>
+              </Row>
         }
         </header>
     );
