@@ -25,6 +25,7 @@ namespace Node {
     }
 
     static async void configureIdentity () {
+      System.Console.WriteLine ();
       // Ophalen meest recente blockchain
       string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
       System.Console.WriteLine (parentOfStartupPath);

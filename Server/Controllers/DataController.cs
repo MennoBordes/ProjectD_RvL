@@ -295,5 +295,58 @@ namespace Server.Controllers {
       return LetsEncrypt.showEncrypted ();
     }
 
+    [HttpGet ("deletechain")]
+    public string DeleteChain () {
+      List<string> overridePorts = new List<string> ();
+
+      overridePorts.Add ("http://localhost:4001/api/data/overrideblock"); // politie
+      overridePorts.Add ("http://localhost:4002/api/data/overrideblock"); // gemeente
+      overridePorts.Add ("http://localhost:4003/api/data/overrideblock"); //reclassering
+      overridePorts.Add ("http://localhost:4004/api/data/overrideblock"); // OM
+
+      foreach (var url in overridePorts) {
+        try {
+          // For ignoring SSL
+
+          ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
+          ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+
+          // Creating Webrequest
+          WebRequest req = WebRequest.Create (url);
+
+          // Converting data to char array
+          var data = System.Text.Encoding.ASCII.GetBytes (new JObject (
+            new JProperty ("CHAIN_COPY", new JArray (
+              new JObject (
+                new JProperty ("hash_code", "IlSUaEoywjmhaSoNFA5w5PSaVoppIsY8K/GsriMr4tk="),
+                new JProperty ("previous_hash", ""),
+                new JProperty ("timestamp", "03-06-10 12:49:04"),
+                new JProperty ("data", new JObject ())
+              )
+            )),
+            new JProperty ("override", true)
+          ).ToString ());
+
+          // Assigning request method
+          req.Method = "POST";
+
+          req.ContentType = "application/json; charset=utf-8";
+          req.ContentLength = data.Length;
+
+          // Adding data to pusher
+          using (var streamPost = req.GetRequestStream ()) {
+            streamPost.Write (data, 0, data.Length);
+          }
+
+          // Push data to client
+          // System.Console.WriteLine("pushded");
+          req.GetResponse ();
+        } catch (Exception e) {
+          Console.WriteLine (e);
+        }
+      }
+      return "i hope you know what you are doing";
+    }
+
   }
 }
