@@ -1,6 +1,7 @@
 import React from "react";
 import "../style/dashboard.css";
 import {  Link } from "react-router-dom";
+import {PoliceType, GemeenteType, OMType, ReclasseringType} from '../types';
 import {
   Button,
   Row,
@@ -28,15 +29,8 @@ interface state {
   data: any;
 }
 
-type doc = {
-  Antecedenten_Radicalen_OGR: string
-  Antecedenten_LokalePGA_OGR: string
-  Antecedenten_ZSM_OGR: string
-  Antecedenten_Detentie: string
-  Naam: string
-  BSN: string
-  Geb_datum: string
-}
+type doc = PoliceType | GemeenteType | OMType | ReclasseringType;
+
 
 class Dashboard extends React.Component<props, state> {
   organizations = [
@@ -79,10 +73,10 @@ class Dashboard extends React.Component<props, state> {
 
   getPort () {
     switch(this.state.role){
-      case "OM": return 4001
+      case "OM": return 4004
       case "Politie": return 4001
-      case "Gemeente": return 4003  
-      case "Reclassering": return 4004  
+      case "Gemeente": return 4002  
+      case "Reclassering": return 4003
     }
   }
 
@@ -97,21 +91,23 @@ class Dashboard extends React.Component<props, state> {
   }
 
   getAvailableDocuments() {
-    console.log(this.state.data);
+    
     if(this.state.data == null) return <></>
     return(
-        this.state.data.node.CHAIN_COPY.map((content : any) => {
-          return this.displayDocument(content.data[this.state.role], content.created_by)
+        this.state.data.node.CHAIN_COPY.slice(1).map((content : any) => {
+          console.log(content.data['Politie']);
+          return this.displayDocument(content.data[this.state.role])
         })
     )
+      
   }
 
-  displayDocument(data : doc, created_by : string) {
+  displayDocument(data : doc) {
     return (
       <Card xs={{size: 12}} outline color="success">
         <CardBody>
           <CardTitle>{data.Naam}</CardTitle>
-          <CardSubtitle>{created_by}</CardSubtitle>
+          <CardSubtitle>{data.WhoAmI}</CardSubtitle>
           <Link to={{
             pathname: '/document',
             state: {

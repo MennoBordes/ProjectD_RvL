@@ -19,7 +19,7 @@ class Login extends React.Component<props, state> {
     "Politie",
     "Gemeente",
     "Reclassering"
-  ]
+  ];
 
   constructor(props: any){
     super(props);
