@@ -3,17 +3,9 @@ import "../style/App.css";
 import { Button, Row, Col, Dropdown, Input, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
 import { Location, History } from "history";
 import { Link } from "react-router-dom";
+import {PoliceType, GemeenteType, OMType, ReclasseringType} from '../types';
 
 
-type doc = {
-  Antecedenten_Radicalen_OGR: string
-  Antecedenten_LokalePGA_OGR: string
-  Antecedenten_ZSM_OGR: string
-  Antecedenten_Detentie: string
-  Naam: string
-  BSN: string
-  Geb_datum: string
-}
 
 interface props {
   // block: doc
@@ -25,9 +17,10 @@ interface props {
 interface state {
     role : string
     dropdownOpen : boolean
-    selected : string
+    WhoAmI : string
     inputData : any
 }
+
 
 class AddDocument extends React.Component<props, state> {
 
@@ -38,16 +31,15 @@ class AddDocument extends React.Component<props, state> {
     this.state = this.props.location.state
     this.state = {...this.state,       
       dropdownOpen: false,
-      selected: "kies uw organisatie",
+      WhoAmI: "kies uw organisatie",
       inputData : {
         Naam : "",
         BSN: "",
-
       }
     }
     this.toggle = this.toggle.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    
+    this.uploadDocument = this.uploadDocument.bind(this);
   }
 
   organizations = [
@@ -58,8 +50,42 @@ class AddDocument extends React.Component<props, state> {
   ];
 
 
+
+  uploadDocument() {
+    console.log(this.state);
+    let data = this.state.inputData;
+    // data.WhoAmI = this.state.WhoAmI;
+    
+    let newdata = {
+      Politie : data,
+      Reclassering : data,
+      Gemeente : data,
+      OM : data
+    }
+    let toSend = {
+      newdata : newdata
+    }
+    console.log(JSON.stringify({newdata}));
+    console.log("uploadDocument was called");
+    console.log(data);
+    fetch(`http://localhost:5005/api/data/client`,{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(toSend)
+    })
+      .then(res => res.json())
+      .then(result => {
+        console.log(result);
+      }).catch(er => {console.log(er)});
+
+  }
+
+
+
   changeOrg(org: string) {
-    this.setState({selected: org})
+    this.setState({WhoAmI: org})
 
   }
   toggle() {
@@ -72,7 +98,7 @@ class AddDocument extends React.Component<props, state> {
     return (
       <Dropdown block isOpen={this.state.dropdownOpen} toggle={this.toggle}>
         <DropdownToggle caret>
-          {this.state.selected}
+          {this.state.WhoAmI}
         </DropdownToggle>
         <DropdownMenu>
           
@@ -107,7 +133,7 @@ class AddDocument extends React.Component<props, state> {
             </Row>
             <Row>
               <Col>
-              {this.state.selected == "OM" ?  //OM
+              {this.state.WhoAmI == "OM" ?  //OM
                <>
                 <Input placeholder="Antecedenten_ZSM" name="Antecedenten_ZSM" onChange={this.handleChange} />
                 <Input placeholder="Sepots_ZSM" name="Sepots_ZSM" onChange={this.handleChange} />
@@ -117,7 +143,7 @@ class AddDocument extends React.Component<props, state> {
                 <Input placeholder="Antecedenten_LokalePGA" name="Antecedenten_LokalePGA" onChange={this.handleChange} />
                 <Input placeholder="LopendeDossiers_Detentie" name="LopendeDossiers_Detentie" onChange={this.handleChange} />
               </>: 
-                this.state.selected == "Politie" ? //Politie
+                this.state.WhoAmI == "Politie" ? //Politie
                  <>
                     <Input placeholder="Antecedenten_Radicalen" name="Antecedenten_Radicalen" onChange={this.handleChange} />
                     <Input placeholder="Antecedenten_LokalePGA" name="Antecedenten_LokalePGA" onChange={this.handleChange} />
@@ -129,7 +155,7 @@ class AddDocument extends React.Component<props, state> {
                     <Input placeholder="ISDMaatregel_ZSM" name="ISDMaatregel_ZSM" onChange={this.handleChange} />
                     <Input placeholder="ISDMaatregel_Radicalen" name="ISDMaatregel_Radicalen" onChange={this.handleChange} />
                 </>: 
-                this.state.selected == "Gemeente" ?  // Gemeente
+                this.state.WhoAmI == "Gemeente" ?  // Gemeente
                  <>
                   <Input placeholder="BezitUitkering_ZSM" name="BezitUitkering_ZSM" onChange={this.handleChange} />
                   <Input placeholder="MeldingenRad_Radicalen" name="MeldingenRad_Radicalen" onChange={this.handleChange} />
@@ -139,7 +165,7 @@ class AddDocument extends React.Component<props, state> {
                   <Input placeholder="IdBewijs_Detentie" name="IdBewijs_Detentie" onChange={this.handleChange} />
 
                 </>:
-                this.state.selected == "Reclassering" ? //reclassering
+                this.state.WhoAmI == "Reclassering" ? //reclassering
                  <> 
                   <Input placeholder="LopendTraject_ZSM" name="LopendTraject_ZSM" onChange={this.handleChange} />
                   <Input placeholder="LaatsteGesprek_ZSM" name="LaatsteGesprek_ZSM" onChange={this.handleChange} />
@@ -149,7 +175,7 @@ class AddDocument extends React.Component<props, state> {
                   <Input placeholder="LaatsteGesprek_Detentie" name="LaatsteGesprek_Detentie" onChange={this.handleChange} />
                 </>: <></>
               }
-              {this.state.role !== "kies uw organisatie" ?  <Button>Add</Button> :<></>}
+              {this.state.role !== "kies uw organisatie" ?  <Button onClick={this.uploadDocument}>Add</Button> :<></>}
               </Col>
               </Row>
         }
