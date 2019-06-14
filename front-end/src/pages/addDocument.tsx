@@ -108,6 +108,8 @@ class AddDocument extends React.Component<props, state> {
       .then(res => res.json())
       .then(result => {
         console.log(result);
+        alert('Data opslag succesvol.')
+        this.props.history.push('/');
       }).catch(er => {console.log(er)});
 
   }

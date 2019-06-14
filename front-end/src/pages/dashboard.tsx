@@ -59,7 +59,15 @@ class Dashboard extends React.Component<props, state> {
           <Row className="cards">
             <Col sm={{size:10, offset: 1}} xs={{size:12}}>
               <CardColumns>
-                
+                <Card>
+                  <CardBody>
+                    <Link to={{
+                      pathname: '/add'
+                    }}>
+                      <Button color="success" outline>Add</Button>
+                    </Link>
+                  </CardBody>
+                  </Card>
                 {/* {this.displayDocument("title", "onderTitel")} */}
                 {this.getAvailableDocuments()}
               </CardColumns>
@@ -134,7 +142,7 @@ class Dashboard extends React.Component<props, state> {
               <NavLink href="/components/">Components</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">
+              <NavLink href="/">
                 log out
               </NavLink>
             </NavItem>
