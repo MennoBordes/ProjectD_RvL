@@ -52,9 +52,9 @@ class DocumentDisplay extends React.Component<props, state> {
             </> : 
             this.state.block.WhoAmI === "OM" ?
             <>
-            <p style={{color: 'white'}}>Antecedenten Radicalen OGR: {(this.state.block.Antecedenten_LokalePGA == 'True') ? 'ja' : 'nee'}</p>
-            <p style={{color: 'white'}}>Antecedenten Lokale PGA OGR: {(this.state.block.Antecedenten_Radicalen == 'True') ? 'ja' : 'nee'}</p>
-            <p style={{color: 'white'}}>Antecedenten_ZSM : {(this.state.block.Antecedenten_ZSM == 'True') ? 'ja' : 'nee'}</p>
+            <p style={{color: 'white'}}>Antecedenten Radicalen OGR: {this.state.block.Antecedenten_LokalePGA}</p>
+            <p style={{color: 'white'}}>Antecedenten Lokale PGA OGR: {this.state.block.Antecedenten_Radicalen}</p>
+            <p style={{color: 'white'}}>Antecedenten_ZSM : {this.state.block.Antecedenten_ZSM}</p>
             <p style={{color: 'white'}}>LopendeDossiers_Detentie : {this.state.block.LopendeDossiers_Detentie}</p>
             <p style={{color: 'white'}}>OnderzoekRad_Radicalen : {this.state.block.OnderzoekRad_Radicalen}</p>
             <p style={{color: 'white'}}>Sepots_Radicalen : {this.state.block.Sepots_Radicalen}</p>

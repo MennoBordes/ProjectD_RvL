@@ -32,6 +32,7 @@ namespace Server.Controllers {
     [HttpPost ("client")]
     public void PushToNode ([FromBody] JObject newdata) {
       string TimeStamp = DateTime.Now.ToString ();
+      System.Console.WriteLine("DIT IS DATA DING#@*((#$*#(" + newdata);
       // For ignoring SSL
       ServicePointManager.ServerCertificateValidationCallback = delegate { return true; };
       ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
