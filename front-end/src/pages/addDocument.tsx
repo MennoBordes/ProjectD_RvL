@@ -1,6 +1,6 @@
 import React, { FormEvent } from "react";
 import "../style/App.css";
-import { Button, Row, Col, Dropdown, Input, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+import { Button, Row, Col,  Input } from "reactstrap";
 import { Location, History } from "history";
 import { Link } from "react-router-dom";
 import {PoliceType, GemeenteType, OMType, ReclasseringType} from '../types';
@@ -126,22 +126,7 @@ class AddDocument extends React.Component<props, state> {
     }));
   }
 
-  DisplayDropdown() {
-    return (
-      <Dropdown block isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-        <DropdownToggle caret>
-          {this.state.WhoAmI}
-        </DropdownToggle>
-        <DropdownMenu>
-          
-          {this.organizations.map(val => {return (
-            <DropdownItem onClick={() => this.changeOrg(val)}> {val}</DropdownItem>
-          )})}
 
-        </DropdownMenu>
-      </Dropdown>
-    )
-  }
 
   handleChange(event : React.ChangeEvent<HTMLInputElement>) {
     console.log(event.target);
@@ -164,7 +149,6 @@ class AddDocument extends React.Component<props, state> {
                 <Input placeholder="Date of birth" name="Birth_Date" onChange={this.handleChange} />
             </Row>
             <Row>
-              {this.DisplayDropdown()}
             </Row>
             <Row style={{color:'white'}}>
               <Col>
