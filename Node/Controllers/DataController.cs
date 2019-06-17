@@ -65,7 +65,7 @@ namespace Node.Controllers {
         }
 
         [HttpPost ("saveblock")]
-        public void saveBlock ([FromBody] JObject json) {
+        public string saveBlock ([FromBody] JObject json) {
 
             string parentOfStartupPath = Path.GetFullPath (Path.Combine (System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
             string current_identity = System.IO.File.ReadAllText (parentOfStartupPath + "/node.json");
@@ -78,12 +78,17 @@ namespace Node.Controllers {
                 try {
                     if (Node.Classes.Validation.validateBlock (incomingBlock, chain_copy)) {
                         chain_copy.Add (incomingBlock);
+                    } else {
+                        System.IO.File.WriteAllText (parentOfStartupPath + "/node.json", node.ToString ());
+                        if (!Node.Classes.Validation.checkTimestamp (chain_copy, incomingBlock)) return "TimeStamp not valid";
+                        if (!Node.Classes.Validation.checkHashOfLastBlockInCurrentChain (chain_copy, incomingBlock)) return "Hash is not valid";
+                        return "Something about the block is not valid";
                     }
                 } catch { }
-
             }
             // System.Console.WriteLine (node);
             System.IO.File.WriteAllText (parentOfStartupPath + "/node.json", node.ToString ());
+            return "200";
 
         }
 
