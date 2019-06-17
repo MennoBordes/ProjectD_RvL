@@ -21,7 +21,7 @@ namespace Node.Controllers {
   [ApiController]
   public class DataController : ControllerBase {
 
-    private string portOfNode = "4001";
+    private string portOfNode = "4002";
     // GET api/data
     [HttpGet ("getdecryptednode")]
     public JObject getDecryptedNode () {
