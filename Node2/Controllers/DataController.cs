@@ -23,7 +23,7 @@ namespace Node.Controllers
   public class DataController : ControllerBase
   {
 
-    private string portOfNode = "4002";
+    private string portOfNode = "4001";
     // GET api/data
     [HttpGet("getdecryptednode")]
     public JObject getDecryptedNode()
@@ -37,7 +37,7 @@ namespace Node.Controllers
       JArray instanties_array = (JArray)instanties_parsed["instanties"];
       foreach (JObject instantie in instanties_array)
       {
-        // System.Console.WriteLine ("instantieport " + (string) instantie["port"]);
+        System.Console.WriteLine("instantieport " + (string)instantie["port"]);
         if (portOfNode == (string)instantie["port"])
         {
           JArray currentData = (JArray)result["node"]["CHAIN_COPY"];
@@ -72,7 +72,7 @@ namespace Node.Controllers
     }
 
     [HttpPost("saveblock")]
-    public void saveBlock([FromBody] JObject json)
+    public string saveBlock([FromBody] JObject json)
     {
 
       string parentOfStartupPath = Path.GetFullPath(Path.Combine(System.AppDomain.CurrentDomain.BaseDirectory, @"../../../"));
@@ -90,12 +90,17 @@ namespace Node.Controllers
           {
             chain_copy.Add(incomingBlock);
           }
+          else
+          {
+            System.IO.File.WriteAllText(parentOfStartupPath + "/node.json", node.ToString());
+            return "The inserted block isn't valid!!";
+          }
         }
         catch { }
-
       }
       // System.Console.WriteLine (node);
       System.IO.File.WriteAllText(parentOfStartupPath + "/node.json", node.ToString());
+      return "200";
 
     }
 
@@ -103,7 +108,7 @@ namespace Node.Controllers
     public void overrideBlock([FromBody] JObject json)
     {
 
-      // System.Console.WriteLine (json);
+      System.Console.WriteLine(json);
       JArray array = (JArray)json["CHAIN_COPY"];
       bool mustOverride = (bool)json["override"];
       if (mustOverride)
