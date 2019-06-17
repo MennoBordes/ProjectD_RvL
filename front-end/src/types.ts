@@ -12,7 +12,7 @@ export interface PoliceType  {
 
     Naam: string
     BSN: string
-    Geb_Datum: string
+    Birth_Date: string
 };
   
 
@@ -28,7 +28,7 @@ export interface OMType {
 
   Naam: string
   BSN: string
-  Geb_Datum: string
+  Birth_Date: string
 }
 
 export interface GemeenteType {
@@ -42,7 +42,7 @@ export interface GemeenteType {
 
   Naam: string
   BSN: string
-  Geb_Datum: string
+  Birth_Date: string
 }
 
 export interface ReclasseringType {
@@ -56,5 +56,5 @@ export interface ReclasseringType {
 
   Naam: string
   BSN: string
-  Geb_Datum: string
+  Birth_Date: string
 }

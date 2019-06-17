@@ -37,7 +37,7 @@ class DocumentDisplay extends React.Component<props, state> {
         <div style={{textAlign: "left"}}>
           <p style={{color: 'white'}}>Naam: {this.state.block.Naam}</p>
           <p style={{color: 'white'}}>Bsn: {this.state.block.BSN}</p>
-          <p style={{color: 'white'}}>Geboorte datum: {this.state.block.Geb_Datum}</p>
+          <p style={{color: 'white'}}>Geboorte datum: {this.state.block.Birth_Date}</p>
           <hr style={{color: 'white'}}/>
 
           {

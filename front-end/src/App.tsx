@@ -23,7 +23,7 @@ type doc = {
   Antecedenten_Detentie: string
   Naam: string
   BSN: string
-  Geb_datum: string
+  Birth_Date: string
 }
 
 
