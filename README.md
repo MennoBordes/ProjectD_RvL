@@ -19,7 +19,6 @@ git clone git@github.com:Skillerde6de/ProjectD_RvL.git
 Install Yarn packages for the Front-end
 
 ```bash
-cd ..
 cd front-end/
 yarn install
 ```
@@ -27,6 +26,7 @@ yarn install
 Install NPM packages
 
 ```bash
+cd .. 
 npm install
 ```
 
